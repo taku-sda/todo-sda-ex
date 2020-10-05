@@ -13,7 +13,7 @@ import lombok.Data;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name ="user")
+@Table(name ="usr")
 @Data
 public class User implements Serializable{
   @Id
