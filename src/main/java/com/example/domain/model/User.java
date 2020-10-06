@@ -13,16 +13,19 @@ import lombok.Data;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name ="usr")
+@Table(name = "usr")
 @Data
-public class User implements Serializable{
+public class User implements Serializable {
+  /** ユーザー固有のID文字列.*/
   @Id
   @Column(name = "user_id")
   private String userId;
-  
+
+  /** ユーザー認証用パスワード.*/
   @Column(name = "password")
   private String password;
-  
+
+  /** ユーザーが持つロール.*/
   @Column(name = "role_name")
   @Enumerated(EnumType.STRING)
   private RoleName roleName;

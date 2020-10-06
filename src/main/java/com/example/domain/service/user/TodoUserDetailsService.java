@@ -13,8 +13,13 @@ import com.example.domain.repository.user.UserRepository;
 
 @Service
 public class TodoUserDetailsService implements UserDetailsService {
+  /** Userエンティティのリポジトリインターフェイス.*/
   @Autowired
   UserRepository userRepository;
+
+  /**
+   * ${@inheritDoc}.
+   */
   @Override
   public UserDetails loadUserByUsername(final String username)
       throws UsernameNotFoundException {

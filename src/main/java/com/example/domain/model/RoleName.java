@@ -1,5 +1,8 @@
 package com.example.domain.model;
 
 public enum RoleName {
-  USER, TEST
+  /** 一般ユーザーロール.*/
+  USER,
+  /** テストユーザーロール.*/
+  TEST
 }

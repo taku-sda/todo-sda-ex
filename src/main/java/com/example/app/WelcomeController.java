@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class WelcomeController {
 
+  /**
+   * トップページへ遷移を行う.
+   * @param model 連携するデータを格納
+   * @return 遷移先のView名
+   */
   @GetMapping
   public String index(Model model) {
     model.addAttribute("title", "ToDo!!");

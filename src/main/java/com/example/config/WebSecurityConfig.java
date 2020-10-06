@@ -15,14 +15,22 @@ import com.example.domain.service.user.TodoUserDetailsService;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+   /** UserDetailsServiceの実装クラス.*/
   @Autowired
   TodoUserDetailsService  userDetailsService;
 
+  /**
+   * パスワードのハッシュ化を行うエンコーダーを指定.
+   * @return 使用するエンコーダー
+   */
   @Bean
   PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
 
+  /**
+   * ${@inheritDoc}.
+   */
   @Override
   protected void configure(final HttpSecurity http) throws Exception {
     http.authorizeRequests()
@@ -42,8 +50,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .logoutSuccessUrl("/").permitAll();
   }
 
+  /**
+   * ${@inheritDoc}.
+   */
   @Override
-  protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
+  protected void configure(final AuthenticationManagerBuilder auth)
+      throws Exception {
     auth.userDetailsService(userDetailsService)
       .passwordEncoder(passwordEncoder());
   }
