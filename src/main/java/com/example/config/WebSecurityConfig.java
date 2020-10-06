@@ -36,7 +36,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .usernameParameter("userid")
       .passwordParameter("password")
       .defaultSuccessUrl("/todoList", true)
-      .failureUrl("/loginForm?error=ture").permitAll();
+      .failureUrl("/loginForm?error=ture").permitAll()
+      .and()
+      .logout()
+      .logoutSuccessUrl("/").permitAll();
   }
 
   @Override
