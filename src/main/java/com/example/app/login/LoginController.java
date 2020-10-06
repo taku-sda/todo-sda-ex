@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("loginForm")
+@RequestMapping("/loginForm")
 public class LoginController {
   public String loginForm(Model model) {
     model.addAttribute("title", "ToDo!! | ログインフォーム");
