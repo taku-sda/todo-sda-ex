@@ -26,7 +26,7 @@ jobs:
   test:
     docker:
       - image: circleci/openjdk:11-jdk
-        environment: 
+	environment: 
           POSTGRES_URL: ${TODO_APP_URL}
           POSTGRES_USER: ${TODO_APP_USER}
           POSTGRES_PASSWORD: ${TODO_APP_PASS}
