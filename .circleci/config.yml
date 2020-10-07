@@ -42,8 +42,7 @@ jobs:
       - run:
           command: |
             psql -h 127.0.0.1 -U postgres -c "CREATE DATABASE $TODO_APP_DB;"
-            psql -h 127.0.0.1 -U postgres -c "CREATE USER $TODO_APP_USER WITH PASSWORD '$TODO_APP_PASS'; 
-GRANT ALL PRIVILEGES ON DATABASE $TODO_APP_DB TO $TODO_APP_USER;"
+            psql -h 127.0.0.1 -U postgres -c "CREATE USER $TODO_APP_USER WITH PASSWORD '$TODO_APP_PASS'; GRANT ALL PRIVILEGES ON DATABASE $TODO_APP_DB TO $TODO_APP_USER;"
       - run: 
           name: テストの実施
           command: gradle test
