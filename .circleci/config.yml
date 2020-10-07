@@ -26,11 +26,19 @@ jobs:
   test:
     docker:
       - image: circleci/openjdk:11-jdk
+      - image: circleci/postgres:9.6
+        environment: 
+          POSTGRES_DB: ${TODO_APP_DB}
+          POSTGRES_USER: ${TODO_APP_USER}
+          POSTGRES_PASSWORD: ${TODO_APP_PASS}
     working_directory: ~/repo
     steps:
       # 共有したworkspaceをアタッチする
       - attach_workspace:
           at: ~/repo
+      - run: 
+        name: DBの起動を待つ
+　　　　command: dockerize -wait tcp://127.0.0.1:5432 -timeout 120s
       - run: 
           name: テストの実施
           command: gradle test
