@@ -39,12 +39,6 @@ jobs:
       - run: 
           name: DBの起動を待つ
           command: dockerize -wait tcp://127.0.0.1:5432 -timeout 120s
-      - run: sudo apt-get update
-      - run: sudo apt-get install postgresql-client-9.6
-      - run:
-          command: |
-            psql -h 127.0.0.1 -U postgres -c "CREATE DATABASE $TODO_APP_DB;"
-            psql -h 127.0.0.1 -U postgres -c "CREATE USER $TODO_APP_USER WITH PASSWORD '$TODO_APP_PASS'; GRANT ALL PRIVILEGES ON DATABASE $TODO_APP_DB TO $TODO_APP_USER;"
       - run: 
           name: テストの実施
           command: gradle test
