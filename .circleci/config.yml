@@ -38,7 +38,7 @@ jobs:
           at: ~/repo
       - run: 
           name: DBの起動を待つ
-　　　　  command: dockerize -wait tcp://127.0.0.1:5432 -timeout 120s
+          command: dockerize -wait tcp://127.0.0.1:5432 -timeout 120s
       - run: 
           name: テストの実施
           command: gradle test
