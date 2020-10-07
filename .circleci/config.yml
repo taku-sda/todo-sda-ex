@@ -28,7 +28,7 @@ jobs:
       - image: circleci/openjdk:11-jdk
       - image: circleci/postgres:9.6
         environment: 
-          POSTGRES_DB: ${TODO_APP_DB}
+          POSTGRES_URL: ${TODO_APP_URL}
           POSTGRES_USER: ${TODO_APP_USER}
           POSTGRES_PASSWORD: ${TODO_APP_PASS}
     working_directory: ~/repo
@@ -39,6 +39,11 @@ jobs:
       - run: 
           name: DBの起動を待つ
           command: dockerize -wait tcp://127.0.0.1:5432 -timeout 120s
+      - run:
+          command: |
+            psql -h 127.0.0.1 -U postgres -c "CREATE DATABASE $TODO_APP_DB;"
+            psql -h 127.0.0.1 -U postgres -c "CREATE USER $TODO_APP_USER WITH PASSWORD '$TODO_APP_PASS'; 
+GRANT ALL PRIVILEGES ON DATABASE $TODO_APP_DB TO $TODO_APP_USER;"
       - run: 
           name: テストの実施
           command: gradle test
