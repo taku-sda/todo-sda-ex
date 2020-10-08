@@ -38,6 +38,11 @@ jobs:
           name: DBの起動を待つ
           command: dockerize -wait tcp://127.0.0.1:5432 -timeout 120s
       - run:
+          name: System Dependenciesのインストール
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y lsb-release
+      - run:
           name: postgresql-client-9.6のインストール
           command: |
             wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
