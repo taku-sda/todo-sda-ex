@@ -51,6 +51,7 @@ jobs:
             sudo apt-get update
             sudo apt-get install postgresql postgresql-client-9.6
       - run:
+          name: DBのセットアップ
           command: |
             psql -h 127.0.0.1 -U postgres -c "CREATE DATABASE $TODO_APP_DB;"
             psql -h 127.0.0.1 -U postgres -c "CREATE USER $TODO_APP_USER WITH PASSWORD '$TODO_APP_PASS'; GRANT ALL PRIVILEGES ON DATABASE $TODO_APP_DB TO $TODO_APP_USER;"
