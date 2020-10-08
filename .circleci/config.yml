@@ -37,10 +37,14 @@ jobs:
       - run: 
           name: DBの起動を待つ
           command: dockerize -wait tcp://127.0.0.1:5432 -timeout 120s
-      - run: sudo sh -c'echo "deb http://apt.postgresql.org/pub/repos/apt $（lsb_release -cs）-pgdg main"> /etc/apt/sources.list.d/pgdg.list '
-      - run: wget --quiet -O-https：//www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-keyadd-
-      - run: sudo apt-get update
-      - run: sudo apt-get install -y postgresql-client-9.6
+      - run:
+          name: postgresql-client-9.6のインストール
+          command: |
+            wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+            sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+            cat /etc/apt/sources.list.d/pgdg.list
+            sudo apt-get update
+            sudo apt-get install postgresql postgresql-contrib
       - run:
           command: |
             psql -h 127.0.0.1 -U postgres -c "CREATE DATABASE $TODO_APP_DB;"
