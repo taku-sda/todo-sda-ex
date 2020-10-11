@@ -21,6 +21,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
+/**
+ * ユーザー認証に関するテスト
+ */
 @SpringBootTest
 @WebAppConfiguration
 @Transactional

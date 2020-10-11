@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import com.example.domain.model.User;
 import com.example.domain.repository.user.UserRepository;
 
+/**
+ * Spring Securityで用いるUserDetailsService.
+ */
 @Service
 public class TodoUserDetailsService implements UserDetailsService {
   /** Userエンティティのリポジトリインターフェイス.*/

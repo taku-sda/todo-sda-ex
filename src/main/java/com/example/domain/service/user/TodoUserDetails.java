@@ -11,6 +11,9 @@ import com.example.domain.model.User;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Spring Securityで用いるUserDetails.
+ */
 @SuppressWarnings("serial")
 @RequiredArgsConstructor
 public class TodoUserDetails implements UserDetails {

@@ -12,6 +12,10 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * usrテーブルに対応するエンティティ.
+ * 主にユーザーの認証、認可に用いる
+ */
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "usr")
