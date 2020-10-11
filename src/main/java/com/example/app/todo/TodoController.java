@@ -9,7 +9,7 @@ public class TodoController {
   @GetMapping("/todoList")
   public String todoList(Model model) {
     model.addAttribute("title", "ToDo!! | ToDo一覧");
-    return "/todo/todoList";
+    return "todo/todoList";
   }
 
 }
