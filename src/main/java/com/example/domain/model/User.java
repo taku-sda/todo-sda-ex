@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +20,7 @@ import lombok.Setter;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "usr")
+@AllArgsConstructor
 @Getter
 @Setter
 public class User implements Serializable {

@@ -14,10 +14,7 @@ class TodoUserDetailsTest {
   @Test
   @DisplayName("値の設定、取得が正しく行える")
   void getCorrectData() {
-    User user = new User();
-    user.setUserId("userId");
-    user.setPassword("password");
-    user.setRoleName(RoleName.USER);
+    User user = new User("userId", "password", RoleName.USER);
 
     TodoUserDetails userDetails = new TodoUserDetails(user);
     assertThat(userDetails.getAuthorities().stream()

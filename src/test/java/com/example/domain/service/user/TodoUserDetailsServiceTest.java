@@ -31,10 +31,7 @@ class TodoUserDetailsServiceTest {
   @Test
   @DisplayName("ユーザーIDが存在する場合に正しいUser情報を取得")
   void userFound() {
-    User user = new User();
-    user.setUserId("userId");
-    user.setPassword("password");
-    user.setRoleName(RoleName.USER);
+    User user = new User("userId", "password", RoleName.USER);
     when(repository.findById("userId")).thenReturn(Optional.ofNullable(user));
 
     UserDetails actual = service.loadUserByUsername("userId");
