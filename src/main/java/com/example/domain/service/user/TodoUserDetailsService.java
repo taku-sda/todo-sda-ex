@@ -25,7 +25,7 @@ public class TodoUserDetailsService implements UserDetailsService {
       throws UsernameNotFoundException {
     Optional<User> user = userRepository.findById(username);
     if (user.isEmpty()) {
-      throw new UsernameNotFoundException(username + "is not found.");
+      throw new UsernameNotFoundException(username + " is not found.");
     }
     return new TodoUserDetails(user.get());
   }

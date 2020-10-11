@@ -9,12 +9,14 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "usr")
-@Data
+@Getter
+@Setter
 public class User implements Serializable {
   /** ユーザー固有のID文字列.*/
   @Id
