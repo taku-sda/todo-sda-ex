@@ -2,6 +2,9 @@ package com.example.domain.service.user;
 
 import java.util.Optional;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,12 +21,12 @@ import com.example.domain.repository.user.UserRepository;
 public class UserRegisterServiceImpl implements UserRegisterService {
   @Autowired
   UserRepository repository;
-  
+
   @Override
   @Transactional(readOnly = true)
   public void confirmAvailability(String userId) {
     Optional<User> existUser = repository.findById(userId);
-    if(existUser.isPresent()) {
+    if (existUser.isPresent()) {
       throw new ExistUserException("そのユーザーIDは既に使用されています。");
     }
   }
@@ -35,7 +38,16 @@ public class UserRegisterServiceImpl implements UserRegisterService {
     String hashedPassword = encoder.encode(registerUser.getPassword());
     registerUser.setPassword(hashedPassword);
     repository.save(registerUser);
-    
+
     return registerUser;
+  }
+
+  @Override
+  public void authWithHttpServletRequest(HttpServletRequest request, String username, String password) {
+    try {
+      request.login(username, password);
+    } catch (ServletException e) {
+      throw new FailureLoginException("ログイン処理に失敗しました");
+    }
   }
 }
