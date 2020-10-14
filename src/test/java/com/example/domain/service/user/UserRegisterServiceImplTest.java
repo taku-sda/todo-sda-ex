@@ -86,7 +86,7 @@ class UserRegisterServiceImplTest {
     @Test
     @DisplayName("認証に失敗した場合はFailureLoginException例外を出力する")
     void failureLogin() throws ServletException {
-      doThrow(FailureLoginException.class).when(httpServletRequest).login("userId", "password");
+      doThrow(ServletException.class).when(httpServletRequest).login("userId", "password");
 
       assertThrows(FailureLoginException.class,
           () -> serviceImpl.authWithHttpServletRequest(httpServletRequest, "userId", "password"));
