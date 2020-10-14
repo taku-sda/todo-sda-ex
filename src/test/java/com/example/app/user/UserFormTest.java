@@ -45,7 +45,7 @@ class UserFormTest {
     @DisplayName("入力値が不正の場合")
     @CsvSource({
         ", 'ユーザーIDが未入力です'",
-        "'aaaaaaaaaaa', 'ユーザーIDは英数字10文字です'"
+        "'aaaaaaaaaaa', 'ユーザーIDは英数字10文字以内です'"
     })
     void deckValidation(String userId, String message) {
       form.setUserId(userId);

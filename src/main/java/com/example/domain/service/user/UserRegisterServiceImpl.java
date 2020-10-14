@@ -22,6 +22,7 @@ public class UserRegisterServiceImpl implements UserRegisterService {
   @Autowired
   UserRepository repository;
 
+  /** ${@inheritDoc}. */
   @Override
   @Transactional(readOnly = true)
   public void confirmAvailability(String userId) {
@@ -31,6 +32,7 @@ public class UserRegisterServiceImpl implements UserRegisterService {
     }
   }
 
+  /** ${@inheritDoc}. */
   @Override
   @Transactional
   public User register(User registerUser) {
@@ -42,6 +44,7 @@ public class UserRegisterServiceImpl implements UserRegisterService {
     return registerUser;
   }
 
+  /** ${@inheritDoc}. */
   @Override
   public void authWithHttpServletRequest(HttpServletRequest request, String username, String password) {
     try {

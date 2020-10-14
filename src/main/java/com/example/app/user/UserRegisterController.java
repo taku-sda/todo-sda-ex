@@ -31,12 +31,25 @@ public class UserRegisterController {
     return new UserForm();
   }
 
+  /**
+   * ユーザー登録フォームへ遷移を行う.
+   * @param model 連携するデータを格納
+   * @return  登録フォーム画面
+   */
   @GetMapping
   public String registerForm(Model model) {
     model.addAttribute("title", "ToDo!! | ユーザー登録フォーム");
     return "register/registerForm";
   }
 
+  /**
+   * フォームに入力されたユーザーが使用可能か確認する.
+   * 使用可能なら登録確認,不可なら登録フォームへ遷移する
+   * @param form  入力されたフォームクラス
+   * @param result  バリデーションの結果
+   * @param model 連携するデータを格納
+   * @return  登録確認または登録フォーム画面
+   */
   @PostMapping
   public String confirmAvailability(@Validated UserForm form, BindingResult result, Model model) {
     if (result.hasErrors()) {
@@ -53,6 +66,13 @@ public class UserRegisterController {
     return "register/confirmRegister";
   }
 
+  /**
+   * ユーザー登録処理を行う.
+   * @param form  入力されたフォームクラス
+   * @param model 連携するデータを格納
+   * @param request 使用しているHttpServletRequestオブジェクト
+   * @return ToDo一覧画面
+   */
   @PostMapping("complete")
   public String completeRegister(UserForm form, Model model, HttpServletRequest request) {
     User registerUser = new User(form.getUserId(), form.getPassword(), RoleName.USER);

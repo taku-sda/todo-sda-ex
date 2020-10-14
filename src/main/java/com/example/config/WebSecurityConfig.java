@@ -35,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(final HttpSecurity http) throws Exception {
     http.authorizeRequests()
       .antMatchers("/").permitAll()
+      //ユーザー登録画面は全て許可
       .antMatchers("/register", "/register/complete").permitAll()
       .antMatchers("js/**", "css/**").permitAll()
       .antMatchers("/**").authenticated()

@@ -21,24 +21,31 @@ public class WebMvcControllerAdvice {
    */
   @InitBinder
   public void initBinder(WebDataBinder dataBinder) {
-    dataBinder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+    dataBinder.registerCustomEditor(String.class,
+        new StringTrimmerEditor(true));
   }
-  
+
   /**
    * FailureLoginException発生時にエラーページへ遷移する.
-   * @param e　FailureLoginException
+   * @param e スローされたFailureLoginException
    * @param model 連携するデータを格納
-   * @return  遷移先のView名
+   * @return  エラー画面
    */
   @ExceptionHandler(FailureLoginException.class)
-  public String handleException(FailureLoginException e,Model model) {
+  public String handleException(FailureLoginException e, Model model) {
     model.addAttribute("errorMessage", e.getMessage());
     model.addAttribute("title", "ToDo!! | エラーが発生しました");
     return "error/error";
   }
-  
+
+  /**
+   * DB処理エラー発生時にエラーページへ遷移する.
+   * @param e スローされたDataAccessException
+   * @param model 連携するデータを格納
+   * @return  エラー画面
+   */
   @ExceptionHandler(DataAccessException.class)
-  public String handleException(DataAccessException e,Model model) {
+  public String handleException(DataAccessException e, Model model) {
     model.addAttribute("errorMessage", "データベース処理でエラーが発生しました");
     model.addAttribute("title", "ToDo!! | エラーが発生しました");
     return "error/error";
