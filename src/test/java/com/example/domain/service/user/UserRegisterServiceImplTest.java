@@ -21,7 +21,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -43,14 +42,15 @@ class UserRegisterServiceImplTest {
 
   @Nested
   @DisplayName("confirmAvailability()のテスト")
-  class testConfirmAvailability {
+  class TestConfirmAvailability {
     @Test
     @DisplayName("ユーザーが重複している場合はExistUserException例外を出力する")
     void existUser() {
       User existUser = new User("userId", "password", RoleName.USER);
       when(repository.findById("userId")).thenReturn(Optional.ofNullable(existUser));
 
-      ExistUserException ex = assertThrows(ExistUserException.class, () -> serviceImpl.confirmAvailability("userId"));
+      ExistUserException ex = assertThrows(ExistUserException.class,
+          () -> serviceImpl.confirmAvailability("userId"));
       assertThat(ex.getMessage(), is("そのユーザーIDは既に使用されています。"));
     }
 
@@ -65,7 +65,7 @@ class UserRegisterServiceImplTest {
 
   @Nested
   @DisplayName("register()のテスト")
-  class testRegister {
+  class TestRegister {
     @Test
     @DisplayName("正しいユーザー情報が登録される")
     void correctUserReistered() {
@@ -74,7 +74,8 @@ class UserRegisterServiceImplTest {
       User actualUser = serviceImpl.register(registerUser);
 
       assertThat(actualUser.getUserId(), is("userId"));
-      assertThat(new BCryptPasswordEncoder().matches("password", actualUser.getPassword()), is(true));
+      assertThat(new BCryptPasswordEncoder()
+          .matches("password", actualUser.getPassword()), is(true));
       assertThat(actualUser.getRoleName(), is(RoleName.USER));
       verify(repository, times(1)).save(actualUser);
     }
@@ -82,7 +83,7 @@ class UserRegisterServiceImplTest {
 
   @Nested
   @DisplayName("authWithHttpServletRequest()のテスト")
-  class testAuthWithHttpServletRequest {
+  class TestAuthWithHttpServletRequest {
     @Test
     @DisplayName("認証に失敗した場合はFailureLoginException例外を出力する")
     void failureLogin() throws ServletException {
@@ -98,7 +99,8 @@ class UserRegisterServiceImplTest {
     void successLogin() throws ServletException {
       doNothing().when(httpServletRequest).login("userId", "password");
 
-      assertDoesNotThrow(() -> serviceImpl.authWithHttpServletRequest(httpServletRequest, "userId", "password"));
+      assertDoesNotThrow(() ->
+          serviceImpl.authWithHttpServletRequest(httpServletRequest, "userId", "password"));
       verify(httpServletRequest, times(1)).login("userId", "password");
     }
   }
