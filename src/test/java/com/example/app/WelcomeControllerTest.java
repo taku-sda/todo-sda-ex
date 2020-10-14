@@ -1,9 +1,7 @@
 package com.example.app;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -27,10 +25,9 @@ class WelcomeControllerTest {
   }
 
   @Test
-  @DisplayName("正しいタイトルが格納されてトップページに遷移する")
+  @DisplayName("トップページに遷移する")
   void transitionIndex() throws Exception {
     mockMvc.perform(get("/"))
-      .andExpect(model().attribute("title", is("ToDo!!")))
       .andExpect(status().isOk())
       .andExpect(forwardedUrl("index"));
   }

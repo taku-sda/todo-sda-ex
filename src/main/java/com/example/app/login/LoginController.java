@@ -19,7 +19,6 @@ public class LoginController {
    */
   @GetMapping
   public String loginForm(Model model) {
-    model.addAttribute("title", "ToDo!! | ログインフォーム");
     return "login/loginForm";
   }
 }

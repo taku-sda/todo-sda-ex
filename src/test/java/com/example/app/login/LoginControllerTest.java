@@ -27,10 +27,9 @@ private MockMvc mockMvc;
   }
 
   @Test
-  @DisplayName("正しいタイトルが格納されてログインフォームに遷移する")
+  @DisplayName("ログインフォームに遷移する")
   void transitionLoginForm() throws Exception {
     mockMvc.perform(get("/loginForm"))
-      .andExpect(model().attribute("title", is("ToDo!! | ログインフォーム")))
       .andExpect(status().isOk())
       .andExpect(forwardedUrl("login/loginForm"));
   }
