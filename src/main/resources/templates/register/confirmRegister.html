@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}">Insert title here</title>
+</head>
+<body>
+<h3>ユーザー登録確認</h3>
+以下の内容でユーザー登録します<br><br>
+
+<div>ユーザーID : <span th:text="${userForm.userId}"></span></div>
+<div>パスワード : <span th:text="${userForm.password}"></span></div>
+
+<form action="#" th:action="@{/register/complete}" th:object="${userForm}" method="POST">
+  <input type="hidden" name="userId" th:field="*{userId}">
+  <input type="hidden" name="password" th:field="*{password}">
+  <input type="submit" value="登録確定">
+</form>
+</body>
+</html>
