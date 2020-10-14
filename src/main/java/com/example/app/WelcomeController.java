@@ -19,7 +19,6 @@ public class WelcomeController {
    */
   @GetMapping
   public String index(Model model) {
-    model.addAttribute("title", "ToDo!!");
     return "index";
   }
 }
