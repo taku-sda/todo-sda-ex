@@ -38,7 +38,6 @@ public class UserRegisterController {
    */
   @GetMapping
   public String registerForm(Model model) {
-    model.addAttribute("title", "ToDo!! | ユーザー登録フォーム");
     return "register/registerForm";
   }
 
@@ -79,7 +78,6 @@ public class UserRegisterController {
     userRegisterService.register(registerUser);
     userRegisterService.authWithHttpServletRequest(request, form.getUserId(), form.getPassword());
 
-    model.addAttribute("title", "ToDo!! | ToDo一覧");
     return "todo/todoList";
   }
 }
