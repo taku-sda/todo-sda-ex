@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 
-import com.example.domain.service.user.FailureLoginException;
+import com.example.domain.service.user.FailureAuthException;
 
 /**
  * 全てのコントローラに適用するControllerAdvice.
@@ -31,8 +31,8 @@ public class WebMvcControllerAdvice {
    * @param model 連携するデータを格納
    * @return  エラー画面
    */
-  @ExceptionHandler(FailureLoginException.class)
-  public String handleException(FailureLoginException e, Model model) {
+  @ExceptionHandler(FailureAuthException.class)
+  public String handleException(FailureAuthException e, Model model) {
     model.addAttribute("errorMessage", e.getMessage());
     model.addAttribute("title", "ToDo!! | エラーが発生しました");
     return "error/error";
