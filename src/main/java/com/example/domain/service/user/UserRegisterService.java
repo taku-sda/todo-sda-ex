@@ -27,7 +27,7 @@ public interface UserRegisterService {
    * @param request  認証を行うHttpServletRequestオブジェクト
    * @param username 認証に使用するユーザーID
    * @param password 認証に使用するパスワード
-   * @throws FailureLoginException 認証に失敗した場合
+   * @throws FailureAuthException 認証に失敗した場合
    */
   void authWithHttpServletRequest(HttpServletRequest request, String username, String password);
 }
