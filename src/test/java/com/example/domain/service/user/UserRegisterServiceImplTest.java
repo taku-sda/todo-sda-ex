@@ -89,7 +89,7 @@ class UserRegisterServiceImplTest {
     void failureLogin() throws ServletException {
       doThrow(ServletException.class).when(httpServletRequest).login("userId", "password");
 
-      assertThrows(FailureLoginException.class,
+      assertThrows(FailureAuthException.class,
           () -> serviceImpl.authWithHttpServletRequest(httpServletRequest, "userId", "password"));
       verify(httpServletRequest, times(1)).login("userId", "password");
     }

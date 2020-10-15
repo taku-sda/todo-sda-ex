@@ -27,7 +27,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.example.config.WebMvcControllerAdvice;
 import com.example.domain.model.User;
 import com.example.domain.service.user.ExistUserException;
-import com.example.domain.service.user.FailureLoginException;
+import com.example.domain.service.user.FailureAuthException;
 import com.example.domain.service.user.UserRegisterService;
 
 @SpringBootTest
@@ -148,7 +148,7 @@ class UserRegisterControllerTest {
     @Test
     @DisplayName("登録後の自動ログインに失敗した場合、エラーページに遷移")
     void failureLogin() throws Exception {
-      doThrow(new FailureLoginException("エラーメッセージ"))
+      doThrow(new FailureAuthException("エラーメッセージ"))
           .when(service).authWithHttpServletRequest(Mockito.any(), eq("userId"), eq("password"));
 
       mockMvc.perform(post("/register/complete").flashAttr("userForm", form))

@@ -50,7 +50,7 @@ public class UserRegisterServiceImpl implements UserRegisterService {
     try {
       request.login(username, password);
     } catch (ServletException e) {
-      throw new FailureLoginException("ログイン処理に失敗しました");
+      throw new FailureAuthException("ログイン処理に失敗しました");
     }
   }
 }
