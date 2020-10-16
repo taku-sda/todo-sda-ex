@@ -51,6 +51,7 @@ dependencies {
 	}
 	testImplementation 'org.springframework.security:spring-security-test'
 	testCompile group: 'com.h2database', name: 'h2', version: '1.4.200'
+	compileOnly group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity5', version: '3.0.4.RELEASE'
 }
 
 test {
