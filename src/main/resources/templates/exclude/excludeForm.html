@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ToDo!! | ユーザー登録解除</title>
+</head>
+<body th:with="authUserId=${#authentication.principal.username}">
+<h3>ユーザー登録解除</h3>
+
+<div>以下のユーザーの登録を解除します</div>
+<div>
+  ユーザーID : <span th:text="${authUserId}">ユーザーID</span><br>
+  よろしければ、パスワードを入力して、「登録解除確定」ボタンを押してください
+</div>
+<form action="#" th:action="@{/exclude}" th:object="${userForm}" method="POST">
+  <label for="password">パスワード : </label>
+  <input type="text" name="password" id="password" th:field="*{password}">
+  <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+  <div th:if="${#fields.hasErrors('userId')}" th:text="登録されていないユーザーの登録解除です"></div>
+  <div th:if="${not #strings.isEmpty(error)}"><span th:text="${error}"></span></div>
+   <!-- ログイン済みのユーザーIDをhiddenで送信 -->
+  <input type="hidden" th:name="userId"  th:value="${authUserId}"><br>
+  <input type="submit" value="登録解除確定">
+</form>
+</body>
+</html>
