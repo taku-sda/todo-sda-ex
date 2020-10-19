@@ -21,6 +21,7 @@ import com.example.domain.model.User;
 import com.example.domain.repository.user.UserRepository;
 
 @ExtendWith(MockitoExtension.class)
+@DisplayName("TodoUserDetailsServiceの単体テスト")
 class TodoUserDetailsServiceTest {
   @InjectMocks
   TodoUserDetailsService service;
@@ -35,6 +36,7 @@ class TodoUserDetailsServiceTest {
     when(repository.findById("userId")).thenReturn(Optional.ofNullable(user));
 
     UserDetails actual = service.loadUserByUsername("userId");
+
     assertThat(actual.getUsername(), is("userId"));
     assertThat(actual.getPassword(), is("password"));
     assertThat(actual.getAuthorities().stream()

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import com.example.domain.model.RoleName;
 import com.example.domain.model.User;
 
+@DisplayName("TodoUserDetailsのテスト")
 class TodoUserDetailsTest {
 
   @Test

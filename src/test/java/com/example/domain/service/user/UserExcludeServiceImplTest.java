@@ -29,7 +29,6 @@ import com.example.domain.repository.user.UserRepository;
 @ExtendWith(MockitoExtension.class)
 @DisplayName("UserExcludeServiceImplの単体テスト")
 class UserExcludeServiceImplTest {
-
   @InjectMocks
   UserExcludeServiceImpl serviceImpl;
 
@@ -54,6 +53,7 @@ class UserExcludeServiceImplTest {
 
       assertThrows(FailureConfirmException.class,
           () -> serviceImpl.confirmPassword("wrongUserId", "password"));
+
       verify(repository, times(1)).findById("wrongUserId");
     }
 
@@ -64,6 +64,7 @@ class UserExcludeServiceImplTest {
 
       assertThrows(FailureConfirmException.class,
           () -> serviceImpl.confirmPassword("userId", "wrongPassword"));
+
       verify(repository, times(1)).findById("userId");
     }
 
@@ -74,6 +75,7 @@ class UserExcludeServiceImplTest {
 
       assertDoesNotThrow(() ->
           serviceImpl.confirmPassword("userId", "password"));
+
       verify(repository, times(1)).findById("userId");
     }
   }
@@ -88,6 +90,7 @@ class UserExcludeServiceImplTest {
 
       assertThrows(FailureAuthException.class,
           () -> serviceImpl.logoutWithHttpServletRequest(httpServletRequest));
+
       verify(httpServletRequest, times(1)).logout();
     }
 
@@ -98,6 +101,7 @@ class UserExcludeServiceImplTest {
 
       assertDoesNotThrow(() ->
           serviceImpl.logoutWithHttpServletRequest(httpServletRequest));
+
       verify(httpServletRequest, times(1)).logout();
     }
   }

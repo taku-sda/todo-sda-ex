@@ -6,48 +6,44 @@ import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.dao.DataAccessResourceFailureException;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.example.config.WebMvcControllerAdvice;
 import com.example.domain.model.User;
 import com.example.domain.service.user.ExistUserException;
 import com.example.domain.service.user.FailureAuthException;
+import com.example.domain.service.user.TodoUserDetailsService;
 import com.example.domain.service.user.UserRegisterService;
 
-@SpringBootTest
-@DisplayName("UserRegisterControllerTestの結合テスト")
+@ExtendWith(SpringExtension.class)
+@WebMvcTest(UserRegisterController.class)
+@DisplayName("UserRegisterControllerTestの単体テスト")
 class UserRegisterControllerTest {
+  @Autowired
+  MockMvc mockMvc;
 
-  private MockMvc mockMvc;
+  @MockBean
+  TodoUserDetailsService  userDetailsService;
 
-  @InjectMocks
-  UserRegisterController target;
-
-  @Mock
+  @MockBean
   UserRegisterService service;
-
-  @BeforeEach
-  public void setUp() {
-    this.mockMvc = MockMvcBuilders.standaloneSetup(target)
-        .setControllerAdvice(new WebMvcControllerAdvice())
-        .build();
-  }
 
   @Nested
   @DisplayName("registerForm()のテスト")
@@ -55,9 +51,10 @@ class UserRegisterControllerTest {
     @Test
     @DisplayName("UserFormがモデルに格納され、登録フォームに遷移する")
     void correctTransition() throws Exception {
-      mockMvc.perform(get("/register")).andExpect(status().isOk())
+      mockMvc.perform(get("/register"))
+          .andExpect(status().isOk())
           .andExpect(model().attributeExists("userForm"))
-          .andExpect(forwardedUrl("register/registerForm"));
+          .andExpect(view().name("register/registerForm"));
     }
   }
 
@@ -70,6 +67,7 @@ class UserRegisterControllerTest {
     void setUp() {
       form.setUserId("userId");
       form.setPassword("password");
+      Mockito.reset(service);
     }
 
       @Nested
@@ -80,10 +78,10 @@ class UserRegisterControllerTest {
         void wrongFormInputsTransition() throws Exception {
           form.setUserId("aaaaaaaaaaa");
           
-          mockMvc.perform((post("/register")).flashAttr("userForm", form))
-          .andExpect(model().hasErrors())
-          .andExpect(status().isOk())
-          .andExpect(forwardedUrl("register/registerForm"));
+          mockMvc.perform((post("/register").with(csrf())).flashAttr("userForm", form))
+              .andExpect(status().isOk())
+              .andExpect(model().hasErrors())
+              .andExpect(view().name("register/registerForm"));
         }
       }
 
@@ -96,10 +94,10 @@ class UserRegisterControllerTest {
           doThrow(new ExistUserException("エラーメッセージ")).when(service)
             .confirmAvailability("userId");
 
-          mockMvc.perform(post("/register").flashAttr("userForm", form))
-              .andExpect(model().attributeExists("error"))
+          mockMvc.perform(post("/register").with(csrf()).flashAttr("userForm", form))
               .andExpect(status().isOk())
-              .andExpect(forwardedUrl("register/registerForm"));
+              .andExpect(model().attributeExists("error"))
+              .andExpect(view().name("register/registerForm"));
 
           verify(service, times(1)).confirmAvailability(Mockito.anyString());
         }
@@ -109,9 +107,9 @@ class UserRegisterControllerTest {
         void correctTransition() throws Exception {
           doNothing().when(service).confirmAvailability("userId");
 
-          mockMvc.perform(post("/register").flashAttr("userForm", form))
+          mockMvc.perform(post("/register").with(csrf()).flashAttr("userForm", form))
               .andExpect(status().isOk())
-              .andExpect(forwardedUrl("register/confirmRegister"));
+              .andExpect(view().name("register/confirmRegister"));
 
           verify(service, times(1)).confirmAvailability(Mockito.anyString());
         }
@@ -127,6 +125,7 @@ class UserRegisterControllerTest {
     void setUp() {
       form.setUserId("userId");
       form.setPassword("password");
+      Mockito.reset(service);
     }
 
     @Test
@@ -136,10 +135,10 @@ class UserRegisterControllerTest {
       when(service.register((User) Mockito.any()))
           .thenThrow(DataAccessResourceFailureException.class);
 
-      mockMvc.perform(post("/register/complete").flashAttr("userForm", form))
-          .andExpect(model().attributeExists("errorMessage"))
+      mockMvc.perform(post("/register/complete").with(csrf()).flashAttr("userForm", form))
           .andExpect(status().isOk())
-          .andExpect(forwardedUrl("error/error"));
+          .andExpect(model().attributeExists("errorMessage"))
+          .andExpect(view().name("error/error"));
 
       verify(service, times(1)).register((User) Mockito.any());
       verify(service, times(0)).authWithHttpServletRequest(Mockito.any(), eq("userId"), eq("password"));
@@ -151,10 +150,10 @@ class UserRegisterControllerTest {
       doThrow(new FailureAuthException("エラーメッセージ"))
           .when(service).authWithHttpServletRequest(Mockito.any(), eq("userId"), eq("password"));
 
-      mockMvc.perform(post("/register/complete").flashAttr("userForm", form))
-          .andExpect(model().attributeExists("errorMessage"))
+      mockMvc.perform(post("/register/complete").with(csrf()).flashAttr("userForm", form))
           .andExpect(status().isOk())
-          .andExpect(forwardedUrl("error/error"));
+          .andExpect(model().attributeExists("errorMessage"))
+          .andExpect(view().name("error/error"));
 
       verify(service, times(1)).register((User) Mockito.any());
       verify(service, times(1)).authWithHttpServletRequest(Mockito.any(), eq("userId"), eq("password"));
@@ -163,9 +162,9 @@ class UserRegisterControllerTest {
     @Test
     @DisplayName("正常に処理が完了した場合、ToDo一覧ページに遷移")
     void successRegister() throws Exception {
-      mockMvc.perform(post("/register/complete").flashAttr("userForm", form))
+      mockMvc.perform(post("/register/complete").with(csrf()).flashAttr("userForm", form))
       .andExpect(status().isOk())
-      .andExpect(forwardedUrl("todo/todoList"));
+      .andExpect(view().name("todo/todoList"));
 
       verify(service, times(1)).register((User) Mockito.any());
       verify(service, times(1)).authWithHttpServletRequest(Mockito.any(), eq("userId"), eq("password"));
