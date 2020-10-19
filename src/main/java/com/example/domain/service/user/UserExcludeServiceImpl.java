@@ -14,27 +14,30 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.domain.model.User;
 import com.example.domain.repository.user.UserRepository;
 
+/**
+ * ユーザー登録解除に関する処理を行うサービスクラス.
+ */
 @Service
 public class UserExcludeServiceImpl implements UserExcludeService {
 
   @Autowired
   UserRepository repository;
 
-  /** {@inheritDoc}. 
+  /** {@inheritDoc}.
    * @throws FailureConfirmException  ユーザー情報が正しくない場合
    */
   @Override
   public void confirmPassword(String userId, String password) {
     Optional<User> optionalUser = repository.findById(userId);
-    if(optionalUser.isEmpty()) {
+    if (optionalUser.isEmpty()) {
       throw new FailureConfirmException("登録されていないユーザーの登録解除です");
     }
-    
+
     User existUser = optionalUser.get();
     PasswordEncoder encoder = new BCryptPasswordEncoder();
-    
+
     boolean isMatch = encoder.matches(password, existUser.getPassword());
-    if(!isMatch) {
+    if (!isMatch) {
       throw new FailureConfirmException("パスワードが正しくありません");
     }
   }
@@ -44,11 +47,11 @@ public class UserExcludeServiceImpl implements UserExcludeService {
   @Transactional
   public void exclude(String userId) {
     repository.deleteById(userId);
-    
+
     //TODO  userIdに対応するToDoをすべて削除する処理を追加
   }
 
-  /** {@inheritDoc}. 
+  /** {@inheritDoc}.
    * @throws FailureLogoutException ログアウトに失敗した場合
    */
   @Override

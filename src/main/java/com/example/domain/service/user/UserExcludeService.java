@@ -12,7 +12,7 @@ public interface UserExcludeService {
   void confirmPassword(String userId, String password);
 
   /**
-   * ユーザー情報の削除処理を行う.
+   * ユーザーに関する情報の削除処理を行う.
    * @param userId  削除するユーザー
    */
   void exclude(String userId);

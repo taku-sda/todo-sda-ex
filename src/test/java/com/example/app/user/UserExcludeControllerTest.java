@@ -64,7 +64,7 @@ class UserExcludeControllerTest {
   @Nested
   @DisplayName("一般ユーザーでアクセスした場合")
   class GeneralUserAccess {
-    
+
     @Nested
     @WithMockUser(roles = "USER")
     @DisplayName("excludeForm()のテスト")
