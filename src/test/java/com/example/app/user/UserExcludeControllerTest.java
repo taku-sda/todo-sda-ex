@@ -64,6 +64,7 @@ class UserExcludeControllerTest {
   @Nested
   @DisplayName("一般ユーザーでアクセスした場合")
   class GeneralUserAccess {
+    
     @Nested
     @WithMockUser(roles = "USER")
     @DisplayName("excludeForm()のテスト")
@@ -71,7 +72,8 @@ class UserExcludeControllerTest {
       @Test
       @DisplayName("UserFormがモデルに格納され、登録解除フォームに遷移する")
       void correctTransition() throws Exception {
-        mockMvc.perform(get("/exclude").with(csrf())).andExpect(status().isOk())
+        mockMvc.perform(get("/exclude").with(csrf()))
+            .andExpect(status().isOk())
             .andExpect(model().attributeExists("userForm"))
             .andExpect(view().name("exclude/excludeForm"));
       }
@@ -109,7 +111,7 @@ class UserExcludeControllerTest {
             .when(service).confirmPassword("user", "password");
 
         mockMvc.perform((post("/exclude").with(csrf())).flashAttr("userForm", form))
-        .andExpect(status().isOk())
+            .andExpect(status().isOk())
             .andExpect(model().attributeExists("error"))
             .andExpect(view().name("exclude/excludeForm"));
 
@@ -140,8 +142,8 @@ class UserExcludeControllerTest {
         doNothing().when(service).logoutWithHttpServletRequest(Mockito.any());
 
         mockMvc.perform((post("/exclude").with(csrf())).flashAttr("userForm", form))
-        .andExpect(status().isOk())
-        .andExpect(view().name("exclude/completeExclude"));
+            .andExpect(status().isOk())
+            .andExpect(view().name("exclude/completeExclude"));
 
         verify(service, times(1)).confirmPassword("user", "password");
         verify(service, times(1)).exclude("user");
