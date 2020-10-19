@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ToDo!! | アクセスが拒否されました</title>
+</head>
+<body>
+<h1 th:text="${status} + ' '  + ${error}">エラータイトル</h1>
+<p>指定のページからアクセスが拒否されました</p><br>
+<a href="#" th:href="@{/}">トップページへ戻る</a>
+</body>
+</html>
