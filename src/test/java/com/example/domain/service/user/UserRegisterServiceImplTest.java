@@ -77,6 +77,7 @@ class UserRegisterServiceImplTest {
       assertThat(new BCryptPasswordEncoder()
           .matches("password", actualUser.getPassword()), is(true));
       assertThat(actualUser.getRoleName(), is(RoleName.USER));
+
       verify(repository, times(1)).save(actualUser);
     }
   }
@@ -91,6 +92,7 @@ class UserRegisterServiceImplTest {
 
       assertThrows(FailureAuthException.class,
           () -> serviceImpl.authWithHttpServletRequest(httpServletRequest, "userId", "password"));
+
       verify(httpServletRequest, times(1)).login("userId", "password");
     }
 
@@ -101,6 +103,7 @@ class UserRegisterServiceImplTest {
 
       assertDoesNotThrow(() ->
           serviceImpl.authWithHttpServletRequest(httpServletRequest, "userId", "password"));
+
       verify(httpServletRequest, times(1)).login("userId", "password");
     }
   }

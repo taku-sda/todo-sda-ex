@@ -20,7 +20,7 @@ import org.springframework.validation.Validator;
 class UserFormTest {
   private UserForm form = new UserForm();
   BindingResult bindingResult = new BindException(form, "UserForm");
-
+  
   @Autowired
   Validator validator;
 
@@ -44,9 +44,9 @@ class UserFormTest {
     @ParameterizedTest
     @DisplayName("入力値が不正の場合")
     @CsvSource({
-        ", 'ユーザーIDが未入力です'",
-        "''ユーザーID, 'ユーザーIDは英数字10文字以内です'",
-        "'aaaaaaaaaaa', 'ユーザーIDは英数字10文字以内です'"
+        ", 'ユーザーIDが未入力です'", //null
+        "''ユーザーID, 'ユーザーIDは英数字10文字以内です'", //英数字でない
+        "'aaaaaaaaaaa', 'ユーザーIDは英数字10文字以内です'" //10文字を超える
     })
     void deckValidation(String userId, String message) {
       form.setUserId(userId);
@@ -71,10 +71,10 @@ class UserFormTest {
     @ParameterizedTest
     @DisplayName("入力値が不正の場合")
     @CsvSource({
-        ", 'パスワードが未入力です'",
-        "'パスワード', 'パスワードは英数字4～8文字です'",
-        "'aaa', 'パスワードは英数字4～8文字です'",
-        "'aaaaaaaaa', 'パスワードは英数字4～8文字です'"
+        ", 'パスワードが未入力です'",  //null
+        "'パスワード', 'パスワードは英数字4～8文字です'",  //英数字でない
+        "'aaa', 'パスワードは英数字4～8文字です'",  //4文字に満たない
+        "'aaaaaaaaa', 'パスワードは英数字4～8文字です'" //8文字を超える
     })
     void deckValidation(String password, String message) {
       form.setPassword(password);
