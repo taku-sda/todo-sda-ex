@@ -42,7 +42,7 @@ class AuthTest {
     @Test
     @DisplayName("登録済みのテストユーザーで正しく認証処理が行われる")
     void registeredUserLogin() throws Exception {
-      mockMvc.perform(formLogin().user("userid", "testuser").password("todotest"))
+      mockMvc.perform(formLogin().user("userId", "testuser").password("todotest"))
         .andExpect(status().isFound())
         .andExpect(redirectedUrl("/todoList"))
         .andExpect(authenticated().withRoles("TEST"));
@@ -51,7 +51,7 @@ class AuthTest {
     @Test
     @DisplayName("未登録のユーザーで認証に失敗する")
     void notRegisteredUserLogin() throws Exception {
-      mockMvc.perform(formLogin().user("userid", "hoge").password("hoge"))
+      mockMvc.perform(formLogin().user("userId", "hoge").password("hoge"))
         .andExpect(status().isFound())
         .andExpect(redirectedUrl("/loginForm?error=ture"))
         .andExpect(unauthenticated());
