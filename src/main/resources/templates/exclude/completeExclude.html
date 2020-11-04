@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+          xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+          layout:decorate="~{layout/layout}">
 <head>
-<meta charset="UTF-8">
 <title>ToDo!! | ユーザー登録解除完了</title>
 </head>
 <body>
-<h3>ユーザー登録の解除が完了しました</h3>
-<div>ご利用ありがとうございました！！</div>
-<br>
-<a href="#" th:href="@{/}">トップページへ戻る</a>
+  <section layout:fragment="content">
+    <div class="container mb-5">
+      <h2>ユーザー登録の解除が完了しました</h2>
+      <h4>ご利用ありがとうございました！！</h4>
+      <a href="#" th:href="@{/}" class="btn btn-primary mt-4">トップページへ戻る</a>
+    </div>
+  </section>
 </body>
 </html>

@@ -34,7 +34,6 @@ public class WebMvcControllerAdvice {
   @ExceptionHandler(FailureAuthException.class)
   public String handleException(FailureAuthException e, Model model) {
     model.addAttribute("errorMessage", e.getMessage());
-    model.addAttribute("title", "ToDo!! | エラーが発生しました");
     return "error/error";
   }
 
@@ -47,7 +46,6 @@ public class WebMvcControllerAdvice {
   @ExceptionHandler(DataAccessException.class)
   public String handleException(DataAccessException e, Model model) {
     model.addAttribute("errorMessage", "データベース処理でエラーが発生しました");
-    model.addAttribute("title", "ToDo!! | エラーが発生しました");
     return "error/error";
   }
 }

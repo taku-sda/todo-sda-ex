@@ -1,10 +1,21 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+          xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+          layout:decorate="~{layout/layout}">
 <head>
-<meta charset="UTF-8">
-<title th:text="${title}">Insert title here</title>
+<title>ToDo!! | エラーが発生しました</title>
 </head>
 <body>
-<h3>エラーが発生しました</h3>
-<div th:text="${errorMessage}">エラーメッセージ</div>
+  <section layout:fragment="content">
+    <div class="container mb-5">
+      <h2>エラーが発生しました</h2>
+      <div th:text="${errorMessage}" class="text-danger">エラーメッセージ</div>
+      <p>時間をおいて再度実行しても同様の問題が発生する場合は、お手数ですが<a href="#">ご意見・ご要望</a>
+      よりお伝えいただけますようお願いいたします。</p>
+      <a href="#" th:href="@{/}" class="btn btn-secondary mt-4">トップページへ戻る</a>
+    </div>
+  </section>
+
 </body>
 </html>

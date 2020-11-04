@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+          xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+          layout:decorate="~{layout/layout}">
 <head>
-<meta charset="UTF-8">
 <title>ToDo!! | アクセスが拒否されました</title>
 </head>
 <body>
-<h1 th:text="${status} + ' '  + ${error}">エラータイトル</h1>
-<p>指定のページからアクセスが拒否されました</p><br>
-<a href="#" th:href="@{/}">トップページへ戻る</a>
+  <section layout:fragment="content">
+    <div class="container mb-5">
+      <h2 th:text="${status} + ' '  + ${error}">エラータイトル</h2>
+      <p class="text-danger">指定のページからアクセスが拒否されました</p>
+      <a href="#" th:href="@{/}" class="btn btn-secondary mt-4">トップページへ戻る</a>
+    </div>
+  </section>
 </body>
 </html>
