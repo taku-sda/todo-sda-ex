@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+          xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+          layout:decorate="~{layout/layout}">
 <head>
-<meta charset="UTF-8">
 <title>ToDo!! | ユーザー登録解除</title>
 </head>
 <body th:with="authUserId=${#authentication.principal.username}">
-<h3>ユーザー登録解除</h3>
-
-<div>以下のユーザーの登録を解除します</div>
-<div>
-  ユーザーID : <span th:text="${authUserId}">ユーザーID</span><br>
-  よろしければ、パスワードを入力して、「登録解除確定」ボタンを押してください
-</div>
-<form action="#" th:action="@{/exclude}" th:object="${userForm}" method="POST">
-  <label for="password">パスワード : </label>
-  <input type="text" name="password" id="password" th:field="*{password}">
-  <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-  <div th:if="${#fields.hasErrors('userId')}" th:text="登録されていないユーザーの登録解除です"></div>
-  <div th:if="${not #strings.isEmpty(error)}"><span th:text="${error}"></span></div>
-   <!-- ログイン済みのユーザーIDをhiddenで送信 -->
-  <input type="hidden" th:name="userId"  th:value="${authUserId}"><br>
-  <input type="submit" value="登録解除確定">
-</form>
+  <section layout:fragment="content">
+    <div class="container mb-5">
+      <h2>ユーザー登録解除</h2>
+      <p>以下のユーザーの登録を解除します。<br>
+      よろしければ、確認のためにパスワードを入力して「登録解除確定」ボタンを押してください<br>
+      <span class="text-danger">※登録解除をすると、同時に登録したToDoもすべて削除されます。<br>
+      復元はいたしかねますので、ご理解の上で登録解除をお願いいたします。</span></p>
+      <h5>ユーザーID : <span th:text="${authUserId}">ユーザーID</span></h5>
+      <form action="#" th:action="@{/exclude}" th:object="${userForm}" method="POST">
+        <div class="form-group">
+           <label for="password">パスワード</label>
+	        <input type="text"  class="form-control w-50" name="password" id="password" th:value="*{password}">
+	        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></div>
+        </div>
+			  <div th:if="${not #strings.isEmpty(error)}"><span th:text="${error}" class="text-danger"></span></div>
+			   <!-- ログイン済みのユーザーIDをhiddenで送信 -->
+			  <input type="hidden" th:name="userId"  th:value="${authUserId}"><br>
+			  <input type="submit" class="btn btn-secondary" value="登録解除確定">
+			</form>
+    </div>
+  </section>
 </body>
 </html>

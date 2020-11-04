@@ -80,4 +80,16 @@ public class UserRegisterController {
 
     return "todo/todoList";
   }
+  
+  /**
+   * 入力内容を修正するためにユーザー登録画面に遷移する.
+   * 入力されている内容をフォームクラスで受け渡す.
+   * @param form  入力されたフォームクラス
+   * @param model 連携するデータを格納
+    * @return  登録フォーム画面
+   */
+  @PostMapping("fix")
+  public String fixRegisterForm(UserForm form, Model model) {
+    return "register/registerForm";
+  }
 }

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 body { 
-	padding-top: 80px;
+	padding-top: 100px;
 	display: flex;
   flex-direction: column;
   min-height: 100vh;

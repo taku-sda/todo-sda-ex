@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+          xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+          layout:decorate="~{layout/layout}">
 <head>
-<meta charset="UTF-8">
 <title>ToDo!! | ToDo一覧</title>
 </head>
 <body>
-<body>
-<h3>ToDo一覧</h3>
-<form th:action="@{/logout}" method="post">
-  <button>ログアウト</button>
-</form>
-<br>
-<a href="#" th:href="@{/exclude}">ユーザー登録解除</a>
+  <section layout:fragment="content">
+    <h2>ToDo一覧</h2>
+  </section>
 </body>
 </html>
