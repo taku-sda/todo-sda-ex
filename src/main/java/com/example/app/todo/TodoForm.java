@@ -33,7 +33,7 @@ public class TodoForm implements Serializable{
   /** 優先度. 1～5の五段階で設定 */
   @Min(value = 1, message ="優先度の入力内容が不正です")
   @Max(value = 5, message ="優先度の入力内容が不正です")
-  private int prioroty;
+  private int priority;
 
   /** メモ. 最大400文字 */
   @Size(max = 400, message ="メモは最大400文字です")

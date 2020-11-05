@@ -28,7 +28,7 @@ class TodoFormTest {
   void setUp() {
     form.setTitle("タイトル");
     form.setDeadlineStr("2000-01-01T12:00");
-    form.setPrioroty(3);
+    form.setPriority(3);
     form.setMemo("メモテキスト");
   }
 
@@ -81,7 +81,7 @@ class TodoFormTest {
         "6,  '優先度の入力内容が不正です'" //最大値よりも大きい
     })
     void priorityValidation(int priority, String message) {
-      form.setPrioroty(priority);
+      form.setPriority(priority);
       validator.validate(form, bindingResult);
 
       assertThat(bindingResult.getFieldErrors("prioroty").stream()
