@@ -2,6 +2,8 @@ package com.example.app.todo;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -19,7 +21,7 @@ public class TodoForm implements Serializable{
 
   /** タイトル. 最大20文字 */
   @NotNull(message = "タイトルが未入力です")
-  @Size(max = 20, message = "タイトルは20文字以内です ")
+  @Size(max = 20, message = "タイトルは20文字以内です")
   private String title;
 
   /** 期限. HTMLのdatetime-localのフォーマットに従った文字列 */
@@ -29,8 +31,8 @@ public class TodoForm implements Serializable{
   private String deadlineStr;
 
   /** 優先度. 1～5の五段階で設定 */
-  @NotNull(message = "優先度の入力内容が不正です")
-  @Size(min = 1, max = 5, message ="優先度の入力内容が不正です")
+  @Min(value = 1, message ="優先度の入力内容が不正です")
+  @Max(value = 5, message ="優先度の入力内容が不正です")
   private int prioroty;
 
   /** メモ. 最大400文字 */
