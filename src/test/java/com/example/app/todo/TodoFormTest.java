@@ -84,7 +84,7 @@ class TodoFormTest {
       form.setPriority(priority);
       validator.validate(form, bindingResult);
 
-      assertThat(bindingResult.getFieldErrors("prioroty").stream()
+      assertThat(bindingResult.getFieldErrors("priority").stream()
               .anyMatch(it -> it.getDefaultMessage().equals(message)), is(true));
     }
 
