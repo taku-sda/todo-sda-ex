@@ -24,8 +24,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Todo implements Serializable{
-  /** ToDoごとに固有のID.自動採番を利用 **/
+public class Todo implements Serializable {
+  /** ToDoごとに固有のID.自動採番を利用. **/
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "todo_id")

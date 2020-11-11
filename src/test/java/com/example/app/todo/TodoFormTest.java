@@ -50,7 +50,7 @@ class TodoFormTest {
     @DisplayName("titleのバリデーション")
     @CsvSource({
         ", 'タイトルが未入力です'", //null
-        "'aaaaaaaaaaaaaaaaaaaaa', 'タイトルは20文字以内です'" //20文字を超える
+        "'aaaaaaaaaaaaaaaaaaaaa', '文字数オーバーです'" //20文字を超える
     })
     void titleValidation(String title, String message) {
       form.setTitle(title);
@@ -102,7 +102,7 @@ class TodoFormTest {
       validator.validate(form, bindingResult);
 
       assertThat(bindingResult.getFieldErrors("memo").stream()
-              .anyMatch(it -> it.getDefaultMessage().equals("メモは最大400文字です")), is(true));
+              .anyMatch(it -> it.getDefaultMessage().equals("文字数オーバーです")), is(true));
     }
   }
 }

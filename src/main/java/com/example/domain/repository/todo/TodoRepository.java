@@ -7,5 +7,5 @@ import com.example.domain.model.Todo;
 /**
  * Todoエンティティに対応したJpaRepository.
  */
-public interface TodoRepository extends JpaRepository<Todo, Integer>{
+public interface TodoRepository extends JpaRepository<Todo, Integer> {
 }

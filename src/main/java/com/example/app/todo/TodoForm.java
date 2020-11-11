@@ -17,11 +17,20 @@ import lombok.Setter;
 @SuppressWarnings("serial")
 @Getter
 @Setter
-public class TodoForm implements Serializable{
+public class TodoForm implements Serializable {
 
-  /** タイトル. 最大20文字 */
+  /** タイトルの最大文字数. */
+  private static final int TITLE_MAX_LENGTH = 20;
+  /** 優先度の最小値. */
+  private static final int PRIORITY_MIN_VALUE = 1;
+  /** 優先度の最大値. */
+  private static final int PRIORITY_MAX_VALUE = 5;
+  /** メモの最大文字数. */
+  private static final int MEMO_MAX_LENGTH = 400;
+
+  /** タイトル.  */
   @NotNull(message = "タイトルが未入力です")
-  @Size(max = 20, message = "タイトルは20文字以内です")
+  @Size(max = TITLE_MAX_LENGTH, message = "文字数オーバーです")
   private String title;
 
   /** 期限. HTMLのdatetime-localのフォーマットに従った文字列 */
@@ -30,12 +39,12 @@ public class TodoForm implements Serializable{
       message = "日時の入力内容が不正です")
   private String deadlineStr;
 
-  /** 優先度. 1～5の五段階で設定 */
-  @Min(value = 1, message ="優先度の入力内容が不正です")
-  @Max(value = 5, message ="優先度の入力内容が不正です")
+  /** 優先度.  */
+  @Min(value = PRIORITY_MIN_VALUE, message = "優先度の入力内容が不正です")
+  @Max(value = PRIORITY_MAX_VALUE, message = "優先度の入力内容が不正です")
   private int priority;
 
-  /** メモ. 最大400文字 */
-  @Size(max = 400, message ="メモは最大400文字です")
+  /** メモ.  */
+  @Size(max = MEMO_MAX_LENGTH, message = "文字数オーバーです")
   private String memo;
 }

@@ -40,14 +40,22 @@ public class AddTodoController {
     return "todo/addTodo";
   }
 
+  /**
+   * フォームの入力内容をもとにTodoの追加を行う.
+   * @param form  フォームの入力内容
+   * @param result  バリデーションの結果
+   * @param userDetails ユーザーの認証情報
+   * @param model ビューと連携するデータ
+   * @return ToDo一覧画面
+   */
   @PostMapping
-  public String add(@Validated TodoForm form, BindingResult result, 
+  public String add(@Validated TodoForm form, BindingResult result,
       @AuthenticationPrincipal TodoUserDetails userDetails, Model model) {
-    if(result.hasErrors()) {
+    if (result.hasErrors()) {
       return addTodoForm(model);
     }
 
-    Todo addTodo =createAddTodo(form, userDetails);
+    Todo addTodo = createAddTodo(form, userDetails);
     addTodoService.add(addTodo);
 
     return "todo/todoList";
@@ -73,9 +81,9 @@ public class AddTodoController {
   }
 
   /**
-   * 日時を表す文字列をLocalDateTimeに変換する
+   * 日時を表す文字列をLocalDateTimeに変換する.
    * @param deadlineStr
-   * @return
+   * @return 変換後のLocalDateTime
    */
   private LocalDateTime convertToLocalDateTime(String deadlineStr) {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");

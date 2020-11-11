@@ -11,13 +11,15 @@ import javax.persistence.Converter;
  * LocalDateTimeとTimestampの変換を行う
  */
 @Converter(autoApply = true)
-public class LocalDateTimeConverter implements AttributeConverter<LocalDateTime, Timestamp>{
+public class LocalDateTimeConverter implements AttributeConverter<LocalDateTime, Timestamp> {
 
+  /** {@inheritDoc} */
   @Override
   public Timestamp convertToDatabaseColumn(LocalDateTime dateTime) {
     return dateTime == null ? null : Timestamp.valueOf(dateTime);
   }
 
+  /** {@inheritDoc} */
   @Override
   public LocalDateTime convertToEntityAttribute(Timestamp value) {
     return value == null ? null : value.toLocalDateTime();
