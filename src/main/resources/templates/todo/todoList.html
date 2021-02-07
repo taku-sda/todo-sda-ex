@@ -41,10 +41,10 @@
 	            th:classappend="${sort == 'priority' && order == 'DESC'} ? 'active' : ' ' ">優先度が高い順</a>
 	          <a class="dropdown-item" href="#" th:href="@{/todoList?listType=__${listType}__&sort=priority&order=ASC}"
 	            th:classappend="${sort == 'priority' && order == 'ASC'} ? 'active' : ' ' ">優先度が低い順</a>
-	          <a class="dropdown-item" href="#" th:href="@{/todoList?listType=__${listType}__&sort=lastUpdate&order=ASC}"
-	            th:classappend="${sort == 'lastUpdate' && order == 'ASC'} ? 'active' : ' ' ">更新日時が新しい順</a>
 	          <a class="dropdown-item" href="#" th:href="@{/todoList?listType=__${listType}__&sort=lastUpdate&order=DESC}"
-	            th:classappend="${sort == 'lastUpdate' && order == 'DESC'} ? 'active' : ' ' ">更新日時が古い順</a>
+	            th:classappend="${sort == 'lastUpdate' && order == 'DESC'} ? 'active' : ' ' ">更新日時が新しい順</a>
+	          <a class="dropdown-item" href="#" th:href="@{/todoList?listType=__${listType}__&sort=lastUpdate&order=ASC}"
+	            th:classappend="${sort == 'lastUpdate' && order == 'ASC'} ? 'active' : ' ' ">更新日時が古い順</a>
 	        </div>
 		     </li>
 		  </ul>
