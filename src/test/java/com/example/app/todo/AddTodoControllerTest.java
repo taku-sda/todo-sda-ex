@@ -90,8 +90,8 @@ class AddTodoControllerTest {
     void successAdd() throws Exception {
       mockMvc.perform((post("/addTodo").with(csrf()).with(user(user)))
           .flashAttr("todoForm", form))
-        .andExpect(status().isOk())
-        .andExpect(view().name("todo/todoList"));
+        .andExpect(status().isFound())
+        .andExpect(view().name("redirect:/todoList"));
 
       verify(service, times(1)).add((Todo) Mockito.any());
     }

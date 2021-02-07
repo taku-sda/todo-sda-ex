@@ -33,7 +33,7 @@ public class AddTodoController {
   /**
    * ToDo追加フォーム画面へ遷移する.
    * @param model 連携するデータを格納
-   * @return  ToDo追加フォーム画面
+   * @return ToDo追加フォーム画面
    */
   @GetMapping
   public String addTodoForm(Model model) {
@@ -42,8 +42,8 @@ public class AddTodoController {
 
   /**
    * フォームの入力内容をもとにTodoの追加を行う.
-   * @param form  フォームの入力内容
-   * @param result  バリデーションの結果
+   * @param form フォームの入力内容
+   * @param result バリデーションの結果
    * @param userDetails ユーザーの認証情報
    * @param model ビューと連携するデータ
    * @return ToDo一覧画面
@@ -58,14 +58,14 @@ public class AddTodoController {
     Todo addTodo = createAddTodo(form, userDetails);
     addTodoService.add(addTodo);
 
-    return "todo/todoList";
+    return "redirect:/todoList";
   }
 
   /**
    * TodoFormクラスと認証情報を基に、追加するTodoエンティティを作成する.
-   * @param form  Todo追加フォームの入力内容
+   * @param form Todo追加フォームの入力内容
    * @param userDetails ユーザーの認証情報
-   * @return  追加するTodoエンティティ
+   * @return 追加するTodoエンティティ
    */
   private Todo createAddTodo(TodoForm form, TodoUserDetails userDetails) {
     Todo addTodo = new Todo();
@@ -74,8 +74,8 @@ public class AddTodoController {
     addTodo.setDeadline(convertToLocalDateTime(form.getDeadlineStr()));
     addTodo.setPriority(form.getPriority());
     addTodo.setMemo(form.getMemo());
-    addTodo.setCompleted(false);  //未完了状態
-    addTodo.setLastUpdate(LocalDateTime.now()); //現在の日時
+    addTodo.setCompleted(false); // 未完了状態
+    addTodo.setLastUpdate(LocalDateTime.now()); // 現在の日時
 
     return addTodo;
   }

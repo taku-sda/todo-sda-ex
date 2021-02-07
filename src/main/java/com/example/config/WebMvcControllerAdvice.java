@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 
+import com.example.app.todo.IllegalOperationException;
 import com.example.domain.service.user.FailureAuthException;
 
 /**
@@ -33,6 +34,18 @@ public class WebMvcControllerAdvice {
    */
   @ExceptionHandler(FailureAuthException.class)
   public String handleException(FailureAuthException e, Model model) {
+    model.addAttribute("errorMessage", e.getMessage());
+    return "error/error";
+  }
+
+  /**
+   * IllegalOperationException発生時にエラーページへ遷移する.
+   * @param e スローされたFailureLoginException
+   * @param model 連携するデータを格納
+   * @return  エラー画面
+   */
+  @ExceptionHandler(IllegalOperationException.class)
+  public String illegalOperationException(IllegalOperationException e, Model model) {
     model.addAttribute("errorMessage", e.getMessage());
     return "error/error";
   }
