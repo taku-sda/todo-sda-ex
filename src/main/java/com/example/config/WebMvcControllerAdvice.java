@@ -45,7 +45,7 @@ public class WebMvcControllerAdvice {
    * @return  エラー画面
    */
   @ExceptionHandler(IllegalOperationException.class)
-  public String IllegalOperationException(IllegalOperationException e, Model model) {
+  public String illegalOperationException(IllegalOperationException e, Model model) {
     model.addAttribute("errorMessage", e.getMessage());
     return "error/error";
   }
