@@ -8,7 +8,81 @@
 </head>
 <body>
   <section layout:fragment="content">
-    <h2>ToDo一覧</h2>
+    <div class="container mb-5">
+	      <a href="#" th:href="@{/todoList?listType=normal&sort=deadline&order=ASC}" class="badge badge-primary p-2">
+	      <span class="h6">今日までのToDo<span class="badge badge-pill badge-light ml-2" th:text="${todayListSize}">0</span></span></a>
+	    <a href="#" th:href="@{/todoList?listType=expired&sort=deadline&order=ASC}" class="badge badge-warning p-2">
+	      <span class="h6">期限切れのToDo<span class="badge badge-pill badge-light ml-2" th:text="${expiredListSize}">0</span></span></a>
+	    <h4 class="mt-3" th:text="${#dates.format(#dates.createNow(), '今日はyyyy年MM月dd日です')}"></h4>
+
+	   <div class="card  mt-3">
+		  <ul class="nav nav-tabs" style="background-color:#fffafa;">
+		    <li class="nav-item">
+		      <a class="nav-link text-body" href="#" th:href="@{/todoList?listType=normal&sort=deadline&order=ASC}"
+		        th:classappend="${listType == 'normal'} ? 'active bg-light' : ' ' ">一覧</a>
+		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link text-body" href="#" th:href="@{/todoList?listType=completed&sort=deadline&order=ASC}"
+		        th:classappend="${listType == 'completed'} ? 'active bg-light' : ' ' ">完了</a>
+		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link text-body" href="#" th:href="@{/todoList?listType=expired&sort=deadline&order=ASC}"
+		        th:classappend="${listType == 'expired'} ? 'active bg-light' : ' ' ">期限切れ</a>
+		    </li>
+		     <li class="nav-item dropdown ml-sm-auto">
+	        <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" id="navbarDropdownMenuLink"
+	         aria-haspopup="true" aria-expanded="false">並び順</a>
+	        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+	          <a class="dropdown-item" href="#" th:href="@{/todoList?listType=__${listType}__&sort=deadline&order=ASC}"
+	            th:classappend="${sort == 'deadline' && order == 'ASC'} ? 'active' : ' ' ">期限が早い順</a>
+	          <a class="dropdown-item" href="#" th:href="@{/todoList?listType=__${listType}__&sort=deadline&order=DESC}"
+	            th:classappend="${sort == 'deadline' && order == 'DESC'} ? 'active' : ' ' ">期限が遅い順</a>
+	          <a class="dropdown-item" href="#" th:href="@{/todoList?listType=__${listType}__&sort=priority&order=DESC}"
+	            th:classappend="${sort == 'priority' && order == 'DESC'} ? 'active' : ' ' ">優先度が高い順</a>
+	          <a class="dropdown-item" href="#" th:href="@{/todoList?listType=__${listType}__&sort=priority&order=ASC}"
+	            th:classappend="${sort == 'priority' && order == 'ASC'} ? 'active' : ' ' ">優先度が低い順</a>
+	          <a class="dropdown-item" href="#" th:href="@{/todoList?listType=__${listType}__&sort=lastUpdate&order=ASC}"
+	            th:classappend="${sort == 'lastUpdate' && order == 'ASC'} ? 'active' : ' ' ">更新日時が新しい順</a>
+	          <a class="dropdown-item" href="#" th:href="@{/todoList?listType=__${listType}__&sort=lastUpdate&order=DESC}"
+	            th:classappend="${sort == 'lastUpdate' && order == 'DESC'} ? 'active' : ' ' ">更新日時が古い順</a>
+	        </div>
+		     </li>
+		  </ul>
+		  <table class="table mb-0">
+		    <tr class="bg-light">
+		      <th>タイトル</th>
+		      <th>期限</th>
+		      <th>
+		        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-star" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						  <path fill-rule="evenodd" d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+						</svg>
+		      </th>
+		      <th></th>
+		    </tr>
+		    <tr th:each="todo : ${displayList}">
+		      <td th:text="${todo.title}">タイトル</td>
+		      <td th:text="${todo.deadline.getYear()}+'/'+${todo.deadline.getMonthValue()}+'/'+${todo.deadline.getDayOfMonth()}">期限</td>
+		      <td th:text="${todo.priority}">☆</td>
+		      <td>
+		        <a th:if="${listType != 'completed'}" href="#">
+		          <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-check2-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+							  <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+							  <path fill-rule="evenodd" d="M1.5 13A1.5 1.5 0 0 0 3 14.5h10a1.5 1.5 0 0 0 1.5-1.5V8a.5.5 0 0 0-1 0v5a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5h8a.5.5 0 0 0 0-1H3A1.5 1.5 0 0 0 1.5 3v10z"/>
+							</svg>
+		        </a>
+		      </td>
+		    </tr>
+		  </table>
+		  <div th:if="${displayList.isEmpty()}">
+		    <div class="card">
+				  <div class="card-body">
+				    <h5 class="card-title">ToDoがありません</h5>
+				    <a href="#" th:href="@{/addTodo}" class="card-link btn btn-primary">ToDoの追加</a>
+				  </div>
+				</div>
+		  </div>
+	   </div>
+	 </div>
   </section>
 </body>
 </html>
