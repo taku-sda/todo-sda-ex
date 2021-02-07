@@ -78,7 +78,7 @@ public class UserRegisterController {
     userRegisterService.register(registerUser);
     userRegisterService.authWithHttpServletRequest(request, form.getUserId(), form.getPassword());
 
-    return "todo/todoList";
+    return "redirect:/todoList";
   }
   
   /**

@@ -163,8 +163,8 @@ class UserRegisterControllerTest {
     @DisplayName("正常に処理が完了した場合、ToDo一覧ページに遷移")
     void successRegister() throws Exception {
       mockMvc.perform(post("/register/complete").with(csrf()).flashAttr("userForm", form))
-      .andExpect(status().isOk())
-      .andExpect(view().name("todo/todoList"));
+      .andExpect(status().isFound())
+      .andExpect(view().name("redirect:/todoList"));
 
       verify(service, times(1)).register((User) Mockito.any());
       verify(service, times(1)).authWithHttpServletRequest(Mockito.any(), eq("userId"), eq("password"));
