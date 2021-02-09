@@ -1,7 +1,6 @@
 package com.example.app.todo;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -71,7 +70,7 @@ public class AddTodoController {
     Todo addTodo = new Todo();
     addTodo.setUser(userDetails.getUser());
     addTodo.setTitle(form.getTitle());
-    addTodo.setDeadline(convertToLocalDateTime(form.getDeadlineStr()));
+    addTodo.setDeadline(TodoUtils.convertToLocalDateTime(form.getDeadlineStr()));
     addTodo.setPriority(form.getPriority());
     addTodo.setMemo(form.getMemo());
     addTodo.setCompleted(false); // 未完了状態
@@ -80,13 +79,4 @@ public class AddTodoController {
     return addTodo;
   }
 
-  /**
-   * 日時を表す文字列をLocalDateTimeに変換する.
-   * @param deadlineStr
-   * @return 変換後のLocalDateTime
-   */
-  private LocalDateTime convertToLocalDateTime(String deadlineStr) {
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
-    return LocalDateTime.parse(deadlineStr, formatter);
-  }
 }
