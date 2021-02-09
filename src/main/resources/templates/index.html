@@ -23,7 +23,7 @@
 	          <form th:action="@{/login}" method="POST">
 	          <input type="hidden" id="userId" name="userId" th:value="testuser">
 	          <input type="hidden" id="password" name="password" th:value="todotest">
-	          <button type="submit" class="btn btn-info text-body">
+	          <button type="submit" class="btn btn-info text-light">
 	            <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 	             <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
 	             <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
@@ -32,7 +32,7 @@
 	          </form>
           </div>
           <div sec:authorize="hasRole('TEST')">
-            <span class="bg-info rounded p-2">現在 テストユーザーでログイン中です</span>
+            <span class="bg-info text-light rounded p-2">現在 テストユーザーでログイン中です</span>
           </div>
         </div>
         <div class="col-lg-3">
@@ -43,13 +43,13 @@
     <div class="container my-5">
       <!--* 非ログイン状態の場合のボタン表示 *-->
       <div sec:authorize="isAnonymous()">
-	      <a class="btn btn-primary text-body" href="#" th:href="@{/loginForm}" role="button">
+	      <a class="btn btn-primary text-light" href="#" th:href="@{/loginForm}" role="button">
 		      <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 		         <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
 		         <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
 		      </svg>ログイン
 	      </a>
-	      <a class="btn btn-primary text-body ml-4" href="#" th:href="@{/register}">
+	      <a class="btn btn-primary text-light ml-4" href="#" th:href="@{/register}">
 		      <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-person-plus-fill mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 		        <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
 		      </svg>ユーザー登録
@@ -57,13 +57,13 @@
 	    </div>
 	    <!--* ログイン状態の場合のボタン表示 *-->
 	    <div sec:authorize="isAuthenticated()">
-	     <a class="btn btn-primary text-body" href="#" th:href="@{/todoList}">
+	     <a class="btn btn-primary text-light" href="#" th:href="@{/todoList}">
          <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-calendar-week mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
            <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
            <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
          </svg>ToDo一覧
        </a>
-       <a class="btn btn-primary text-body ml-4" href="#" th:href="@{/addTodo}">
+       <a class="btn btn-primary text-light ml-4" href="#" th:href="@{/addTodo}">
          <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-calendar-plus mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
            <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
             <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"/>
