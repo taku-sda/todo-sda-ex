@@ -41,6 +41,7 @@ public class TodoDetailsServiceImpl implements TodoDetailsService {
     updateTodo.setDeadline(deadline);
     updateTodo.setPriority(priority);
     updateTodo.setMemo(memo);
+    updateTodo.setLastUpdate(LocalDateTime.now());
   }
 
 }
