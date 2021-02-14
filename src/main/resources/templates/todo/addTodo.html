@@ -57,7 +57,7 @@
           <!-- メモ -->
           <div class="form-group">
             <label for="memo">メモ</label>
-            <textarea class="form-control" id="memo" name="memo"  th:value="*{memo}" cols="40" rows="4" maxlength="400"
+            <textarea class="form-control" th:field="*{memo}" cols="40" rows="4" maxlength="400"
                 placeholder="最大400文字まで"></textarea>
             <div th:if="${#fields.hasErrors('memo')}" th:errors="*{memo}" class="text-danger"></div>
           </div>
