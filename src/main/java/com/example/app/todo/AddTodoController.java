@@ -1,6 +1,7 @@
 package com.example.app.todo;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +76,7 @@ public class AddTodoController {
     addTodo.setPriority(form.getPriority());
     addTodo.setMemo(form.getMemo());
     addTodo.setCompleted(false); // 未完了状態
-    addTodo.setLastUpdate(LocalDateTime.now()); // 現在の日時
+    addTodo.setLastUpdate(LocalDateTime.now(ZoneId.of("Asia/Tokyo"))); // 現在の日時
 
     return addTodo;
   }
