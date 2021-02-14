@@ -60,7 +60,7 @@
 		      <th></th>
 		    </tr>
 		    <tr th:each="todo : ${displayList}">
-		      <td th:text="${todo.title}">タイトル</td>
+		      <td><a href="#" th:href="@{/todoDetails?todoId=__${todo.todoId}__}" th:text="${todo.title}">タイトル</a></td>
 		      <td th:text="${todo.deadline.getYear()}+'/'+${todo.deadline.getMonthValue()}+'/'+${todo.deadline.getDayOfMonth()}">期限</td>
 		      <td th:text="${todo.priority}">☆</td>
 		      <td>
