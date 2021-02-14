@@ -1,6 +1,7 @@
 package com.example.domain.service.todo;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class TodoDetailsServiceImpl implements TodoDetailsService {
     updateTodo.setDeadline(deadline);
     updateTodo.setPriority(priority);
     updateTodo.setMemo(memo);
-    updateTodo.setLastUpdate(LocalDateTime.now());
+    updateTodo.setLastUpdate(LocalDateTime.now(ZoneId.of("Asia/Tokyo")));
   }
 
 }
