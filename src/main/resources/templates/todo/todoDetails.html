@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+          xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+          layout:decorate="~{layout/layout}">
+<head>
+<title>ToDoの詳細</title>
+</head>
+<body>
+  <section layout:fragment="content">
+    <div class="container mb-5">
+    <h2>ToDoの詳細</h2>
+      <div class="mt-3">
+        <div th:if="${completed} neq true">
+          未完了のToDoです
+          <a class="btn btn-primary text-light ml-4" href="#">完了させる</a>
+        </div>
+        <div th:if="${completed} eq true">
+          完了したToDoです
+          <a class="btn btn-primary text-light ml-4" href="#">未完了に戻す</a>
+        </div>
+      </div>
+      <div class="bg-light mt-3 p-4 rounded">
+        <form action="#" th:action="@{/todoDetails?todoId=__${todoId}__}" th:object=${todoForm} method="POST">
+          <!-- タイトル -->
+          <div class="form-group">
+            <label for="title">タイトル</label>
+            <input type="text" class="form-control w-50" name="title" id="title" th:value="*{title}"
+                maxlength="20" placeholder="最大20文字まで" required>
+            <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></div>
+          </div>
+          <!-- 期限 -->
+          <div class="form-group">
+            <label for="deadline">期限</label>
+            <input type="datetime-local" class="form-control w-75" name="deadlineStr" id="deadline" th:value="*{deadlineStr}" required>
+            <div th:if="${#fields.hasErrors('deadlineStr')}" th:errors="*{deadlineStr}" class="text-danger"></div>
+          </div>
+          <!-- 優先度 未入力状態では5をチェック -->
+          優先度 (5が最大)
+          <div class="mt-2 mb-3">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="priority" id="prioryty5" value="5" checked>
+              <label class="form-check-label">5</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="priority" id="prioryty4" value="4" 
+                 th:checked="*{priority} eq 4">
+              <label class="form-check-label">4</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="priority" id="prioryty3" value="3" 
+                 th:checked="*{priority} eq 3">
+              <label class="form-check-label">3</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="priority" id="prioryty2" value="2" 
+                 th:checked="*{priority} eq 2">
+              <label class="form-check-label">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="priority" id="prioryty1" value="1" 
+                 th:checked="*{priority} eq 1">
+              <label class="form-check-label">1</label>
+            </div>
+            <div th:if="${#fields.hasErrors('priority')}" th:errors="*{priority}" class="text-danger"></div>
+          </div>
+          <!-- メモ -->
+          <div class="form-group">
+            <label for="memo">メモ</label>
+            <textarea class="form-control" th:field="*{memo}" cols="40" rows="4" maxlength="400"
+                placeholder="最大400文字まで"></textarea>
+            <div th:if="${#fields.hasErrors('memo')}" th:errors="*{memo}" class="text-danger"></div>
+          </div>
+          <input type="submit" class="btn btn-primary" value="内容を更新">
+          <a class="btn btn-secondary text-light float-right" href="#">ToDoを削除する</a>
+        </form>
+      </div>
+      <h6 class="mt-3" th:text="*{#temporals.format(lastUpdate, '最終更新日時 : yyyy/MM/dd HH:mm')}">最終更新日時</h6>
+    </div>
+  </section>
+</body>
+</html>
