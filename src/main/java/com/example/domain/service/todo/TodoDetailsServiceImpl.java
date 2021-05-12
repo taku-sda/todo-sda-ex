@@ -12,7 +12,7 @@ import com.example.domain.model.Todo;
 import com.example.domain.repository.todo.TodoRepository;
 
 /**
- * 既存のTodoの登録内容の詳細や変更に関する処理を行うサービスクラス.
+ * 既存のToDoの登録内容の詳細や変更に関する処理を行うサービスクラス.
  */
 @Service
 public class TodoDetailsServiceImpl implements TodoDetailsService {
@@ -43,6 +43,27 @@ public class TodoDetailsServiceImpl implements TodoDetailsService {
     updateTodo.setPriority(priority);
     updateTodo.setMemo(memo);
     updateTodo.setLastUpdate(LocalDateTime.now(ZoneId.of("Asia/Tokyo")));
+  }
+
+  /** {@inheritDoc} */
+  @Override
+  @Transactional
+  public void deleteTodo(Integer todoId) {
+    repository.deleteById(todoId);
+  }
+
+  /** {@inheritDoc} */
+  @Override
+  @Transactional
+  public int deleteAllCompletedTodo(String userId) {
+    return repository.deleteAllCompleted(userId);
+  }
+
+  /** {@inheritDoc} */
+  @Override
+  @Transactional
+  public int deleteAllExpiredTodo(String userId) {
+    return repository.deleteAllExpired(userId);
   }
 
 }

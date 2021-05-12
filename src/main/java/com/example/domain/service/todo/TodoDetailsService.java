@@ -24,4 +24,23 @@ public interface TodoDetailsService {
   void updateDetails(Integer todoId, String title, LocalDateTime deadline, Integer priority,
       String memo);
 
+  /**
+   * 指定したIDを持つTodoを削除する.
+   * @param todoId  削除するTodoのID
+   */
+  void deleteTodo(Integer todoId);
+  
+  /**
+   * 対象のユーザーの完了状態のTodoをすべて削除する.
+   * @param userId  対象のユーザーのID
+   * @return  削除した件数
+   */
+  int deleteAllCompletedTodo(String userId);
+  
+  /**
+   * 対象のユーザーの期限切れのTodoをすべて削除する.
+   * @param userId  対象のユーザーのID
+   * @return  削除した件数
+   */
+  int deleteAllExpiredTodo(String userId);
 }
