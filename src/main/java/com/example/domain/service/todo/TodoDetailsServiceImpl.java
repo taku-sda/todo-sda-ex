@@ -58,9 +58,9 @@ public class TodoDetailsServiceImpl implements TodoDetailsService {
   public int bulkDeleteTodo(String userId, String target) {
     int deletedCount = 0;
 
-    if (target == "completed") {
+    if (target.equals("completed")) {
       deletedCount = repository.deleteAllCompleted(userId);
-    } else if (target == "expired") {
+    } else if (target.equals("expired")) {
       deletedCount = repository.deleteAllExpired(userId);
     } else {
       throw new IllegalArgumentException("一括削除に失敗しました。不正な条件です。");
