@@ -55,15 +55,17 @@ public class TodoDetailsServiceImpl implements TodoDetailsService {
   /** {@inheritDoc} */
   @Override
   @Transactional
-  public int deleteAllCompletedTodo(String userId) {
-    return repository.deleteAllCompleted(userId);
-  }
+  public int bulkDeleteTodo(String userId, String target) {
+    int deletedCount = 0;
 
-  /** {@inheritDoc} */
-  @Override
-  @Transactional
-  public int deleteAllExpiredTodo(String userId) {
-    return repository.deleteAllExpired(userId);
-  }
+    if (target == "completed") {
+      deletedCount = repository.deleteAllCompleted(userId);
+    } else if (target == "expired") {
+      deletedCount = repository.deleteAllExpired(userId);
+    } else {
+      throw new IllegalArgumentException("一括削除に失敗しました。不正な条件です。");
+    }
 
+    return deletedCount;
+  }
 }

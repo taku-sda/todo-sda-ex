@@ -65,4 +65,39 @@ class TodoDetailsServiceImplTest {
     }
 
   }
+
+  @Nested
+  @DisplayName("bulkDeleteTodo()のテスト")
+  class testBulkDeleteTodo {
+
+    @Test
+    @DisplayName("削除対象にcompletedを指定した場合、正しく削除が実行される")
+    void deleteCompleted() {
+      when(repository.deleteAllCompleted("userId")).thenReturn(10);
+
+      int result = serviceImpl.bulkDeleteTodo("userId", "completed");
+      assertThat(result, is(10));
+      verify(repository, times(1)).deleteAllCompleted("userId");
+    }
+
+    @Test
+    @DisplayName("削除対象にexpiredを指定した場合、正しく削除が実行される")
+    void deleteExpired() {
+      when(repository.deleteAllExpired("userId")).thenReturn(10);
+
+      int result = serviceImpl.bulkDeleteTodo("userId", "expired");
+      assertThat(result, is(10));
+      verify(repository, times(1)).deleteAllExpired("userId");
+    }
+
+    @Test
+    @DisplayName("不正な条件が指定された場合、削除が実行されずに例外がスローされる")
+    void illegalTarget() throws Exception {
+      assertThrows(IllegalArgumentException.class, () -> serviceImpl.bulkDeleteTodo("userId",
+          "wrong"));
+      verify(repository, times(0)).deleteAllCompleted("userId");
+      verify(repository, times(0)).deleteAllExpired("userId");
+    }
+  }
+
 }
