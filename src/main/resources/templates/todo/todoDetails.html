@@ -72,7 +72,7 @@
             <div th:if="${#fields.hasErrors('memo')}" th:errors="*{memo}" class="text-danger"></div>
           </div>
           <input type="submit" class="btn btn-primary" value="内容を更新">
-          <a class="btn btn-secondary text-light float-right" href="#">ToDoを削除する</a>
+          <a class="btn btn-secondary text-light float-right" href="#" th:href="@{/todoDetails/delete?todoId=__${todoId}__}">ToDoを削除する</a>
         </form>
       </div>
       <h6 class="mt-3" th:text="*{#temporals.format(lastUpdate, '最終更新日時 : yyyy/MM/dd HH:mm')}">最終更新日時</h6>

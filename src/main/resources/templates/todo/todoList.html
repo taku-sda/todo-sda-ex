@@ -9,7 +9,15 @@
 <body>
   <section layout:fragment="content">
     <div class="container mb-5">
-	      <a href="#" th:href="@{/todoList?listType=normal&sort=deadline&order=ASC}" class="badge badge-primary p-2">
+      <div th:if="${deletedCount ne null}">
+        <div class="alert alert-warning alert-dismissible fade-show" role="alert">
+          <span th:text="${deletedCount} + '件のToDoを削除しました'">一括削除メッセージ</span>
+          <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+	    <a href="#" th:href="@{/todoList?listType=normal&sort=deadline&order=ASC}" class="badge badge-primary p-2">
 	      <span class="h6">今日までのToDo<span class="badge badge-pill badge-light ml-2" th:text="${todayListSize}">0</span></span></a>
 	    <a href="#" th:href="@{/todoList?listType=expired&sort=deadline&order=ASC}" class="badge badge-warning p-2">
 	      <span class="h6 text-light">期限切れのToDo<span class="badge badge-pill badge-light ml-2" th:text="${expiredListSize}">0</span></span></a>
@@ -81,6 +89,14 @@
 				  </div>
 				</div>
 		  </div>
+	   </div>
+	   <div class="mt-2 mb-5">
+	     <div th:if="${listType == 'completed'}">
+        <a class="btn btn-secondary text-light float-right" href="#" th:href="@{/todoDetails/bulkDelete?target=completed}">完了ToDoを一括削除する</a>
+      </div>
+      <div th:if="${listType == 'expired'}">
+        <a class="btn btn-secondary text-light float-right" href="#" th:href="@{/todoDetails/bulkDelete?target=expired}">期限切れToDoを一括削除する</a>
+      </div>
 	   </div>
 	 </div>
   </section>

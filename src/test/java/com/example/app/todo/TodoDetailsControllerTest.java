@@ -9,6 +9,7 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.flash;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
@@ -75,7 +76,7 @@ class TodoDetailsControllerTest {
     @Test
     @DisplayName("ログイン中のユーザーとTodoの所有者が異なる場合、例外をスロー")
     void wrongUserId() throws Exception {
-      //ログインユーザーと異なるユーザーを所有者に設定
+      // ログインユーザーと異なるユーザーを所有者に設定
       User anotherUser = new User("anotherUserId", "password", RoleName.TEST);
       registerdTodo.setUser(anotherUser);
 
@@ -93,15 +94,98 @@ class TodoDetailsControllerTest {
     void correctTransition() throws Exception {
       when(service.getTodo(1)).thenReturn(registerdTodo);
 
-      mockMvc.perform(get("/todoDetails").with(user(userDetails)).param("todoId", "1"))
-        .andExpect(model().attributeExists("todoForm"))
-        .andExpect(model().attribute("todoId", 1))
-        .andExpect(model().attribute("completed", false))
-        .andExpect(model().attribute("lastUpdate", lastUpdateLdt))
-        .andExpect(status().isOk())
-        .andExpect(view().name("todo/todoDetails"));
+      mockMvc.perform(get("/todoDetails").with(user(userDetails)).param("todoId", "1")).andExpect(
+          model().attributeExists("todoForm")).andExpect(model().attribute("todoId", 1)).andExpect(
+              model().attribute("completed", false)).andExpect(model().attribute("lastUpdate",
+                  lastUpdateLdt)).andExpect(status().isOk()).andExpect(view().name(
+                      "todo/todoDetails"));
 
       verify(service, times(1)).getTodo(1);
+    }
+  }
+
+  @Nested
+  @DisplayName("deleteTodo()のテスト")
+  class DeleteTodoTest {
+
+    @BeforeEach
+    void setUp() {
+      Mockito.reset(service);
+    }
+
+    @Test
+    @DisplayName("Todoの取得に失敗した場合、例外をスローしてエラーページへ遷移")
+    void failureGetTodo() throws Exception {
+      when(service.getTodo(1)).thenThrow(new IllegalArgumentException("エラーメッセージ"));
+
+      MvcResult result = mockMvc.perform(get("/todoDetails/delete").with(user(userDetails)).param(
+          "todoId", "1")).andExpect(view().name("error/error")).andReturn();
+
+      assertThat(result.getResolvedException().getClass(), is(IllegalOperationException.class));
+      verify(service, times(1)).getTodo(1);
+    }
+
+    @Test
+    @DisplayName("ログイン中のユーザーとTodoの所有者が異なる場合、例外をスローしてエラーページへ遷移")
+    void wrongUserId() throws Exception {
+      // ログインユーザーと異なるユーザーをToDoの所有者に設定
+      Todo registerdTodo = new Todo();
+      User anotherUser = new User("anotherUserId", "password", RoleName.TEST);
+      registerdTodo.setUser(anotherUser);
+
+      when(service.getTodo(1)).thenReturn(registerdTodo);
+
+      MvcResult result = mockMvc.perform(get("/todoDetails/delete").with(user(userDetails)).param(
+          "todoId", "1")).andExpect(view().name("error/error")).andReturn();
+
+      assertThat(result.getResolvedException().getClass(), is(IllegalOperationException.class));
+      verify(service, times(1)).getTodo(1);
+    }
+
+    @Test
+    @DisplayName("削除を実行してToDo一覧画面にリダイレクトする")
+    void completeDelete() throws Exception {
+      // ログインユーザーをToDoの所有者に設定
+      Todo registerdTodo = new Todo();
+      registerdTodo.setUser(user);
+
+      when(service.getTodo(1)).thenReturn(registerdTodo);
+
+      mockMvc.perform(get("/todoDetails/delete").with(user(userDetails)).param("todoId", "1"))
+          .andExpect(view().name("redirect:/todoList"));
+
+      verify(service, times(1)).getTodo(1);
+      verify(service, times(1)).deleteTodo(1);
+    }
+  }
+
+  @Nested
+  @DisplayName("blukDeleteTodo")
+  class BulkDeleteTodoTest {
+
+    @Test
+    @DisplayName("一括削除に失敗した場合、例外をスローしてエラーページへ遷移")
+    void failureBulkDelete() throws Exception {
+      when(service.bulkDeleteTodo("userId", "wrongTarget")).thenThrow(new IllegalArgumentException(
+          "エラーメッセージ"));
+
+      MvcResult result = mockMvc.perform(get("/todoDetails/bulkDelete").with(user(userDetails))
+          .param("target", "wrongTarget")).andExpect(view().name("error/error")).andReturn();
+
+      assertThat(result.getResolvedException().getClass(), is(IllegalOperationException.class));
+      verify(service, times(1)).bulkDeleteTodo("userId", "wrongTarget");
+    }
+
+    @Test
+    @DisplayName("削除件数を格納して、ToDo一覧画面へリダイレクト")
+    void completeBulkDelete() throws Exception {
+      when(service.bulkDeleteTodo("userId", "completed")).thenReturn(10);
+
+      mockMvc.perform(get("/todoDetails/bulkDelete").with(user(userDetails)).param("target",
+          "completed")).andExpect(view().name("redirect:/todoList")).andExpect(flash().attribute(
+              "deletedCount", 10));
+
+      verify(service, times(1)).bulkDeleteTodo("userId", "completed");
     }
   }
 
@@ -126,22 +210,20 @@ class TodoDetailsControllerTest {
       form.setDeadlineStr("2000/01/01-12:00"); // 期限文字列が指定したフォーマットではない
 
       mockMvc.perform(post("/todoDetails").with(csrf()).with(user(userDetails)).param("todoId", "1")
-          .flashAttr("todoForm", form))
-        .andExpect(model().hasErrors())
-        .andExpect(status().isOk())
-        .andExpect(view().name("todo/todoDetails"));
+          .flashAttr("todoForm", form)).andExpect(model().hasErrors()).andExpect(status().isOk())
+          .andExpect(view().name("todo/todoDetails"));
     }
 
     @Test
     @DisplayName("処理が正常に完了した場合、Todo一覧へリダイレクト")
     void correctTransition() throws Exception {
       mockMvc.perform(post("/todoDetails").with(csrf()).with(user(userDetails)).param("todoId", "1")
-          .flashAttr("todoForm", form))
-          .andExpect(status().isFound())
-          .andExpect(view().name("redirect:/todoList"));
+          .flashAttr("todoForm", form)).andExpect(status().isFound()).andExpect(view().name(
+              "redirect:/todoList"));
 
       LocalDateTime expectedDeadline = LocalDateTime.of(2000, 1, 1, 12, 00);
       verify(service, times(1)).updateDetails(1, "タイトル", expectedDeadline, 5, "メモ");
     }
   }
+
 }
