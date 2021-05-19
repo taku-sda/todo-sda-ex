@@ -43,7 +43,7 @@ class TodoRepositoryTest {
   @Nested
   @DataJpaTest
   @DisplayName("リスト取得処理のテスト")
-  class testGetList {
+  class TestGetList {
 
     @Test
     @DisplayName("getTodayList()のテスト")
@@ -78,7 +78,7 @@ class TodoRepositoryTest {
   @Nested
   @DataJpaTest
   @DisplayName("一括削除処理のテスト")
-  class testMultiDelete {
+  class TestMultiDelete {
 
     @BeforeEach
     void setUp() {

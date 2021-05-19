@@ -65,7 +65,6 @@ public class TodoDetailsController {
    * 対象のToDoの削除を行う.
    * @param todoId 削除するToDoのID
    * @param userDetails ログイン中のユーザー情報
-   * @param model 連携するデータを格納
    * @return ToDo一覧画面
    */
   @GetMapping("/delete")
@@ -91,8 +90,7 @@ public class TodoDetailsController {
   }
 
   /**
-   * ログインユーザーのToDoの一括削除を行う.
-   * 削除した件数を遷移先に共有する.
+   * ログインユーザーのToDoの一括削除を行う. 削除した件数を遷移先に共有する.
    * @param target 一括削除の対象. completed(完了済)またはexpired(期限切れ)
    * @param userDetails ログイン中のユーザー情報
    * @param redirectAttributes リダイレクト先と連携するデータを格納
@@ -101,15 +99,15 @@ public class TodoDetailsController {
   @GetMapping("/bulkDelete")
   String bulkDeleteTodo(@RequestParam String target,
       @AuthenticationPrincipal TodoUserDetails userDetails, RedirectAttributes redirectAttributes) {
-    int deletedCount  = 0;
-    
-    //一括削除に失敗した場合は例外をスロー
+    int deletedCount = 0;
+
+    // 一括削除に失敗した場合は例外をスロー
     try {
       deletedCount = todoDetailsService.bulkDeleteTodo(userDetails.getUser().getUserId(), target);
-    }catch(Exception e) {
+    } catch (Exception e) {
       throw new IllegalOperationException(e.getMessage());
     }
-    
+
     redirectAttributes.addFlashAttribute("deletedCount", deletedCount);
 
     return "redirect:/todoList";

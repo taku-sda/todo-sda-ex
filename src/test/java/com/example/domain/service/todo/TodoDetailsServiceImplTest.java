@@ -68,7 +68,7 @@ class TodoDetailsServiceImplTest {
 
   @Nested
   @DisplayName("bulkDeleteTodo()のテスト")
-  class testBulkDeleteTodo {
+  class TestBulkDeleteTodo {
 
     @Test
     @DisplayName("削除対象にcompletedを指定した場合、正しく削除が実行される")

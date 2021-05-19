@@ -56,7 +56,7 @@ class TodoDetailsControllerTest {
 
   @Nested
   @DisplayName("todoForm()のテスト")
-  class todoFormTest {
+  class TodoFormTest {
 
     Todo registerdTodo = new Todo();
     LocalDateTime lastUpdateLdt = LocalDateTime.of(2000, 1, 1, 12, 00);
