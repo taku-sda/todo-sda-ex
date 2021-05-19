@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.domain.model.Todo;
 import com.example.domain.service.todo.TodoDetailsService;
@@ -58,6 +59,58 @@ public class TodoDetailsController {
     model.addAttribute("lastUpdate", todoDetails.getLastUpdate());
 
     return "todo/todoDetails";
+  }
+
+  /**
+   * 対象のToDoの削除を行う.
+   * @param todoId 削除するToDoのID
+   * @param userDetails ログイン中のユーザー情報
+   * @return ToDo一覧画面
+   */
+  @GetMapping("/delete")
+  String deleteTodo(@RequestParam int todoId,
+      @AuthenticationPrincipal TodoUserDetails userDetails) {
+
+    Todo todoDetails = null;
+    // ToDoの取得に失敗した場合は例外をスロー
+    try {
+      todoDetails = todoDetailsService.getTodo(todoId);
+    } catch (Exception e) {
+      throw new IllegalOperationException(e.getMessage());
+    }
+
+    // ToDoの作成者以外からのアクセスの場合は例外をスロー
+    if (!(todoDetails.getUser().getUserId().equals(userDetails.getUser().getUserId()))) {
+      throw new IllegalOperationException("このToDoを操作する権限がありません");
+    }
+
+    todoDetailsService.deleteTodo(todoId);
+
+    return "redirect:/todoList";
+  }
+
+  /**
+   * ログインユーザーのToDoの一括削除を行う. 削除した件数を遷移先に共有する.
+   * @param target 一括削除の対象. completed(完了済)またはexpired(期限切れ)
+   * @param userDetails ログイン中のユーザー情報
+   * @param redirectAttributes リダイレクト先と連携するデータを格納
+   * @return ToDo一覧画面
+   */
+  @GetMapping("/bulkDelete")
+  String bulkDeleteTodo(@RequestParam String target,
+      @AuthenticationPrincipal TodoUserDetails userDetails, RedirectAttributes redirectAttributes) {
+    int deletedCount = 0;
+
+    // 一括削除に失敗した場合は例外をスロー
+    try {
+      deletedCount = todoDetailsService.bulkDeleteTodo(userDetails.getUser().getUserId(), target);
+    } catch (Exception e) {
+      throw new IllegalOperationException(e.getMessage());
+    }
+
+    redirectAttributes.addFlashAttribute("deletedCount", deletedCount);
+
+    return "redirect:/todoList";
   }
 
   /**

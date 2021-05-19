@@ -12,7 +12,7 @@ import com.example.domain.model.Todo;
 import com.example.domain.repository.todo.TodoRepository;
 
 /**
- * 既存のTodoの登録内容の詳細や変更に関する処理を行うサービスクラス.
+ * 既存のToDoの登録内容の詳細や変更に関する処理を行うサービスクラス.
  */
 @Service
 public class TodoDetailsServiceImpl implements TodoDetailsService {
@@ -45,4 +45,27 @@ public class TodoDetailsServiceImpl implements TodoDetailsService {
     updateTodo.setLastUpdate(LocalDateTime.now(ZoneId.of("Asia/Tokyo")));
   }
 
+  /** {@inheritDoc} */
+  @Override
+  @Transactional
+  public void deleteTodo(Integer todoId) {
+    repository.deleteById(todoId);
+  }
+
+  /** {@inheritDoc} */
+  @Override
+  @Transactional
+  public int bulkDeleteTodo(String userId, String target) {
+    int deletedCount = 0;
+
+    if (target.equals("completed")) {
+      deletedCount = repository.deleteAllCompleted(userId);
+    } else if (target.equals("expired")) {
+      deletedCount = repository.deleteAllExpired(userId);
+    } else {
+      throw new IllegalArgumentException("一括削除に失敗しました。不正な条件です。");
+    }
+
+    return deletedCount;
+  }
 }
