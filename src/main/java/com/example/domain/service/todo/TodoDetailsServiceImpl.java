@@ -68,4 +68,19 @@ public class TodoDetailsServiceImpl implements TodoDetailsService {
 
     return deletedCount;
   }
+
+  /** {@inheritDoc} */
+  @Override
+  @Transactional
+  public void updateCompleted(Integer todoId, String status) {
+    Todo updateTodo = getTodo(todoId);
+
+    if (status.equals("true")) {
+      updateTodo.setCompleted(true);
+    } else if (status.equals("false")) {
+      updateTodo.setCompleted(false);
+    } else {
+      throw new IllegalArgumentException("更新に失敗しました。不正な条件です。");
+    }
+  }
 }

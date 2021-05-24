@@ -3,6 +3,7 @@ package com.example.domain.service.todo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.example.domain.model.RoleName;
@@ -27,6 +29,7 @@ import com.example.domain.repository.todo.TodoRepository;
 @DisplayName("TodoDetailsServiceImplの単体テスト")
 class TodoDetailsServiceImplTest {
 
+  @Spy
   @InjectMocks
   TodoDetailsServiceImpl serviceImpl;
 
@@ -100,4 +103,39 @@ class TodoDetailsServiceImplTest {
     }
   }
 
+  @Nested
+  @DisplayName("updateCompleted()のテスト")
+  class UpdateCompleted {
+
+    @Mock
+    Todo updateTodo;
+
+    @Test
+    @DisplayName("更新後の完了状態にtrueが指定された場合、正しく更新処理が行われる")
+    void statusIsTrue() {
+      doReturn(updateTodo).when(serviceImpl).getTodo(1);
+
+      serviceImpl.updateCompleted(1, "true");
+      verify(updateTodo, times(1)).setCompleted(true);
+    }
+
+    @Test
+    @DisplayName("更新後の完了状態にfalseが指定された場合、正しく更新処理が行われる")
+    void statusIsFalse() {
+      doReturn(updateTodo).when(serviceImpl).getTodo(1);
+
+      serviceImpl.updateCompleted(1, "false");
+      verify(updateTodo, times(1)).setCompleted(false);
+    }
+
+    @Test
+    @DisplayName("更新後の完了状態の指定が不正な場合、更新されずに例外がスローされる")
+    void statusIsIllegal() throws Exception {
+      doReturn(updateTodo).when(serviceImpl).getTodo(1);
+
+      assertThrows(IllegalArgumentException.class, () -> serviceImpl.updateCompleted(1, "wrong"));
+      verify(updateTodo, times(0)).setCompleted(true);
+      verify(updateTodo, times(0)).setCompleted(false);
+    }
+  }
 }

@@ -37,4 +37,11 @@ public interface TodoDetailsService {
    * @return 削除した件数
    */
   int bulkDeleteTodo(String userId, String target);
+
+  /**
+   * 指定したIDを持つTodoの完了状態を更新する.
+   * @param todoId 更新するTodoのID
+   * @param status 更新後の完了状態
+   */
+  void updateCompleted(Integer todoId, String status);
 }

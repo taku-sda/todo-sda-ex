@@ -190,6 +190,65 @@ class TodoDetailsControllerTest {
   }
 
   @Nested
+  @DisplayName("updateCoompleted()のテスト")
+  class UpdateCompletedTest {
+
+    @BeforeEach
+    void setUp() {
+      Mockito.reset(service);
+    }
+
+    @Test
+    @DisplayName("Todoの取得に失敗した場合、例外をスローしてエラーページへ遷移")
+    void failureGetTodo() throws Exception {
+      when(service.getTodo(1)).thenThrow(new IllegalArgumentException("エラーメッセージ"));
+
+      MvcResult result = mockMvc.perform(get("/todoDetails/completed").with(user(userDetails))
+          .param("todoId", "1").param("status", "true").param("path", "pathStr")).andExpect(view()
+              .name("error/error")).andReturn();
+
+      assertThat(result.getResolvedException().getClass(), is(IllegalOperationException.class));
+      verify(service, times(1)).getTodo(1);
+    }
+
+    @Test
+    @DisplayName("ログイン中のユーザーとTodoの所有者が異なる場合、例外をスローしてエラーページへ遷移")
+    void wrongUserId() throws Exception {
+      // ログインユーザーと異なるユーザーをToDoの所有者に設定
+      Todo registerdTodo = new Todo();
+      User anotherUser = new User("anotherUserId", "password", RoleName.TEST);
+      registerdTodo.setUser(anotherUser);
+
+      when(service.getTodo(1)).thenReturn(registerdTodo);
+
+      MvcResult result = mockMvc.perform(get("/todoDetails/completed").with(user(userDetails))
+          .param("todoId", "1").param("status", "true").param("path", "pathStr")).andExpect(view()
+              .name("error/error")).andReturn();
+
+      assertThat(result.getResolvedException().getClass(), is(IllegalOperationException.class));
+      verify(service, times(1)).getTodo(1);
+    }
+
+    @Test
+    @DisplayName("更新を実行して、遷移前のページにリダイレクトする")
+    void completeUpdate() throws Exception {
+      // ログインユーザーをToDoの所有者に設定
+      Todo registerdTodo = new Todo();
+      registerdTodo.setUser(user);
+
+      when(service.getTodo(1)).thenReturn(registerdTodo);
+
+      mockMvc.perform(get("/todoDetails/completed").with(user(userDetails)).param("todoId", "1")
+          .param("status", "true").param("path", "pathStr")).andExpect(view().name("redirect:"
+              + "pathStr"));
+
+      verify(service, times(1)).getTodo(1);
+      verify(service, times(1)).updateCompleted(1, "true");
+    }
+
+  }
+
+  @Nested
   @DisplayName("updateDetails()のテスト")
   class UpdateDetailsTest {
 
