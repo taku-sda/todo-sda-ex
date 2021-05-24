@@ -114,6 +114,36 @@ public class TodoDetailsController {
   }
 
   /**
+   * ToDoの完了状態の更新を行う. 更新処理の完了後は遷移元の画面にリダイレクトする.
+   * @param todoId 更新するToDoのID
+   * @param status 更新後の完了状態
+   * @param path 遷移元の画面のパス
+   * @param userDetails ログイン中のユーザー情報
+   * @return 遷移元の画面
+   */
+  @GetMapping("/completed")
+  String updateCompleted(@RequestParam int todoId, @RequestParam String status,
+      @RequestParam String path, @AuthenticationPrincipal TodoUserDetails userDetails) {
+
+    Todo todoDetails = null;
+    // ToDoの取得に失敗した場合は例外をスロー
+    try {
+      todoDetails = todoDetailsService.getTodo(todoId);
+    } catch (Exception e) {
+      throw new IllegalOperationException(e.getMessage());
+    }
+
+    // ToDoの作成者以外からのアクセスの場合は例外をスロー
+    if (!(todoDetails.getUser().getUserId().equals(userDetails.getUser().getUserId()))) {
+      throw new IllegalOperationException("このToDoを操作する権限がありません");
+    }
+
+    todoDetailsService.updateCompleted(todoId, status);
+
+    return "redirect:" + path;
+  }
+
+  /**
    * ToDoの登録内容の更新を行う.
    * @param form ToDo更新フォームの入力内容
    * @param result バリデーションの結果
