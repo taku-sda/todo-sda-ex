@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.model.User;
+import com.example.domain.repository.todo.TodoRepository;
 import com.example.domain.repository.user.UserRepository;
 
 /**
@@ -23,8 +24,12 @@ public class UserExcludeServiceImpl implements UserExcludeService {
   @Autowired
   UserRepository repository;
 
-  /** {@inheritDoc}.
-   * @throws FailureConfirmException  ユーザー情報が正しくない場合
+  @Autowired
+  TodoRepository todoRepository;
+
+  /**
+   * {@inheritDoc}.
+   * @throws FailureConfirmException ユーザー情報が正しくない場合
    */
   @Override
   public void confirmPassword(String userId, String password) {
@@ -48,10 +53,12 @@ public class UserExcludeServiceImpl implements UserExcludeService {
   public void exclude(String userId) {
     repository.deleteById(userId);
 
-    //TODO  userIdに対応するToDoをすべて削除する処理を追加
+    // 所有しているの全てのToDoを削除する
+    todoRepository.deleteAllOwned(userId);
   }
 
-  /** {@inheritDoc}.
+  /**
+   * {@inheritDoc}.
    * @throws FailureLogoutException ログアウトに失敗した場合
    */
   @Override
