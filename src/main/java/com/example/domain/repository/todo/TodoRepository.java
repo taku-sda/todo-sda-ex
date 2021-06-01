@@ -53,4 +53,14 @@ public interface TodoRepository extends JpaRepository<Todo, Integer>, TodoReposi
   @Query("DELETE FROM Todo t WHERE t.user.userId = :userId AND t.deadline < CURRENT_TIMESTAMP "
       + "AND t.completed = FALSE")
   int deleteAllExpired(@Param("userId") String userId);
+
+  /**
+   * 指定したユーザーのToDoをすべて削除する.
+   * @param userId ToDoを削除するユーザーのID
+   * @return 削除した件数
+   */
+  @Transactional
+  @Modifying
+  @Query("DELETE FROM Todo t WHERE t.user.userId = :userId")
+  int deleteAllOwned(@Param("userId") String userId);
 }
