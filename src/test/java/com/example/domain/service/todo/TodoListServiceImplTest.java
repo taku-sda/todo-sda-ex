@@ -101,40 +101,4 @@ class TodoListServiceImplTest {
       verify(repository, times(1)).getExpiredListAnySorted(user.getUserId(), "deadline", "ASC");
     }
   }
-
-  @Nested
-  @DisplayName("todayListSize()のテスト")
-  class TodayListSizetest {
-
-    @Test
-    @DisplayName("正しい件数を取得できる")
-    void correctSize() {
-      List<Todo> returnList = new ArrayList<>();
-      returnList.add(new Todo(1, user, "タイトル", LocalDateTime.now(), 1, "memo", false, LocalDateTime
-          .now()));
-      when(repository.getTodayList(user.getUserId())).thenReturn(returnList);
-
-      int result = serviceImpl.todayListSize(user.getUserId());
-      assertThat(result, is(1));
-      verify(repository, times(1)).getTodayList(user.getUserId());
-    }
-  }
-
-  @Nested
-  @DisplayName("expiredListSize()のテスト")
-  class ExpiredListSizetest {
-
-    @Test
-    @DisplayName("正しい件数を取得できる")
-    void correctSize() {
-      List<Todo> returnList = new ArrayList<>();
-      returnList.add(new Todo(1, user, "タイトル", LocalDateTime.now(), 1, "memo", false, LocalDateTime
-          .now()));
-      when(repository.getExpiredList(user.getUserId())).thenReturn(returnList);
-
-      int result = serviceImpl.expiredListSize(user.getUserId());
-      assertThat(result, is(1));
-      verify(repository, times(1)).getExpiredList(user.getUserId());
-    }
-  }
 }
