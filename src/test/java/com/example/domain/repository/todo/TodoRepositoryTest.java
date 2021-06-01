@@ -114,5 +114,12 @@ class TodoRepositoryTest {
       int result = repository.deleteAllExpired(user.getUserId());
       assertThat(result, is(1));
     }
+
+    @Test
+    @DisplayName("deleteAllOwned()のテスト")
+    void deleteAllOwnedTest() {
+      int result = repository.deleteAllOwned(user.getUserId());
+      assertThat(result, is(4));
+    }
   }
 }
