@@ -85,8 +85,8 @@ class TodoListControllerTest {
       Map<String, Object> models = result.getModelAndView().getModel();
 
       assertThat(models.get("displayList"), is(displayList));
-      assertThat(models.get("todayListSize"), is(todayList));
-      assertThat(models.get("expiredListSize"), is(expiredList));
+      assertThat(models.get("todayList"), is(todayList));
+      assertThat(models.get("expiredList"), is(expiredList));
       assertThat(models.get("listType"), is("normal"));
       assertThat(models.get("sort"), is("deadline"));
       assertThat(models.get("order"), is("ASC"));
