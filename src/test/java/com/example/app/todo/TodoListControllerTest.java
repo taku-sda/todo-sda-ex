@@ -91,8 +91,8 @@ class TodoListControllerTest {
 
       verify(service, times(1)).getDisplayList(eq("userId"), eq("normal"), eq("deadline"), eq(
           "ASC"));
-      verify(service, times(1)).todayListSize("userId");
-      verify(service, times(1)).expiredListSize("userId");
+      verify(service, times(1)).getTodayList("userId");
+      verify(service, times(1)).getExpiredList("userId");
     }
   }
 }
