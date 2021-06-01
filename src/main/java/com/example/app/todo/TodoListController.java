@@ -45,12 +45,12 @@ public class TodoListController {
       throw new IllegalOperationException(e.getMessage());
     }
 
-    int todayListSize = todoListService.todayListSize(authUserId);
-    int expiredListSize = todoListService.expiredListSize(authUserId);
+    List<Todo> todayList = todoListService.getTodayList(authUserId);
+    List<Todo> expiredList = todoListService.getExpiredList(authUserId);
 
     model.addAttribute("displayList", displayList);
-    model.addAttribute("todayListSize", todayListSize);
-    model.addAttribute("expiredListSize", expiredListSize);
+    model.addAttribute("todayList", todayList);
+    model.addAttribute("expiredList", expiredList);
     model.addAttribute("listType", listType);
     model.addAttribute("sort", sort);
     model.addAttribute("order", order);

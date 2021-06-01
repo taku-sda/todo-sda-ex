@@ -71,11 +71,13 @@ class TodoListControllerTest {
     @DisplayName("パラメータが正常な場合、モデルに表示用データを格納してTodo一覧画面へ遷移する")
     void correctTransition() throws Exception {
       List<Todo> displayList = new ArrayList<>();
+      List<Todo> todayList = new ArrayList<>();
+      List<Todo> expiredList = new ArrayList<>();
 
       when(service.getDisplayList(Mockito.anyString(), Mockito.anyString(), Mockito.anyString(),
           Mockito.anyString())).thenReturn(displayList);
-      when(service.todayListSize(Mockito.anyString())).thenReturn(2);
-      when(service.expiredListSize(Mockito.anyString())).thenReturn(3);
+      when(service.getTodayList(Mockito.anyString())).thenReturn(todayList);
+      when(service.getTodayList(Mockito.anyString())).thenReturn(expiredList);
 
       MvcResult result = mockMvc.perform(get("/todoList").with(user(user)).param("listType",
           "normal").param("sort", "deadline").param("order", "ASC")).andExpect(view().name(
@@ -83,16 +85,16 @@ class TodoListControllerTest {
       Map<String, Object> models = result.getModelAndView().getModel();
 
       assertThat(models.get("displayList"), is(displayList));
-      assertThat(models.get("todayListSize"), is(2));
-      assertThat(models.get("expiredListSize"), is(3));
+      assertThat(models.get("todayList"), is(todayList));
+      assertThat(models.get("expiredList"), is(expiredList));
       assertThat(models.get("listType"), is("normal"));
       assertThat(models.get("sort"), is("deadline"));
       assertThat(models.get("order"), is("ASC"));
 
       verify(service, times(1)).getDisplayList(eq("userId"), eq("normal"), eq("deadline"), eq(
           "ASC"));
-      verify(service, times(1)).todayListSize("userId");
-      verify(service, times(1)).expiredListSize("userId");
+      verify(service, times(1)).getTodayList("userId");
+      verify(service, times(1)).getExpiredList("userId");
     }
   }
 }

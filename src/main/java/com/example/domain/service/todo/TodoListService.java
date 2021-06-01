@@ -20,16 +20,16 @@ public interface TodoListService {
   List<Todo> getDisplayList(String userId, String listType, String sort, String order);
 
   /**
-   * 当日中のToDoの件数を取得する.
-   * @param userId 件数を取得するユーザーのID
-   * @return ToDoの件数
+   * 当日中のToDoのリストを取得する.
+   * @param userId リストを取得するユーザーのID
+   * @return 今日中のToDoのリスト
    */
-  int todayListSize(String userId);
+  List<Todo> getTodayList(String userId);
 
   /**
-   * 期限切れのToDoの件数を取得する.
-   * @param userId 件数を取得するユーザーのID
-   * @return ToDoの件数
+   * 期限切れのToDoのリストを取得する.
+   * @param userId リストを取得するユーザーのID
+   * @return 期限切れのToDoのリスト
    */
-  int expiredListSize(String userId);
+  List<Todo> getExpiredList(String userId);
 }

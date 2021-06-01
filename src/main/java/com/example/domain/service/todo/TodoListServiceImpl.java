@@ -48,15 +48,13 @@ public class TodoListServiceImpl implements TodoListService {
 
   /** {@inheritDoc} */
   @Override
-  public int todayListSize(String userId) {
-    List<Todo> resultList = repository.getTodayList(userId);
-    return resultList.size();
+  public List<Todo> getTodayList(String userId) {
+    return repository.getTodayList(userId);
   }
 
   /** {@inheritDoc} */
   @Override
-  public int expiredListSize(String userId) {
-    List<Todo> resultList = repository.getExpiredList(userId);
-    return resultList.size();
+  public List<Todo> getExpiredList(String userId) {
+    return repository.getExpiredList(userId);
   }
 }
