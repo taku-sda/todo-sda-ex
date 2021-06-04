@@ -29,7 +29,7 @@
           <!-- タイトル -->
           <div class="form-group">
             <label for="title">タイトル</label>
-            <input type="text" class="form-control w-50" name="title" id="title" th:value="*{title}"
+            <input type="text" class="form-control w-100" name="title" id="title" th:value="*{title}"
                 maxlength="20" placeholder="最大20文字まで" required>
             <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></div>
           </div>
