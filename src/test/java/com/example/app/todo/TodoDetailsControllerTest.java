@@ -74,6 +74,18 @@ class TodoDetailsControllerTest {
     }
 
     @Test
+    @DisplayName("Todoの取得に失敗した場合、例外をスローしてエラーページへ遷移")
+    void failureGetTodo() throws Exception {
+      when(service.getTodo(1)).thenThrow(new IllegalArgumentException("エラーメッセージ"));
+
+      MvcResult result = mockMvc.perform(get("/todoDetails").with(user(userDetails)).param("todoId",
+          "1")).andExpect(view().name("error/error")).andReturn();
+
+      assertThat(result.getResolvedException().getClass(), is(IllegalOperationException.class));
+      verify(service, times(1)).getTodo(1);
+    }
+
+    @Test
     @DisplayName("ログイン中のユーザーとTodoの所有者が異なる場合、例外をスロー")
     void wrongUserId() throws Exception {
       // ログインユーザーと異なるユーザーを所有者に設定
