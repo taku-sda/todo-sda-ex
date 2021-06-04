@@ -82,5 +82,7 @@ public class TodoDetailsServiceImpl implements TodoDetailsService {
     } else {
       throw new IllegalArgumentException("更新に失敗しました。不正な条件です。");
     }
+
+    updateTodo.setLastUpdate(LocalDateTime.now(ZoneId.of("Asia/Tokyo")));
   }
 }

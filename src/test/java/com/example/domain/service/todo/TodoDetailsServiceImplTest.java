@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -117,6 +118,7 @@ class TodoDetailsServiceImplTest {
 
       serviceImpl.updateCompleted(1, "true");
       verify(updateTodo, times(1)).setCompleted(true);
+      verify(updateTodo, times(1)).setLastUpdate(Mockito.any());
     }
 
     @Test
@@ -126,6 +128,7 @@ class TodoDetailsServiceImplTest {
 
       serviceImpl.updateCompleted(1, "false");
       verify(updateTodo, times(1)).setCompleted(false);
+      verify(updateTodo, times(1)).setLastUpdate(Mockito.any());
     }
 
     @Test
@@ -136,6 +139,7 @@ class TodoDetailsServiceImplTest {
       assertThrows(IllegalArgumentException.class, () -> serviceImpl.updateCompleted(1, "wrong"));
       verify(updateTodo, times(0)).setCompleted(true);
       verify(updateTodo, times(0)).setCompleted(false);
+      verify(updateTodo, times(0)).setLastUpdate(Mockito.any());
     }
   }
 }
