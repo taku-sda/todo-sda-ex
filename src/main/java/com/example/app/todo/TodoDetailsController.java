@@ -40,7 +40,13 @@ public class TodoDetailsController {
   String todoForm(@RequestParam int todoId, @AuthenticationPrincipal TodoUserDetails userDetails,
       Model model) {
 
-    Todo todoDetails = todoDetailsService.getTodo(todoId);
+    Todo todoDetails = null;
+    // ToDoの取得に失敗した場合は例外をスロー
+    try {
+      todoDetails = todoDetailsService.getTodo(todoId);
+    } catch (Exception e) {
+      throw new IllegalOperationException(e.getMessage());
+    }
 
     // ToDoの作成者以外からのアクセスの場合は例外をスロー
     if (!(todoDetails.getUser().getUserId().equals(userDetails.getUser().getUserId()))) {
