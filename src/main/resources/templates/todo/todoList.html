@@ -23,7 +23,7 @@
 	      <span class="h6 text-light">期限切れのToDo<span class="badge badge-pill badge-light ml-2" th:text="${expiredList.size()}">0</span></span></a>
 	    <h4 class="mt-3" th:text="${#calendars.format(#calendars.createNowForTimeZone('Asia/Tokyo'), '今日はyyyy年MM月dd日です')}"></h4>
 	    
-	    <div th:if="${todayList.size() ne 0}">
+	    <div th:if="${todayList.size() ne 0}" class="mb-3">
 	     <div class="card">
         <div class="card-header" role="tab" id="todayListAlartHeader" style="background-color: #fafad2;">
           <a href="#todayListAlart" class="collapsed text-body d-block p-3 m-n3" role="button" data-toggle="collapse" 
@@ -39,8 +39,13 @@
         </div>
        </div>
 	    </div>
-
-	   <div class="card  mt-3">
+	    
+	   <div class="p-2 rounded" style="background-color: #f0ffff;">
+	   <div class="clearfix mb-2">
+       <a href="#" th:href="@{/addTodo}" class="card-link btn btn-primary float-right">ToDoの追加</a>
+     </div>
+	    
+	   <div class="card">
 		  <ul class="nav nav-tabs" style="background-color:#fffafa;">
 		    <li class="nav-item">
 		      <a class="nav-link text-body" href="#" th:href="@{/todoList?listType=normal&sort=deadline&order=ASC}"
@@ -108,10 +113,11 @@
 		  <div th:if="${displayList.isEmpty()}">
 		    <div class="card">
 				  <div class="card-body">
-				    <h5 class="card-title">ToDoがありません</h5>
-				    <a href="#" th:href="@{/addTodo}" class="card-link btn btn-primary">ToDoの追加</a>
+				    <h6 class="card-title" th:if="${listType == 'normal'}">登録されているToDoはありません<br><br>新しくToDoを追加してみましょう！</h6>
+				    <h6 class="card-title" th:if="${listType == 'completed'}">完了しているToDoはありません</h6>
+				    <h6 class="card-title" th:if="${listType == 'expired'}">期限切れのToDoはありません</h6>
 				  </div>
-				</div>
+			 </div>
 		  </div>
 	   </div>
 	   <div class="mt-2 mb-5">
@@ -120,6 +126,7 @@
       </div>
       <div th:if="${listType == 'expired'}">
         <a class="btn btn-secondary text-light float-right" href="#" th:href="@{/todoDetails/bulkDelete?target=expired}">期限切れToDoを一括削除する</a>
+      </div>
       </div>
 	   </div>
 	 </div>
