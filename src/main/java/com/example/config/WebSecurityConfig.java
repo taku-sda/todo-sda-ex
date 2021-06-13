@@ -39,6 +39,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .antMatchers("/").permitAll()
       //ユーザー登録画面は全て許可
       .antMatchers("/register", "/register/**").permitAll()
+      //お問い合わせ送信は全て許可
+      .antMatchers("/inquiry").permitAll()
       .antMatchers("/js/**", "/css/**", "/img/**").permitAll()
       .antMatchers("/**").authenticated()
       .and()
