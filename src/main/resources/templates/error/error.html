@@ -11,7 +11,7 @@
     <div class="container mb-5">
       <h2>エラーが発生しました</h2>
       <div th:text="${errorMessage}" class="text-danger">エラーメッセージ</div>
-      <p>時間をおいて再度実行しても同様の問題が発生する場合は、お手数ですが<a href="#">ご意見・ご要望</a>
+      <p>時間をおいて再度実行しても同様の問題が発生する場合は、お手数ですが<a href="#" th:href="@{/inquiry}">お問い合わせ</a>
       よりお伝えいただけますようお願いいたします。</p>
       <a href="#" th:href="@{/}" class="btn btn-secondary mt-4">トップページへ戻る</a>
     </div>
