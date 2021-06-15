@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+          xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+          layout:decorate="~{layout/layout}">
+<head>
+<title>ToDo!! | 指定されたページは存在しません</title>
+</head>
+<body>
+  <section layout:fragment="content">
+    <div class="container mb-5">
+      <h2 th:text="${status} + ' '  + ${error}">エラータイトル</h2>
+      <p class="text-danger">指定されたページは存在しません<br>
+      URLに誤りがないか再度ご確認ください</p>
+      <a href="#" th:href="@{/}" class="btn btn-primary mt-4">トップページへ戻る</a>
+    </div>
+  </section>
+</body>
+</html>
