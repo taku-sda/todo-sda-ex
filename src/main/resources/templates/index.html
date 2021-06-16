@@ -11,7 +11,7 @@
     <div id="introduction" class="container">
        <div class="row justify-content-between">
         <div class="col-lg-8 bg-light rounded p-4">
-          <h2><em>ToDo!!</em> へようこそ</h2>
+          <h3><em>ToDo!!</em> へようこそ</h3>
           <hr class="my-3">
           <p>当サイトはやるべきこと（ToDo）の管理を行うことができるアプリケーションサイトです。<br>
           シンプルな機能であなたの日々の課題達成をサポートします。<br>
@@ -19,20 +19,22 @@
           テストユーザーによるお試しログインも可能です。ぜひお試しください！
           </p>
            <!--* 非ログイン状態の場合はテストログインボタンを表示 *-->
-          <div sec:authorize="isAnonymous()">
-	          <form th:action="@{/login}" method="POST">
-	          <input type="hidden" id="userId" name="userId" th:value="testuser">
-	          <input type="hidden" id="password" name="password" th:value="todotest">
-	          <button type="submit" class="btn btn-info text-light">
-	            <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-	             <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-	             <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-	            </svg>テストユーザーでお試しログイン
-	          </button>
-	          </form>
-          </div>
-          <div sec:authorize="hasRole('TEST')">
-            <span class="bg-info text-light rounded p-2">現在 テストユーザーでログイン中です</span>
+          <div class="mx-auto mt-5 mb-3" style="width:300px;">
+	          <div sec:authorize="isAnonymous()">
+		          <form th:action="@{/login}" method="POST">
+		          <input type="hidden" id="userId" name="userId" th:value="testuser">
+		          <input type="hidden" id="password" name="password" th:value="todotest">
+		          <button type="submit" class="btn btn-info text-light">
+		            <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+		             <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+		             <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+		            </svg>テストユーザーでお試しログイン
+		          </button>
+		          </form>
+	          </div>
+	          <div sec:authorize="hasRole('TEST')">
+	            <span class="bg-info text-light rounded p-2">現在 テストユーザーでログイン中です</span>
+	          </div>
           </div>
         </div>
         <div class="col-lg-3">
@@ -40,45 +42,50 @@
         </div>
       </div>
     </div>
-    <div class="container my-5">
-      <!--* 非ログイン状態の場合のボタン表示 *-->
-      <div sec:authorize="isAnonymous()">
-	      <a class="btn btn-info text-light" href="#" th:href="@{/loginForm}" role="button">
-		      <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-		         <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-		         <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-		      </svg>ログイン
-	      </a>
-	      <a class="btn btn-info text-light" href="#" th:href="@{/register}" role="button">
-		      <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-person-plus-fill mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-		        <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
-		      </svg>ユーザー登録
-	      </a>
-	    </div>
-	    <!--* ログイン状態の場合のボタン表示 *-->
-	    <div sec:authorize="isAuthenticated()">
-	     <a class="btn btn-primary text-light" href="#" th:href="@{/todoList}">
-         <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-calendar-week mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-           <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-           <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
-         </svg>ToDo一覧
-       </a>
-       <a class="btn btn-primary text-light ml-4" href="#" th:href="@{/addTodo}">
-         <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-calendar-plus mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-           <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-            <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"/>
-         </svg>ToDoの追加
-       </a>
+    
+    <!-- ナビバーが折りたたまれるlg以上の画面サイズの場合は操作補助用のボタンを表示 -->
+    <div class="container my-5 d-lg-none">
+      <div class="mx-auto" style="width:300px;">
+	      <!--* 非ログイン状態の場合のボタン表示 *-->
+	      <div sec:authorize="isAnonymous()">
+		      <a class="btn btn-info text-light mr-3" href="#" th:href="@{/loginForm}" role="button">
+			      <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+			         <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+			         <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+			      </svg>ログイン
+		      </a>
+		      <a class="btn btn-info text-light" href="#" th:href="@{/register}" role="button">
+			      <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-person-plus-fill mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+			        <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+			      </svg>ユーザー登録
+		      </a>
+		    </div>
+		    <!--* ログイン状態の場合のボタン表示 *-->
+		    <div sec:authorize="isAuthenticated()">
+		     <a class="btn btn-primary text-light mr-3" href="#" th:href="@{/todoList}">
+	         <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-calendar-week mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+	           <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+	           <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+	         </svg>ToDo一覧
+	       </a>
+	       <a class="btn btn-primary text-light" href="#" th:href="@{/addTodo}">
+	         <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-calendar-plus mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+	           <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+	            <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"/>
+	         </svg>ToDoの追加
+	       </a>
+		    </div>
 	    </div>
     </div>
+    
     <div id="aboutThisSite" class="container my-5">
-      <h2 class="p-2" style="background-color: #c0c0c0;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-caret-right-fill align-bottom mr-2" viewBox="0 0 16 16">
-          <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-        </svg>当サイトについて
-      </h2>
-      <hr class="mt-1 mb-3">
-      <div class="bg-light p-2 rounded">
+      <h4 class="p-2" style="background-color: #c0c0c0;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-info-circle align-middle mb-1 mr-2" viewBox="0 0 16 16">
+				  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+				  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+				</svg>当サイトについて
+      </h4>
+      <div class="bg-light mt-4 p-2 rounded">
         <p>当サイトは<strong>ToDo管理アプリケーションサイト</strong>です。</p>
         <p>ToDoとは、やるべきこと・・・<br>
           例えば、<br>
@@ -90,59 +97,60 @@
          <p>初めての方は、まずテストユーザーでお試しをおすすめします。<br>
           <span class="text-danger">※テストユーザーは全ユーザーで同一のアカウントとなります。<br>
           個人情報を入力することは控え、あくまでお試しとしてのご利用をお願いいたします。</span></p>
-         <div sec:authorize="isAnonymous()">
-	         <form th:action="@{/login}" method="POST">
-	            <input type="hidden" id="userId" name="userId" th:value="testuser">
-	            <input type="hidden" id="password" name="password" th:value="todotest">
-	            <button type="submit" class="btn btn-info text-light">
-	              <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-	               <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-	               <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-	              </svg>テストユーザーでお試しログイン
-	            </button>
-	          </form>
-          </div>
-          <div sec:authorize="hasRole('TEST')">
-            <span class="bg-info text-light rounded p-2">現在 テストユーザーでログイン中です</span>
+          <div class="mx-auto mt-5 mb-5" style="width:300px;">
+	         <div sec:authorize="isAnonymous()">
+		         <form th:action="@{/login}" method="POST">
+		            <input type="hidden" id="userId" name="userId" th:value="testuser">
+		            <input type="hidden" id="password" name="password" th:value="todotest">
+		            <button type="submit" class="btn btn-info text-light">
+		              <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+		               <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+		               <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+		              </svg>テストユーザーでお試しログイン
+		            </button>
+		          </form>
+	          </div>
+	          <div sec:authorize="hasRole('TEST')">
+	            <span class="bg-info text-light rounded p-2">現在 テストユーザーでログイン中です</span>
+	          </div>
           </div>
           <p class="mt-3">個人のアカウントをご利用になる場合は、ユーザー登録からお進みください。</p>
-          <div sec:authorize="isAnonymous()">
-	          <a class="btn btn-info text-light" href="#" th:href="@{/register}">
-	            <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-person-plus-fill mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-	              <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
-	            </svg>ユーザー登録
-	          </a>
-          </div>
-          <div sec:authorize="isAuthenticated()">
-            <span class="bg-info text-light rounded p-2">すでにログイン済みです</span>
+          <div class="mx-auto mt-5 mb-5" style="width:150px;">
+	          <div sec:authorize="isAnonymous()">
+		          <a class="btn btn-info text-light" href="#" th:href="@{/register}">
+		            <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-person-plus-fill mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+		              <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+		            </svg>ユーザー登録
+		          </a>
+	          </div>
           </div>
           <p class="mt-3">操作についての不明点は<a href="#" th:href="@{/#faq}">よくあるご質問</a>をご覧ください。</p>
       </div>
     </div>
     
     <div id="faq" class="container my-5">
-      <h2 class="p-2" style="background-color: #c0c0c0;">
+      <h4 class="p-2" style="background-color: #c0c0c0;">
         <svg xmlns="http://www.w3.org/2000/svg" width="0.75em" height="0.75em" fill="currentColor" class="bi bi-question-lg align-baseline mr-2" viewBox="0 0 16 16">
           <path d="M3 4.075a.423.423 0 0 0 .43.44H4.9c.247 0 .442-.2.475-.445.159-1.17.962-2.022 2.393-2.022 1.222 0 2.342.611 2.342 2.082 0 1.132-.668 1.652-1.72 2.444-1.2.872-2.15 1.89-2.082 3.542l.005.386c.003.244.202.44.446.44h1.445c.247 0 .446-.2.446-.446v-.188c0-1.278.487-1.652 1.8-2.647 1.086-.826 2.217-1.743 2.217-3.667C12.667 1.301 10.393 0 7.903 0 5.645 0 3.17 1.053 3.001 4.075zm2.776 10.273c0 .95.758 1.652 1.8 1.652 1.085 0 1.832-.702 1.832-1.652 0-.985-.747-1.675-1.833-1.675-1.04 0-1.799.69-1.799 1.675z"/>
         </svg>よくあるご質問
-      </h2>
-      <hr class="mt-1 mb-3">
-      <div>
-	      <a class="btn mb-2" data-toggle="collapse" href="#collapseForSite" role="button" aria-expanded="false" aria-controls="collapseForSite" style="background-color: #c0c0c0;">
-	       当サイトについて
-	       <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor" class="bi bi-caret-down-fill ml-2 align-middle" viewBox="0 0 16 16">
-				  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-				 </svg>
-	      </a>
+      </h4>
+      <div class="mt-4">
+        <h5>
+		      <a class=" text-body mb-2" data-toggle="collapse" href="#collapseForSite" role="button" aria-expanded="false" aria-controls="collapseForSite">
+		       当サイトについて
+		       <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-caret-down-fill mb-1 ml-2 align-middle" viewBox="0 0 16 16">
+					  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+					 </svg>
+		      </a>
+	      </h5>
+	      <hr class="mt-0"> 
 	      <div class="collapse" id="collapseForSite">
 	        <div class="accordion" id="accordionForSite" role="tablist" aria-multiselectable="true">
 		        <div class="card">
 					    <div class="card-header" role="tab" id="questionForSiteOne">
-					      <h5 class="mb-0">
-					        <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForSiteOne" role="button" aria-expanded="true" aria-controls="answerForSiteOne">
-					         ここはどのようなサイトなんですか？
-					        </a>
-					      </h5>
+				        <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForSiteOne" role="button" aria-expanded="true" aria-controls="answerForSiteOne">
+				         ここはどのようなサイトなんですか？
+				        </a>
 					    </div><!-- /.card-header -->
 					    <div id="answerForSiteOne" class="collapse" role="tabpanel" aria-labelledby="questionForSiteOne" data-parent="#accordionForSite">
 					      <div class="card-body">
@@ -154,11 +162,9 @@
 					  </div><!-- /.card -->
 					  <div class="card">
               <div class="card-header" role="tab" id="questionForSiteThree">
-                <h5 class="mb-0">
-                  <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForSiteThree" role="button" aria-expanded="true" aria-controls="answerForSiteThree">
-                    利用してみたいのですが？
-                  </a>
-                </h5>
+                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForSiteThree" role="button" aria-expanded="true" aria-controls="answerForSiteThree">
+                   利用してみたいのですが？
+                 </a>
               </div><!-- /.card-header -->
               <div id="answerForSiteThree" class="collapse" role="tabpanel" aria-labelledby="questionForSiteThree" data-parent="#accordionForSite">
                 <div class="card-body">
@@ -172,22 +178,23 @@
 			    </div>
 			 </div>
       </div>
-      <div>
-        <a class="btn mt-4 mb-2" data-toggle="collapse" href="#collapseForTodo" role="button" aria-expanded="false" aria-controls="collapseForTodo" style="background-color: #c0c0c0;">
-         ToDoの操作について
-         <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor" class="bi bi-caret-down-fill ml-2 align-middle" viewBox="0 0 16 16">
-          <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-         </svg>
-        </a>
+      <div class="mt-4">
+        <h5>
+	        <a class="text-body mb-2" data-toggle="collapse" href="#collapseForTodo" role="button" aria-expanded="false" aria-controls="collapseForTodo">
+	         ToDoの操作について
+	         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-caret-down-fill mb-1 ml-2 align-middle" viewBox="0 0 16 16">
+	          <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+	         </svg>
+	        </a>
+        </h5>
+        <hr class="mt-0">
         <div class="collapse" id="collapseForTodo">
           <div class="accordion" id="accordionForTodo" role="tablist" aria-multiselectable="true">
             <div class="card">
               <div class="card-header" role="tab" id="questionForTodoOne">
-                <h5 class="mb-0">
-                  <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoOne" role="button" aria-expanded="true" aria-controls="answerForTodoOne">
-                    ToDoはどのように管理されますか？
-                  </a>
-                </h5>
+                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoOne" role="button" aria-expanded="true" aria-controls="answerForTodoOne">
+                   ToDoはどのように管理されますか？
+                 </a>
               </div><!-- /.card-header -->
               <div id="answerForTodoOne" class="collapse" role="tabpanel" aria-labelledby="questionForTodoOne" data-parent="#accordionForTodo">
                 <div class="card-body">
@@ -200,11 +207,9 @@
             </div><!-- /.card -->
             <div class="card">
               <div class="card-header" role="tab" id="questionForTodoTwo">
-                <h5 class="mb-0">
-                  <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoTwo" role="button" aria-expanded="true" aria-controls="answerForTodoTwo">
-                    新しくToDoを作成したい
-                  </a>
-                </h5>
+                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoTwo" role="button" aria-expanded="true" aria-controls="answerForTodoTwo">
+                   新しくToDoを作成したい
+                 </a>
               </div><!-- /.card-header -->
               <div id="answerForTodoTwo" class="collapse" role="tabpanel" aria-labelledby="questionForTodoTwo" data-parent="#accordionForTodo">
                 <div class="card-body">
@@ -215,11 +220,9 @@
             </div><!-- /.card -->
             <div class="card">
               <div class="card-header" role="tab" id="questionForTodoThree">
-                <h5 class="mb-0">
-                  <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoThree" role="button" aria-expanded="true" aria-controls="answerForTodoThree">
-                    ToDoが完了した！
-                  </a>
-                </h5>
+                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoThree" role="button" aria-expanded="true" aria-controls="answerForTodoThree">
+                   ToDoが完了した！
+                 </a>
               </div><!-- /.card-header -->
               <div id="answerForTodoThree" class="collapse" role="tabpanel" aria-labelledby="questionForTodoThree" data-parent="#accordionForTodo">
                 <div class="card-body">
@@ -235,11 +238,9 @@
             </div><!-- /.card -->
             <div class="card">
               <div class="card-header" role="tab" id="questionForTodoFour">
-                <h5 class="mb-0">
-                  <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoFour" role="button" aria-expanded="true" aria-controls="answerForTodoFour">
-                    やり残しがあったので、完了したToDoを元に戻したい
-                  </a>
-                </h5>
+                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoFour" role="button" aria-expanded="true" aria-controls="answerForTodoFour">
+                   やり残しがあったので、完了したToDoを元に戻したい
+                 </a>
               </div><!-- /.card-header -->
               <div id="answerForTodoFour" class="collapse" role="tabpanel" aria-labelledby="questionForTodoFour" data-parent="#accordionForTodo">
                 <div class="card-body">
@@ -254,11 +255,9 @@
             </div><!-- /.card -->
             <div class="card">
               <div class="card-header" role="tab" id="questionForTodoFive">
-                <h5 class="mb-0">
-                  <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoFive" role="button" aria-expanded="true" aria-controls="answerForTodoFive">
-                    ToDoの内容を変更したい
-                  </a>
-                </h5>
+                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoFive" role="button" aria-expanded="true" aria-controls="answerForTodoFive">
+                   ToDoの内容を変更したい
+                 </a>
               </div><!-- /.card-header -->
               <div id="answerForTodoFive" class="collapse" role="tabpanel" aria-labelledby="questionForTodoFive" data-parent="#accordionForTodo">
                 <div class="card-body">
@@ -268,11 +267,9 @@
             </div><!-- /.card -->
             <div class="card">
               <div class="card-header" role="tab" id="questionForTodoSix">
-                <h5 class="mb-0">
-                  <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoSix" role="button" aria-expanded="true" aria-controls="answerForTodoSix">
-                    不要なToDoを削除したい
-                  </a>
-                </h5>
+                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoSix" role="button" aria-expanded="true" aria-controls="answerForTodoSix">
+                   不要なToDoを削除したい
+                 </a>
               </div><!-- /.card-header -->
               <div id="answerForTodoSix" class="collapse" role="tabpanel" aria-labelledby="questionForTodoSix" data-parent="#accordionForTodo">
                 <div class="card-body">
@@ -285,11 +282,9 @@
             </div><!-- /.card -->
             <div class="card">
               <div class="card-header" role="tab" id="questionForTodoSeven">
-                <h5 class="mb-0">
-                  <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoSeven" role="button" aria-expanded="true" aria-controls="answerForTodoSeven">
-                    誤って削除したToDoを元に戻したい
-                  </a>
-                </h5>
+                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoSeven" role="button" aria-expanded="true" aria-controls="answerForTodoSeven">
+                   誤って削除したToDoを元に戻したい
+                 </a>
               </div><!-- /.card-header -->
               <div id="answerForTodoSeven" class="collapse" role="tabpanel" aria-labelledby="questionForTodoSeven" data-parent="#accordionForTodo">
                 <div class="card-body">
@@ -302,22 +297,23 @@
           </div>
        </div>
       </div>
-      <div>
-        <a class="btn mt-4 mb-2" data-toggle="collapse" href="#collapseForUser" role="button" aria-expanded="false" aria-controls="collapseForUser" style="background-color: #c0c0c0;">
-         ユーザー登録について
-         <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor" class="bi bi-caret-down-fill ml-2 align-middle" viewBox="0 0 16 16">
-          <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-         </svg>
-        </a>
+      <div class="mt-4">
+        <h5>
+	        <a class="text-body mb-2" data-toggle="collapse" href="#collapseForUser" role="button" aria-expanded="false" aria-controls="collapseForUser">
+	         ユーザー登録について
+	         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-caret-down-fill mb-1ml-2 align-middle" viewBox="0 0 16 16">
+	          <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+	         </svg>
+	        </a>
+        </h5>
+        <hr class="mt-0">
         <div class="collapse" id="collapseForUser">
           <div class="accordion" id="accordionForUser" role="tablist" aria-multiselectable="true">
             <div class="card">
               <div class="card-header" role="tab" id="questionForUserOne">
-                <h5 class="mb-0">
-                  <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForUserOne" role="button" aria-expanded="true" aria-controls="answerForUserOne">
-                    ユーザーの登録内容を変更したい
-                  </a>
-                </h5>
+                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForUserOne" role="button" aria-expanded="true" aria-controls="answerForUserOne">
+                   ユーザーの登録内容を変更したい
+                 </a>
               </div><!-- /.card-header -->
               <div id="answerForUserOne" class="collapse" role="tabpanel" aria-labelledby="questionForUserOne" data-parent="#accordionForUser">
                 <div class="card-body">
@@ -328,11 +324,9 @@
             </div><!-- /.card -->
             <div class="card">
               <div class="card-header" role="tab" id="questionForUserTwo">
-                <h5 class="mb-0">
-                  <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForUserTwo" role="button" aria-expanded="true" aria-controls="answerForUserTwo">
-                    ユーザーの登録を解除したい
-                  </a>
-                </h5>
+                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForUserTwo" role="button" aria-expanded="true" aria-controls="answerForUserTwo">
+                   ユーザーの登録を解除したい
+                 </a>
               </div><!-- /.card-header -->
               <div id="answerForUserTwo" class="collapse" role="tabpanel" aria-labelledby="questionForUserTwo" data-parent="#accordionForUser">
                 <div class="card-body">
@@ -345,22 +339,23 @@
           </div>
        </div>
       </div>
-      <div>
-        <a class="btn mt-4 mb-2" data-toggle="collapse" href="#collapseForOther" role="button" aria-expanded="false" aria-controls="collapseForOther" style="background-color: #c0c0c0;">
-         その他のご質問
-         <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor" class="bi bi-caret-down-fill ml-2 align-middle" viewBox="0 0 16 16">
-          <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-         </svg>
-        </a>
+      <div class="mt-4">
+        <h5>
+	        <a class="text-body mb-2" data-toggle="collapse" href="#collapseForOther" role="button" aria-expanded="false" aria-controls="collapseForOther">
+	         その他のご質問
+	         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-caret-down-fill mb-1 ml-2 align-middle" viewBox="0 0 16 16">
+	          <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+	         </svg>
+	        </a>
+        </h5>
+        <hr class="mt-0">
         <div class="collapse" id="collapseForOther">
           <div class="accordion" id="accordionForOther" role="tablist" aria-multiselectable="true">
             <div class="card">
               <div class="card-header" role="tab" id="questionForOtherOne">
-                <h5 class="mb-0">
-                  <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForOtherOne" role="button" aria-expanded="true" aria-controls="answerForOtherOne">
-                    動作に不具合があります
-                  </a>
-                </h5>
+                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForOtherOne" role="button" aria-expanded="true" aria-controls="answerForOtherOne">
+                   動作に不具合があります
+                 </a>
               </div><!-- /.card-header -->
               <div id="answerForOtherOne" class="collapse" role="tabpanel" aria-labelledby="questionForOtherOne" data-parent="#accordionForOther">
                 <div class="card-body">
@@ -372,11 +367,9 @@
             </div><!-- /.card -->
             <div class="card">
               <div class="card-header" role="tab" id="questionForOtherTwo">
-                <h5 class="mb-0">
                   <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForOtherTwo" role="button" aria-expanded="true" aria-controls="answerForOtherTwo">
                     ここが使いずらい、こうした方がいいと思います
                   </a>
-                </h5>
               </div><!-- /.card-header -->
               <div id="answerForOtherTwo" class="collapse" role="tabpanel" aria-labelledby="questionForOtherTwo" data-parent="#accordionForOther">
                 <div class="card-body">
