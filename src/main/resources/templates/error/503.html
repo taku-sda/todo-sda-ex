@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+          xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+          layout:decorate="~{layout/layout}">
+<head>
+<title>ToDo!! | アクセスが集中しています</title>
+</head>
+<body>
+  <section layout:fragment="content">
+    <div class="container mb-5">
+      <h2 th:text="${status} + ' '  + ${error}">エラータイトル</h2>
+      <p class="text-danger">サーバーにアクセスが集中しています<br>
+      時間を空けて再度アクセスをお試しください</p>
+      <a href="#" th:href="@{/}" class="btn btn-primary mt-4">トップページへ戻る</a>
+    </div>
+  </section>
+</body>
+</html>
