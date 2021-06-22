@@ -56,6 +56,8 @@ class InquiryControllerTest {
 
     @BeforeEach
     void setUp() {
+      form.setName("お問い合わせユーザー名");
+      form.setEmail("InquiryTest@mail.com");
       form.setType("ご意見・ご要望");
       form.setText("お問い合わせ本文");
     }
@@ -84,16 +86,28 @@ class InquiryControllerTest {
         doThrow(new MailSendException("エラーメッセージ")).when(service).sendMail(form);
 
         mockMvc.perform(post("/inquiry").with(csrf()).flashAttr("inquiryForm", form)).andExpect(
-            status().isOk()).andExpect(model().attributeExists("errorMessage")).andExpect(view().name(
-                "error/error"));
+            status().isOk()).andExpect(model().attributeExists("errorMessage")).andExpect(view()
+                .name("error/error"));
       }
 
       @Test
-      @DisplayName("正常に処理が完了した場合、お問い合わせ画面にリダイレクト")
+      @DisplayName("正常に処理が完了した場合、お問い合わせ完了処理にリダイレクト")
       void successSendInquiry() throws Exception {
         mockMvc.perform(post("/inquiry").with(csrf()).flashAttr("inquiryForm", form)).andExpect(
-            status().isFound()).andExpect(view().name("redirect:/inquiry"));
+            status().isFound()).andExpect(view().name("redirect:/inquiry/complete"));
       }
+    }
+  }
+
+  @Nested
+  @DisplayName("completeInquiry()のテスト")
+  class TestcompleteInquiry {
+
+    @Test
+    @DisplayName("お問い合わせ完了画面に遷移する")
+    void correctTransition() throws Exception {
+      mockMvc.perform(get("/inquiry/complete")).andExpect(status().isOk()).andExpect(view().name(
+          "inquiry/completeInquiry"));
     }
   }
 }

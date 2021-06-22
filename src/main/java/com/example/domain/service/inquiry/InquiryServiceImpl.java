@@ -21,10 +21,10 @@ public class InquiryServiceImpl implements InquiryService {
   public void sendMail(InquiryForm form) {
     SimpleMailMessage msg = new SimpleMailMessage();
 
-    msg.setFrom(System.getenv("TODO_APP_MAIL_ADDRESS"));
     msg.setTo(System.getenv("TODO_APP_MAIL_ADDRESS"));
     msg.setSubject("フォームからのお問い合わせ : " + form.getType());
-    msg.setText(form.getText());
+    msg.setText("お名前 : " + form.getName() + System.lineSeparator() + "メールアドレス : " + form.getEmail()
+        + System.lineSeparator() + System.lineSeparator() + form.getText());
 
     sender.send(msg);
   }
