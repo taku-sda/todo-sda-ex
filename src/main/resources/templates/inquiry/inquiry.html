@@ -26,6 +26,20 @@
       </div>
       <!-- お問い合わせフォーム -->
       <form action="#" th:action="@{/inquiry}" th:object="${inquiryForm}" method="POST">
+        <!-- お名前 -->
+        <div class="form-group">
+          <label for="name">お名前</label>
+          <input type="text" class="form-control w-100" name="name" id="name" th:value="*{name}" maxlength="50" 
+          placeholder="最大50文字まで"required>
+          <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></div>
+        </div>
+        <!-- メールアドレス -->
+        <div class="form-group">
+          <label for="email">メールアドレス </label>
+          <input type="email" class="form-control w-100" name="email" id="email" th:value="*{email}" maxlength="100" 
+          placeholder="最大100文字まで"required>
+          <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></div>
+        </div>
         <!-- お問い合わせの分類 -->
         <div class="form-group">
           <label for="type">お問い合わせの分類</label>
@@ -40,7 +54,7 @@
         <div class="form-group">
           <label for="text">お問い合わせ内容</label>
           <textarea class="form-control" th:field="*{text}" cols="40" rows="4" maxlength="400"
-              placeholder="最大400文字まで"></textarea>
+              placeholder="最大400文字まで" required></textarea>
           <div th:if="${#fields.hasErrors('text')}" th:errors="*{text}" class="text-danger"></div>
         </div>
         <!-- 送信ボタン -->
@@ -48,7 +62,8 @@
       </form>
       
       <div class="mt-3">
-        <p class="text-danger">※お問い合わせの内容への返信はいたしかねます。</p>
+        <p class="text-danger">※メールアドレスが正しくない場合、お問い合わせに返信をすることができません。<br>
+        送信を行う前に、誤りがないか再度ご確認をお願いいたします。</p>
       </div>
     </div>
   </section>

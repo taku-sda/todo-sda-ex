@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+          xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+          layout:decorate="~{layout/layout}">
+<head>
+<title>ToDo!! | お問い合わせ送信完了</title>
+</head>
+<body>
+  <section layout:fragment="content">
+    <div class="container mb-5">
+      <h2>お問い合わせを送信しました</h2>
+      <p class="mt-4">お問い合わせいただいた内容につきまして、48時間以内にメールにて返信いたします。<br>
+      恐れ入りますが、返信をお待ちいただきますようお願い申し上げます。
+      </p>
+      <a href="#" th:href="@{/}" class="btn btn-primary mt-4">トップページへ戻る</a>
+    </div>
+  </section>
+</body>
+</html>
