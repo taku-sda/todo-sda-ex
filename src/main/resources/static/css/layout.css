@@ -13,3 +13,12 @@ td {
   overflow: hidden;
   max-width: 115px;
 }
+
+.contents_top {
+  padding-top:100px;
+  margin-top:-100px;
+}
+
+.contents {
+	padding-top:100px;
+}
