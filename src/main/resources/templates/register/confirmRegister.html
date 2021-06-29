@@ -14,24 +14,27 @@
 				  <path d="M13.485 1.431a1.473 1.473 0 0 1 2.104 2.062l-7.84 9.801a1.473 1.473 0 0 1-2.12.04L.431 8.138a1.473 1.473 0 0 1 2.084-2.083l4.111 4.112 6.82-8.69a.486.486 0 0 1 .04-.045z"/>
 				</svg>ユーザー登録確認
       </h4>
-       <p>以下の内容でユーザー登録します。<br>
-       よろしければ、「登録確定」ボタンをクリックしてください。</p>
-       <h4>ユーザーID : <span th:text="${userForm.userId}"></span></h4>
-       <h4>パスワード : <span th:text="${userForm.password}"></span></h4>
-       <div class=" container mt-5">
-        <div style="display:inline-flex">
-	        <form action="#" th:action="@{/register/complete}" th:object="${userForm}" method="POST">
-	          <input type="hidden" name="userId" th:field="*{userId}">
-	          <input type="hidden" name="password" th:field="*{password}">
-	          <input type="submit"  class="btn btn-primary" value="登録確定">
-	        </form>
-	        <form action="#" th:action="@{/register/fix}" th:object="${userForm}" method="POST">
-	          <input type="hidden" name="userId" th:field="*{userId}">
-	          <input type="hidden" name="password" th:field="*{password}">
-	          <input type="submit"  class="btn btn-secondary ml-3" value="登録内容を修正する">
-	        </form>
-        </div>
+      <div class="mx-lg-4 mx-2">
+	       <p>以下の内容でユーザー登録します。<br>
+	       よろしければ、「登録確定」ボタンをクリックしてください。</p>
+	       <h4>ユーザーID : <span th:text="${userForm.userId}"></span></h4>
+	       <h4>パスワード : <span th:text="${userForm.password}"></span></h4>
+	       <div class=" container mt-5 mb-3">
+	        <div style="display:inline-flex">
+		        <form action="#" th:action="@{/register/complete}" th:object="${userForm}" method="POST">
+		          <input type="hidden" name="userId" th:field="*{userId}">
+		          <input type="hidden" name="password" th:field="*{password}">
+		          <input type="submit"  class="btn btn-primary" value="登録確定">
+		        </form>
+		        <form action="#" th:action="@{/register/fix}" th:object="${userForm}" method="POST">
+		          <input type="hidden" name="userId" th:field="*{userId}">
+		          <input type="hidden" name="password" th:field="*{password}">
+		          <input type="submit"  class="btn btn-secondary ml-3" value="登録内容を修正する">
+		        </form>
+	        </div>
+	       </div>
        </div>
+      </div>
     </div>
   </section>
 </body>
