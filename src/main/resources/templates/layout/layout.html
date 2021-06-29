@@ -21,77 +21,81 @@
 <header>
   <!--* ナビバー *-->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #b0c4de;">
-        <a class="navbar-brand" href="#" th:href="@{/}"><em class="h3">ToDo!!</em></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
-          data-target="#Navbar" aria-controls="Navbar" aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="Navbar">
-          <!--* 共通の表示メニュー *-->
-          <ul class="navbar-nav ml-auto mr-5">
-            <li class="nav-item">
-              <a class="nav-link text-body" href="#" th:href="@{/todoList}">
-                <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-calendar-week mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-                  <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
-                </svg>ToDo一覧
+    <a class="navbar-brand ml-2 ml-lg-4" href="#" th:href="@{/}"><em class="h3">ToDo!!</em></a>
+    <button class="navbar-toggler mr-3" type="button" data-toggle="collapse"
+      data-target="#Navbar" aria-controls="Navbar" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="Navbar">
+      <!--* 共通の表示メニュー *-->
+      <div class="ml-auto mr-5">
+       <ul class="navbar-nav">
+         <li class="nav-item">
+           <a class="nav-link text-body" href="#" th:href="@{/todoList}">
+             <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-calendar-week mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+               <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+               <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+             </svg>ToDo一覧
+           </a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link text-body" href="#" th:href="@{/addTodo}">
+             <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-calendar-plus mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+               <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"/>
+             </svg>ToDoの追加
+           </a>
+         </li>
+       </ul>
+      </div>
+      <!--* 非ログイン状態の表示メニュー *-->
+      <div class="mr-5">
+      <div sec:authorize="isAnonymous()">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link text-body" href="#" th:href="@{/loginForm}">
+              <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                 <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                 <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+              </svg>ログイン
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-body" href="#" th:href="@{/register}">
+              <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-person-plus-fill mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+              </svg>ユーザー登録
+            </a>
+          </li>
+         </ul>
+       </div>
+        <!--* ログイン状態の表示メニュー *-->
+       <div sec:authorize="isAuthenticated()">
+         <ul class="navbar-nav">
+          <li class="nav-item">
+            <form  class="form-inline" action="#" th:action="@{/logout}" name="logoutNavibar" method="POST">
+              <a class="nav-link text-body" href="javascript:logoutNavibar.submit()">
+                <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-box-arrow-left mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+                  <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                </svg>ログアウト
               </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-body" href="#" th:href="@{/addTodo}">
-                <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-calendar-plus mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-                   <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"/>
-                </svg>ToDoの追加
-              </a>
-            </li>
-          </ul>
-          <!--* 非ログイン状態の表示メニュー *-->
-          <div sec:authorize="isAnonymous()">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link text-body" href="#" th:href="@{/loginForm}">
-                  <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                     <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-                     <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-                  </svg>ログイン
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-body" href="#" th:href="@{/register}">
-                  <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-person-plus-fill mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
-                  </svg>ユーザー登録
-                </a>
-              </li>
-             </ul>
-           </div>
-            <!--* ログイン状態の表示メニュー *-->
-           <div sec:authorize="isAuthenticated()">
-             <ul class="navbar-nav">
-              <li class="nav-item">
-                <form  class="form-inline" action="#" th:action="@{/logout}" name="logoutNavibar" method="POST">
-                  <a class="nav-link text-body" href="javascript:logoutNavibar.submit()">
-                    <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-box-arrow-left mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
-                      <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
-                    </svg>ログアウト
-                  </a>
-                </form>
-              </li>
-              <!--* ユーザー登録解除は一般ユーザーのみ表示 *-->
-              <li class="nav-item" sec:authorize="hasRole('USER')">
-                <a class="nav-link text-body" href="#" th:href="@{/exclude}">
-                  <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-person-x-fill mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
-                  </svg>ユーザー登録解除
-                </a>
-              </li>
-             </ul>
-           </div>
-        </div>
-      </nav>
+            </form>
+          </li>
+          <!--* ユーザー登録解除は一般ユーザーのみ表示 *-->
+          <li class="nav-item" sec:authorize="hasRole('USER')">
+            <a class="nav-link text-body" href="#" th:href="@{/exclude}">
+              <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-person-x-fill mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
+              </svg>ユーザー登録解除
+            </a>
+          </li>
+         </ul>
+       </div>
+       </div>
+     </div> 
+  </nav>
 </header>
 
 <section layout:fragment="content">
@@ -101,10 +105,10 @@
 <!--* フッターメニュー(サイトメニュー) *-->
 <footer class="footer mt-auto bg-secondary">
   <div class="container">
-    <div class="h5 mt-3 mb-4"><strong class="text-white">サイトメニュー</strong></div>
-    <div class="row">
+    <div class="h5 mt-3 mb-4 ml-sm-3 ml-2"><strong class="text-white">サイトメニュー</strong></div>
+    <div class="row justify-content-around">
       <!-- インフォメーションメニュー -->
-      <div class="col-7 col-sm">
+      <div class="col-6 col-sm-3">
         <div class="h6"><strong class="text-white">インフォメーション</strong></div>
         <ul class="list-unstyled mt-2 text-white" >
 	        <li>- <a class="text-white" href="#" th:href="@{/#aboutThisSite}" >当サイトについて</a></li>
@@ -113,7 +117,7 @@
         </ul>
       </div>
       <!-- ToDo管理メニュー -->
-      <div class="col-5 col-sm">
+      <div class="col-5 col-sm-3">
         <div class="h6"><strong class="text-white">ToDo管理</strong></div>
         <ul class="list-unstyled mt-2 text-white" >
           <li>- <a class="text-white" href="#" th:href="@{todoList}">ToDo一覧</a></li>
@@ -121,7 +125,7 @@
         </ul>
       </div>
       <!-- ユーザー管理メニュー -->
-      <div class="col-6 col-sm">
+      <div class="col-11 col-sm-3">
         <div class="h6"><strong class="text-white">ユーザー管理</strong></div>
         <!-- 非ログイン状態の表示 -->
         <div sec:authorize="isAnonymous()">
