@@ -9,8 +9,8 @@
 <body>
   <section layout:fragment="content">
     <div id="introduction" class="container">
-       <div class="row justify-content-between">
-        <div class="col-lg-8 bg-light rounded p-4">
+       <div class="row justify-content-around">
+        <div class="col-11 col-lg-8 bg-light rounded p-4">
           <h3><em>ToDo!!</em> へようこそ</h3>
           <hr class="my-3">
           <p>当サイトはやるべきこと（ToDo）の管理を行うことができるアプリケーションサイトです。<br>
@@ -24,7 +24,7 @@
 		          <form th:action="@{/login}" method="POST">
 		          <input type="hidden" id="userId" name="userId" th:value="testuser">
 		          <input type="hidden" id="password" name="password" th:value="todotest">
-		          <button type="submit" class="btn btn-info text-light">
+		          <button type="submit" class="btn text-light" style="background-color :#006890;">
 		            <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 		             <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
 		             <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
@@ -33,7 +33,7 @@
 		          </form>
 	          </div>
 	          <div sec:authorize="hasRole('TEST')">
-	            <span class="bg-info text-light rounded p-2">現在 テストユーザーでログイン中です</span>
+	            <span class="text-light rounded p-2" style="background-color :#006890;">現在 テストユーザーでログイン中です</span>
 	          </div>
           </div>
         </div>
@@ -43,18 +43,18 @@
       </div>
     </div>
     
-    <!-- ナビバーが折りたたまれるlg以上の画面サイズの場合は操作補助用のボタンを表示 -->
+    <!-- ナビバーが折りたたまれるlg未満の画面サイズの場合は操作補助用のボタンを表示 -->
     <div class="container my-5 d-lg-none">
       <div class="mx-auto" style="width:300px;">
 	      <!--* 非ログイン状態の場合のボタン表示 *-->
 	      <div sec:authorize="isAnonymous()">
-		      <a class="btn btn-info text-light mr-3" href="#" th:href="@{/loginForm}" role="button">
+		      <a class="btn text-light mr-3" href="#" th:href="@{/loginForm}" role="button" style="background-color :#006890;">
 			      <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 			         <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
 			         <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
 			      </svg>ログイン
 		      </a>
-		      <a class="btn btn-info text-light" href="#" th:href="@{/register}" role="button">
+		      <a class="btn text-light" href="#" th:href="@{/register}" role="button" style="background-color :#006890;">
 			      <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-person-plus-fill mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 			        <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
 			      </svg>ユーザー登録
@@ -62,13 +62,13 @@
 		    </div>
 		    <!--* ログイン状態の場合のボタン表示 *-->
 		    <div sec:authorize="isAuthenticated()">
-		     <a class="btn btn-primary text-light mr-3" href="#" th:href="@{/todoList}">
+		     <a class="btn text-light mr-3" href="#" th:href="@{/todoList}" style="background-color :#006890;">
 	         <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-calendar-week mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 	           <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
 	           <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
 	         </svg>ToDo一覧
 	       </a>
-	       <a class="btn btn-primary text-light" href="#" th:href="@{/addTodo}">
+	       <a class="btn text-light" href="#" th:href="@{/addTodo}" style="background-color :#006890;">
 	         <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-calendar-plus mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 	           <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
 	            <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"/>
@@ -85,7 +85,7 @@
 				  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
 				</svg>当サイトについて
       </h4>
-      <div class="bg-light mt-4 p-2 rounded">
+      <div class="bg-light mt-4 mx-lg-4 p-2 rounded">
         <p>当サイトは<strong>ToDo管理アプリケーションサイト</strong>です。</p>
         <p>ToDoとは、やるべきこと・・・<br>
           例えば、<br>
@@ -102,7 +102,7 @@
 		         <form th:action="@{/login}" method="POST">
 		            <input type="hidden" id="userId" name="userId" th:value="testuser">
 		            <input type="hidden" id="password" name="password" th:value="todotest">
-		            <button type="submit" class="btn btn-info text-light">
+		            <button type="submit" class="btn text-light" style="background-color :#006890;">
 		              <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 		               <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
 		               <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
@@ -111,13 +111,13 @@
 		          </form>
 	          </div>
 	          <div sec:authorize="hasRole('TEST')">
-	            <span class="bg-info text-light rounded p-2">現在 テストユーザーでログイン中です</span>
+	            <span class="text-light rounded p-2" style="background-color :#006890;">現在 テストユーザーでログイン中です</span>
 	          </div>
           </div>
           <p class="mt-3">個人のアカウントをご利用になる場合は、ユーザー登録からお進みください。</p>
           <div class="mx-auto mt-5 mb-5" style="width:150px;">
 	          <div sec:authorize="isAnonymous()">
-		          <a class="btn btn-info text-light" href="#" th:href="@{/register}">
+		          <a class="btn text-light" href="#" th:href="@{/register}" style="background-color: #006890;">
 		            <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-person-plus-fill mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 		              <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
 		            </svg>ユーザー登録
@@ -134,253 +134,255 @@
           <path d="M3 4.075a.423.423 0 0 0 .43.44H4.9c.247 0 .442-.2.475-.445.159-1.17.962-2.022 2.393-2.022 1.222 0 2.342.611 2.342 2.082 0 1.132-.668 1.652-1.72 2.444-1.2.872-2.15 1.89-2.082 3.542l.005.386c.003.244.202.44.446.44h1.445c.247 0 .446-.2.446-.446v-.188c0-1.278.487-1.652 1.8-2.647 1.086-.826 2.217-1.743 2.217-3.667C12.667 1.301 10.393 0 7.903 0 5.645 0 3.17 1.053 3.001 4.075zm2.776 10.273c0 .95.758 1.652 1.8 1.652 1.085 0 1.832-.702 1.832-1.652 0-.985-.747-1.675-1.833-1.675-1.04 0-1.799.69-1.799 1.675z"/>
         </svg>よくあるご質問
       </h4>
-      <div class="mt-4">
-        <h5>
-		      <a class=" text-body mb-2" data-toggle="collapse" href="#collapseForSite" role="button" aria-expanded="false" aria-controls="collapseForSite">
-		       当サイトについて
-		       <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-caret-down-fill mb-1 ml-2 align-middle" viewBox="0 0 16 16">
-					  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-					 </svg>
-		      </a>
-	      </h5>
-	      <hr class="mt-0"> 
-	      <div class="collapse" id="collapseForSite">
-	        <div class="accordion" id="accordionForSite" role="tablist" aria-multiselectable="true">
-		        <div class="card">
-					    <div class="card-header" role="tab" id="questionForSiteOne">
-				        <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForSiteOne" role="button" aria-expanded="true" aria-controls="answerForSiteOne">
-				         ここはどのようなサイトなんですか？
-				        </a>
-					    </div><!-- /.card-header -->
-					    <div id="answerForSiteOne" class="collapse" role="tabpanel" aria-labelledby="questionForSiteOne" data-parent="#accordionForSite">
-					      <div class="card-body">
-					       <p> Webアプリケーション作成を学習中の個人が、練習を兼ねて作成したToDo管理サイトです。<br>
-					        ご利用にあたっての料金や条件などはございませんので、お役に立てていただければ幸いです。<br><br>
-					        機能をお試しいただけるテストユーザーログインもございますので、お気軽にお試しください。<p>
-					      </div><!-- /.card-body -->
-					    </div><!-- /.collapse -->
-					  </div><!-- /.card -->
-					  <div class="card">
-              <div class="card-header" role="tab" id="questionForSiteThree">
-                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForSiteThree" role="button" aria-expanded="true" aria-controls="answerForSiteThree">
-                   利用してみたいのですが？
-                 </a>
-              </div><!-- /.card-header -->
-              <div id="answerForSiteThree" class="collapse" role="tabpanel" aria-labelledby="questionForSiteThree" data-parent="#accordionForSite">
-                <div class="card-body">
-                  <p>初回は<a href="#" th:href="@{/register}">ユーザー登録</a>からIDとパスワードの設定を行っていただくことでご利用いただけます。<br>
-                  以降は<a href="#" th:href="@{/loginForm}">ログイン</a>からご利用ください。<br><br>
-                  誠に勝手ながらID、パスワードの確認、変更はいたしかねます。<br>
-                  お忘れなきようお願いいたします。</p>
-                </div><!-- /.card-body -->
-              </div><!-- /.collapse -->
-            </div><!-- /.card -->
-			    </div>
-			 </div>
-      </div>
-      <div class="mt-4">
-        <h5>
-	        <a class="text-body mb-2" data-toggle="collapse" href="#collapseForTodo" role="button" aria-expanded="false" aria-controls="collapseForTodo">
-	         ToDoの操作について
-	         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-caret-down-fill mb-1 ml-2 align-middle" viewBox="0 0 16 16">
-	          <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-	         </svg>
-	        </a>
-        </h5>
-        <hr class="mt-0">
-        <div class="collapse" id="collapseForTodo">
-          <div class="accordion" id="accordionForTodo" role="tablist" aria-multiselectable="true">
-            <div class="card">
-              <div class="card-header" role="tab" id="questionForTodoOne">
-                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoOne" role="button" aria-expanded="true" aria-controls="answerForTodoOne">
-                   ToDoはどのように管理されますか？
-                 </a>
-              </div><!-- /.card-header -->
-              <div id="answerForTodoOne" class="collapse" role="tabpanel" aria-labelledby="questionForTodoOne" data-parent="#accordionForTodo">
-                <div class="card-body">
-                  <p><a href="#" th:href="@{/todoList}">ToDo一覧</a>で作成してあるToDoを確認することができます。<br><br>
-                  一覧タブには達成すべきToDoのみが表示され、完了しているものは完了タブ、設定期限が過ぎたものは期限切れタブで個別に管理されます。<br>
-                  また、期限が当日中のToDoや期限切れのToDoが存在する場合は、ToDo一覧画面上部に通知が表示され、そちらからもご確認いただけます。<br><br>
-                  一覧画面にはToDoの簡単な情報が表示されるほか、ToDoのタイトルを選択して詳細画面を開いていただくことでより詳しい情報を表示できます。</p>
-                </div><!-- /.card-body -->
-              </div><!-- /.collapse -->
-            </div><!-- /.card -->
-            <div class="card">
-              <div class="card-header" role="tab" id="questionForTodoTwo">
-                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoTwo" role="button" aria-expanded="true" aria-controls="answerForTodoTwo">
-                   新しくToDoを作成したい
-                 </a>
-              </div><!-- /.card-header -->
-              <div id="answerForTodoTwo" class="collapse" role="tabpanel" aria-labelledby="questionForTodoTwo" data-parent="#accordionForTodo">
-                <div class="card-body">
-                  <p>上部ナビメニュー内またはToDo一覧画面にある「ToDoの追加」を選択してください。<br><br>
-                  ToDo作成フォームが開きますので、必要な項目を入力して「追加する」を選択すると作成できます。</p>
-                </div><!-- /.card-body -->
-              </div><!-- /.collapse -->
-            </div><!-- /.card -->
-            <div class="card">
-              <div class="card-header" role="tab" id="questionForTodoThree">
-                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoThree" role="button" aria-expanded="true" aria-controls="answerForTodoThree">
-                   ToDoが完了した！
-                 </a>
-              </div><!-- /.card-header -->
-              <div id="answerForTodoThree" class="collapse" role="tabpanel" aria-labelledby="questionForTodoThree" data-parent="#accordionForTodo">
-                <div class="card-body">
-                  <p>一覧、期限切れタブのToDoの右端にある
-                    <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-check2-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-			                <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-			                <path fill-rule="evenodd" d="M1.5 13A1.5 1.5 0 0 0 3 14.5h10a1.5 1.5 0 0 0 1.5-1.5V8a.5.5 0 0 0-1 0v5a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5h8a.5.5 0 0 0 0-1H3A1.5 1.5 0 0 0 1.5 3v10z"/>
-			              </svg>
-			              を選択することで、完了させることができます。<br><br>
-			              また、ToDoのタイトルを選択して詳細画面を開き、そちらの「完了させる」を選択することでも完了させることができます。
-                </div><!-- /.card-body -->
-              </div><!-- /.collapse -->
-            </div><!-- /.card -->
-            <div class="card">
-              <div class="card-header" role="tab" id="questionForTodoFour">
-                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoFour" role="button" aria-expanded="true" aria-controls="answerForTodoFour">
-                   やり残しがあったので、完了したToDoを元に戻したい
-                 </a>
-              </div><!-- /.card-header -->
-              <div id="answerForTodoFour" class="collapse" role="tabpanel" aria-labelledby="questionForTodoFour" data-parent="#accordionForTodo">
-                <div class="card-body">
-                  <p>完了タブのToDoの右端にある
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
-			                <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
-			              </svg>
-                    を選択することで、再度未完了の状態に戻すことができます。<br><br>
-                    また、ToDoのタイトルを選択して詳細画面を開き、そちらの「未完了に戻す」を選択することでも戻すことができます。
-                </div><!-- /.card-body -->
-              </div><!-- /.collapse -->
-            </div><!-- /.card -->
-            <div class="card">
-              <div class="card-header" role="tab" id="questionForTodoFive">
-                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoFive" role="button" aria-expanded="true" aria-controls="answerForTodoFive">
-                   ToDoの内容を変更したい
-                 </a>
-              </div><!-- /.card-header -->
-              <div id="answerForTodoFive" class="collapse" role="tabpanel" aria-labelledby="questionForTodoFive" data-parent="#accordionForTodo">
-                <div class="card-body">
-                  <p>ToDoのタイトルを選択して詳細画面を開き、必要な項目の変更後「内容を更新」を選択することで変更できます。</p>
-                </div><!-- /.card-body -->
-              </div><!-- /.collapse -->
-            </div><!-- /.card -->
-            <div class="card">
-              <div class="card-header" role="tab" id="questionForTodoSix">
-                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoSix" role="button" aria-expanded="true" aria-controls="answerForTodoSix">
-                   不要なToDoを削除したい
-                 </a>
-              </div><!-- /.card-header -->
-              <div id="answerForTodoSix" class="collapse" role="tabpanel" aria-labelledby="questionForTodoSix" data-parent="#accordionForTodo">
-                <div class="card-body">
-                  <p>ToDoのタイトルを選択して詳細画面を開き、そちらの「ToDoを削除する」を選択することで削除できます。<br><br>
-                  また、完了済、期限切れのToDoについては、それぞれのタブから一括削除を行うことができます。<br><br>
-                  恐れ入りますが、一度削除したToDoの復元はいたしかねます。<br>
-                  ご理解のほどよろしくお願いいたします。</p>
-                </div><!-- /.card-body -->
-              </div><!-- /.collapse -->
-            </div><!-- /.card -->
-            <div class="card">
-              <div class="card-header" role="tab" id="questionForTodoSeven">
-                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoSeven" role="button" aria-expanded="true" aria-controls="answerForTodoSeven">
-                   誤って削除したToDoを元に戻したい
-                 </a>
-              </div><!-- /.card-header -->
-              <div id="answerForTodoSeven" class="collapse" role="tabpanel" aria-labelledby="questionForTodoSeven" data-parent="#accordionForTodo">
-                <div class="card-body">
-                  <p>恐れ入りますが、一度削除したToDoの復元はいたしかねます。<br>
-                  お手数をおかけしますが、再度同様のToDoを作成していただく必要があります。<br><br>
-                  ToDoの削除はご確認の上で実行していただきますようお願いいたします。</p>
-                </div><!-- /.card-body -->
-              </div><!-- /.collapse -->
-            </div><!-- /.card -->
-          </div>
-       </div>
-      </div>
-      <div class="mt-4">
-        <h5>
-	        <a class="text-body mb-2" data-toggle="collapse" href="#collapseForUser" role="button" aria-expanded="false" aria-controls="collapseForUser">
-	         ユーザー登録について
-	         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-caret-down-fill mb-1ml-2 align-middle" viewBox="0 0 16 16">
-	          <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-	         </svg>
-	        </a>
-        </h5>
-        <hr class="mt-0">
-        <div class="collapse" id="collapseForUser">
-          <div class="accordion" id="accordionForUser" role="tablist" aria-multiselectable="true">
-            <div class="card">
-              <div class="card-header" role="tab" id="questionForUserOne">
-                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForUserOne" role="button" aria-expanded="true" aria-controls="answerForUserOne">
-                   ユーザーの登録内容を変更したい
-                 </a>
-              </div><!-- /.card-header -->
-              <div id="answerForUserOne" class="collapse" role="tabpanel" aria-labelledby="questionForUserOne" data-parent="#accordionForUser">
-                <div class="card-body">
-                 <p>恐れ入りますが、登録内容の変更はいたしかねます。<br>
-                 ご理解のほどよろしくお願いいたします。</p>
-                </div><!-- /.card-body -->
-              </div><!-- /.collapse -->
-            </div><!-- /.card -->
-            <div class="card">
-              <div class="card-header" role="tab" id="questionForUserTwo">
-                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForUserTwo" role="button" aria-expanded="true" aria-controls="answerForUserTwo">
-                   ユーザーの登録を解除したい
-                 </a>
-              </div><!-- /.card-header -->
-              <div id="answerForUserTwo" class="collapse" role="tabpanel" aria-labelledby="questionForUserTwo" data-parent="#accordionForUser">
-                <div class="card-body">
-                 <p><a href="#" th:href="@{/exclude}">ユーザー登録解除</a>から、登録解除フォームへお進みください。<br>
-                 画面の指示に従って操作をしていただくことで登録を解除することができます。<br><br>
-                 ご利用いただき、誠にありがとうございました!</p>
-                </div><!-- /.card-body -->
-              </div><!-- /.collapse -->
-            </div><!-- /.card -->
-          </div>
-       </div>
-      </div>
-      <div class="mt-4">
-        <h5>
-	        <a class="text-body mb-2" data-toggle="collapse" href="#collapseForOther" role="button" aria-expanded="false" aria-controls="collapseForOther">
-	         その他のご質問
-	         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-caret-down-fill mb-1 ml-2 align-middle" viewBox="0 0 16 16">
-	          <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-	         </svg>
-	        </a>
-        </h5>
-        <hr class="mt-0">
-        <div class="collapse" id="collapseForOther">
-          <div class="accordion" id="accordionForOther" role="tablist" aria-multiselectable="true">
-            <div class="card">
-              <div class="card-header" role="tab" id="questionForOtherOne">
-                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForOtherOne" role="button" aria-expanded="true" aria-controls="answerForOtherOne">
-                   動作に不具合があります
-                 </a>
-              </div><!-- /.card-header -->
-              <div id="answerForOtherOne" class="collapse" role="tabpanel" aria-labelledby="questionForOtherOne" data-parent="#accordionForOther">
-                <div class="card-body">
-                 <p>大変申し訳ございません。<br><br>
-                 改善させていただきたく存じますので、お手数をおかけいたしますが<a href="#" th:href="@{/inquiry}">お問い合わせ</a>
-                 よりお伝えいただきますようご協力をお願いいたします。</p>
-                </div><!-- /.card-body -->
-              </div><!-- /.collapse -->
-            </div><!-- /.card -->
-            <div class="card">
-              <div class="card-header" role="tab" id="questionForOtherTwo">
-                  <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForOtherTwo" role="button" aria-expanded="true" aria-controls="answerForOtherTwo">
-                    ここが使いずらい、こうした方がいいと思います
-                  </a>
-              </div><!-- /.card-header -->
-              <div id="answerForOtherTwo" class="collapse" role="tabpanel" aria-labelledby="questionForOtherTwo" data-parent="#accordionForOther">
-                <div class="card-body">
-                 <p>ご不便をおかけして申し訳ございません。<br><br>
-                 改善のための貴重なご意見とさせていただきたく存じますので、<a href="#" th:href="@{/inquiry}">お問い合わせ</a>
-                よりお伝えいただきますようご協力をお願いいたします。</p>
-                </div><!-- /.card-body -->
-              </div><!-- /.collapse -->
-            </div><!-- /.card -->
-          </div>
-       </div>
+      <div class="mx-2 mx-lg-4">
+	      <div class="mt-4">
+	        <h5>
+			      <a class=" text-body mb-2" data-toggle="collapse" href="#collapseForSite" role="button" aria-expanded="false" aria-controls="collapseForSite">
+			       当サイトについて
+			       <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-caret-down-fill mb-1 ml-2 align-middle" viewBox="0 0 16 16">
+						  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+						 </svg>
+			      </a>
+		      </h5>
+		      <hr class="mt-0"> 
+		      <div class="collapse" id="collapseForSite">
+		        <div class="accordion" id="accordionForSite" role="tablist" aria-multiselectable="true">
+			        <div class="card">
+						    <div class="card-header" role="tab" id="questionForSiteOne">
+					        <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForSiteOne" role="button" aria-expanded="true" aria-controls="answerForSiteOne">
+					         ここはどのようなサイトなんですか？
+					        </a>
+						    </div><!-- /.card-header -->
+						    <div id="answerForSiteOne" class="collapse" role="tabpanel" aria-labelledby="questionForSiteOne" data-parent="#accordionForSite">
+						      <div class="card-body">
+						       <p> Webアプリケーション作成を学習中の個人が、練習を兼ねて作成したToDo管理サイトです。<br>
+						        ご利用にあたっての料金や条件などはございませんので、お役に立てていただければ幸いです。<br><br>
+						        機能をお試しいただけるテストユーザーログインもございますので、お気軽にお試しください。<p>
+						      </div><!-- /.card-body -->
+						    </div><!-- /.collapse -->
+						  </div><!-- /.card -->
+						  <div class="card">
+	              <div class="card-header" role="tab" id="questionForSiteThree">
+	                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForSiteThree" role="button" aria-expanded="true" aria-controls="answerForSiteThree">
+	                   利用してみたいのですが？
+	                 </a>
+	              </div><!-- /.card-header -->
+	              <div id="answerForSiteThree" class="collapse" role="tabpanel" aria-labelledby="questionForSiteThree" data-parent="#accordionForSite">
+	                <div class="card-body">
+	                  <p>初回は<a href="#" th:href="@{/register}">ユーザー登録</a>からIDとパスワードの設定を行っていただくことでご利用いただけます。<br>
+	                  以降は<a href="#" th:href="@{/loginForm}">ログイン</a>からご利用ください。<br><br>
+	                  誠に勝手ながらID、パスワードの確認、変更はいたしかねます。<br>
+	                  お忘れなきようお願いいたします。</p>
+	                </div><!-- /.card-body -->
+	              </div><!-- /.collapse -->
+	            </div><!-- /.card -->
+				    </div>
+				 </div>
+	      </div>
+	      <div class="mt-4">
+	        <h5>
+		        <a class="text-body mb-2" data-toggle="collapse" href="#collapseForTodo" role="button" aria-expanded="false" aria-controls="collapseForTodo">
+		         ToDoの操作について
+		         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-caret-down-fill mb-1 ml-2 align-middle" viewBox="0 0 16 16">
+		          <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+		         </svg>
+		        </a>
+	        </h5>
+	        <hr class="mt-0">
+	        <div class="collapse" id="collapseForTodo">
+	          <div class="accordion" id="accordionForTodo" role="tablist" aria-multiselectable="true">
+	            <div class="card">
+	              <div class="card-header" role="tab" id="questionForTodoOne">
+	                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoOne" role="button" aria-expanded="true" aria-controls="answerForTodoOne">
+	                   ToDoはどのように管理されますか？
+	                 </a>
+	              </div><!-- /.card-header -->
+	              <div id="answerForTodoOne" class="collapse" role="tabpanel" aria-labelledby="questionForTodoOne" data-parent="#accordionForTodo">
+	                <div class="card-body">
+	                  <p><a href="#" th:href="@{/todoList}">ToDo一覧</a>で作成してあるToDoを確認することができます。<br><br>
+	                  一覧タブには達成すべきToDoのみが表示され、完了しているものは完了タブ、設定期限が過ぎたものは期限切れタブで個別に管理されます。<br>
+	                  また、期限が当日中のToDoや期限切れのToDoが存在する場合は、ToDo一覧画面上部に通知が表示され、そちらからもご確認いただけます。<br><br>
+	                  一覧画面にはToDoの簡単な情報が表示されるほか、ToDoのタイトルを選択して詳細画面を開いていただくことでより詳しい情報を表示できます。</p>
+	                </div><!-- /.card-body -->
+	              </div><!-- /.collapse -->
+	            </div><!-- /.card -->
+	            <div class="card">
+	              <div class="card-header" role="tab" id="questionForTodoTwo">
+	                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoTwo" role="button" aria-expanded="true" aria-controls="answerForTodoTwo">
+	                   新しくToDoを作成したい
+	                 </a>
+	              </div><!-- /.card-header -->
+	              <div id="answerForTodoTwo" class="collapse" role="tabpanel" aria-labelledby="questionForTodoTwo" data-parent="#accordionForTodo">
+	                <div class="card-body">
+	                  <p>上部ナビメニュー内またはToDo一覧画面にある「ToDoの追加」を選択してください。<br><br>
+	                  ToDo作成フォームが開きますので、必要な項目を入力して「追加する」を選択すると作成できます。</p>
+	                </div><!-- /.card-body -->
+	              </div><!-- /.collapse -->
+	            </div><!-- /.card -->
+	            <div class="card">
+	              <div class="card-header" role="tab" id="questionForTodoThree">
+	                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoThree" role="button" aria-expanded="true" aria-controls="answerForTodoThree">
+	                   ToDoが完了した！
+	                 </a>
+	              </div><!-- /.card-header -->
+	              <div id="answerForTodoThree" class="collapse" role="tabpanel" aria-labelledby="questionForTodoThree" data-parent="#accordionForTodo">
+	                <div class="card-body">
+	                  <p>一覧、期限切れタブのToDoの右端にある
+	                    <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-check2-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+				                <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+				                <path fill-rule="evenodd" d="M1.5 13A1.5 1.5 0 0 0 3 14.5h10a1.5 1.5 0 0 0 1.5-1.5V8a.5.5 0 0 0-1 0v5a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5h8a.5.5 0 0 0 0-1H3A1.5 1.5 0 0 0 1.5 3v10z"/>
+				              </svg>
+				              を選択することで、完了させることができます。<br><br>
+				              また、ToDoのタイトルを選択して詳細画面を開き、そちらの「完了させる」を選択することでも完了させることができます。
+	                </div><!-- /.card-body -->
+	              </div><!-- /.collapse -->
+	            </div><!-- /.card -->
+	            <div class="card">
+	              <div class="card-header" role="tab" id="questionForTodoFour">
+	                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoFour" role="button" aria-expanded="true" aria-controls="answerForTodoFour">
+	                   やり残しがあったので、完了したToDoを元に戻したい
+	                 </a>
+	              </div><!-- /.card-header -->
+	              <div id="answerForTodoFour" class="collapse" role="tabpanel" aria-labelledby="questionForTodoFour" data-parent="#accordionForTodo">
+	                <div class="card-body">
+	                  <p>完了タブのToDoの右端にある
+	                    <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+				                <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
+				              </svg>
+	                    を選択することで、再度未完了の状態に戻すことができます。<br><br>
+	                    また、ToDoのタイトルを選択して詳細画面を開き、そちらの「未完了に戻す」を選択することでも戻すことができます。
+	                </div><!-- /.card-body -->
+	              </div><!-- /.collapse -->
+	            </div><!-- /.card -->
+	            <div class="card">
+	              <div class="card-header" role="tab" id="questionForTodoFive">
+	                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoFive" role="button" aria-expanded="true" aria-controls="answerForTodoFive">
+	                   ToDoの内容を変更したい
+	                 </a>
+	              </div><!-- /.card-header -->
+	              <div id="answerForTodoFive" class="collapse" role="tabpanel" aria-labelledby="questionForTodoFive" data-parent="#accordionForTodo">
+	                <div class="card-body">
+	                  <p>ToDoのタイトルを選択して詳細画面を開き、必要な項目の変更後「内容を更新」を選択することで変更できます。</p>
+	                </div><!-- /.card-body -->
+	              </div><!-- /.collapse -->
+	            </div><!-- /.card -->
+	            <div class="card">
+	              <div class="card-header" role="tab" id="questionForTodoSix">
+	                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoSix" role="button" aria-expanded="true" aria-controls="answerForTodoSix">
+	                   不要なToDoを削除したい
+	                 </a>
+	              </div><!-- /.card-header -->
+	              <div id="answerForTodoSix" class="collapse" role="tabpanel" aria-labelledby="questionForTodoSix" data-parent="#accordionForTodo">
+	                <div class="card-body">
+	                  <p>ToDoのタイトルを選択して詳細画面を開き、そちらの「ToDoを削除する」を選択することで削除できます。<br><br>
+	                  また、完了済、期限切れのToDoについては、それぞれのタブから一括削除を行うことができます。<br><br>
+	                  恐れ入りますが、一度削除したToDoの復元はいたしかねます。<br>
+	                  ご理解のほどよろしくお願いいたします。</p>
+	                </div><!-- /.card-body -->
+	              </div><!-- /.collapse -->
+	            </div><!-- /.card -->
+	            <div class="card">
+	              <div class="card-header" role="tab" id="questionForTodoSeven">
+	                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForTodoSeven" role="button" aria-expanded="true" aria-controls="answerForTodoSeven">
+	                   誤って削除したToDoを元に戻したい
+	                 </a>
+	              </div><!-- /.card-header -->
+	              <div id="answerForTodoSeven" class="collapse" role="tabpanel" aria-labelledby="questionForTodoSeven" data-parent="#accordionForTodo">
+	                <div class="card-body">
+	                  <p>恐れ入りますが、一度削除したToDoの復元はいたしかねます。<br>
+	                  お手数をおかけしますが、再度同様のToDoを作成していただく必要があります。<br><br>
+	                  ToDoの削除はご確認の上で実行していただきますようお願いいたします。</p>
+	                </div><!-- /.card-body -->
+	              </div><!-- /.collapse -->
+	            </div><!-- /.card -->
+	          </div>
+	       </div>
+	      </div>
+	      <div class="mt-4">
+	        <h5>
+		        <a class="text-body mb-2" data-toggle="collapse" href="#collapseForUser" role="button" aria-expanded="false" aria-controls="collapseForUser">
+		         ユーザー登録について
+		         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-caret-down-fill mb-1ml-2 align-middle" viewBox="0 0 16 16">
+		          <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+		         </svg>
+		        </a>
+	        </h5>
+	        <hr class="mt-0">
+	        <div class="collapse" id="collapseForUser">
+	          <div class="accordion" id="accordionForUser" role="tablist" aria-multiselectable="true">
+	            <div class="card">
+	              <div class="card-header" role="tab" id="questionForUserOne">
+	                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForUserOne" role="button" aria-expanded="true" aria-controls="answerForUserOne">
+	                   ユーザーの登録内容を変更したい
+	                 </a>
+	              </div><!-- /.card-header -->
+	              <div id="answerForUserOne" class="collapse" role="tabpanel" aria-labelledby="questionForUserOne" data-parent="#accordionForUser">
+	                <div class="card-body">
+	                 <p>恐れ入りますが、登録内容の変更はいたしかねます。<br>
+	                 ご理解のほどよろしくお願いいたします。</p>
+	                </div><!-- /.card-body -->
+	              </div><!-- /.collapse -->
+	            </div><!-- /.card -->
+	            <div class="card">
+	              <div class="card-header" role="tab" id="questionForUserTwo">
+	                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForUserTwo" role="button" aria-expanded="true" aria-controls="answerForUserTwo">
+	                   ユーザーの登録を解除したい
+	                 </a>
+	              </div><!-- /.card-header -->
+	              <div id="answerForUserTwo" class="collapse" role="tabpanel" aria-labelledby="questionForUserTwo" data-parent="#accordionForUser">
+	                <div class="card-body">
+	                 <p><a href="#" th:href="@{/exclude}">ユーザー登録解除</a>から、登録解除フォームへお進みください。<br>
+	                 画面の指示に従って操作をしていただくことで登録を解除することができます。<br><br>
+	                 ご利用いただき、誠にありがとうございました!</p>
+	                </div><!-- /.card-body -->
+	              </div><!-- /.collapse -->
+	            </div><!-- /.card -->
+	          </div>
+	       </div>
+	      </div>
+	      <div class="mt-4">
+	        <h5>
+		        <a class="text-body mb-2" data-toggle="collapse" href="#collapseForOther" role="button" aria-expanded="false" aria-controls="collapseForOther">
+		         その他のご質問
+		         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-caret-down-fill mb-1 ml-2 align-middle" viewBox="0 0 16 16">
+		          <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+		         </svg>
+		        </a>
+	        </h5>
+	        <hr class="mt-0">
+	        <div class="collapse" id="collapseForOther">
+	          <div class="accordion" id="accordionForOther" role="tablist" aria-multiselectable="true">
+	            <div class="card">
+	              <div class="card-header" role="tab" id="questionForOtherOne">
+	                 <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForOtherOne" role="button" aria-expanded="true" aria-controls="answerForOtherOne">
+	                   動作に不具合があります
+	                 </a>
+	              </div><!-- /.card-header -->
+	              <div id="answerForOtherOne" class="collapse" role="tabpanel" aria-labelledby="questionForOtherOne" data-parent="#accordionForOther">
+	                <div class="card-body">
+	                 <p>大変申し訳ございません。<br><br>
+	                 改善させていただきたく存じますので、お手数をおかけいたしますが<a href="#" th:href="@{/inquiry}">お問い合わせ</a>
+	                 よりお伝えいただきますようご協力をお願いいたします。</p>
+	                </div><!-- /.card-body -->
+	              </div><!-- /.collapse -->
+	            </div><!-- /.card -->
+	            <div class="card">
+	              <div class="card-header" role="tab" id="questionForOtherTwo">
+	                  <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#answerForOtherTwo" role="button" aria-expanded="true" aria-controls="answerForOtherTwo">
+	                    ここが使いずらい、こうした方がいいと思います
+	                  </a>
+	              </div><!-- /.card-header -->
+	              <div id="answerForOtherTwo" class="collapse" role="tabpanel" aria-labelledby="questionForOtherTwo" data-parent="#accordionForOther">
+	                <div class="card-body">
+	                 <p>ご不便をおかけして申し訳ございません。<br><br>
+	                 改善のための貴重なご意見とさせていただきたく存じますので、<a href="#" th:href="@{/inquiry}">お問い合わせ</a>
+	                よりお伝えいただきますようご協力をお願いいたします。</p>
+	                </div><!-- /.card-body -->
+	              </div><!-- /.collapse -->
+	            </div><!-- /.card -->
+	          </div>
+	       </div>
+	      </div>
       </div>
     </div>
     
