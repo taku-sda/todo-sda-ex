@@ -18,14 +18,14 @@
       <div class="mx-lg-4">
 	      <div class="mt-3 px-4 py-3 rounded" style="background-color: #fafad2;">
 	        <div th:if="${completed} neq true">
-	          <strong>未完了のToDoです</strong>
-	          <a class="btn btn-primary text-light ml-4" href="#" 
+	          <strong>未完了のToDo</strong>
+	          <a class="btn btn-primary text-light ml-sm-4 ml-2" href="#" 
 	            th:href="@{/todoDetails/completed?todoId=__${todoId}__&status=true&path=/todoDetails?todoId=__${todoId}__}"
 	            >完了させる</a>
 	        </div>
 	        <div th:if="${completed} eq true">
-	          <strong>完了したToDoです</strong>
-	          <a class="btn btn-primary text-light ml-4" href="#" 
+	          <strong>完了したToDo</strong>
+	          <a class="btn btn-primary text-light ml-sm-4 ml-2" href="#" 
 	            th:href="@{/todoDetails/completed?todoId=__${todoId}__&status=false&path=/todoDetails?todoId=__${todoId}__}"
 	            >未完了に戻す</a>
 	        </div>
@@ -94,7 +94,7 @@
 	            <div th:if="${#fields.hasErrors('memo')}" th:errors="*{memo}" class="text-danger"></div>
 	          </div>
 	          <input type="submit" class="btn btn-primary" value="内容を更新">
-	          <a class="btn btn-secondary text-light ml-sm-5 ml-4" href="#" th:href="@{/todoDetails/delete?todoId=__${todoId}__}">ToDoを削除する</a>
+	          <a class="btn btn-secondary text-light ml-sm-5 ml-3" href="#" th:href="@{/todoDetails/delete?todoId=__${todoId}__}">ToDoを削除</a>
 	        </form>
 	      </div>
 	      <h6 class="mt-3" th:text="*{#temporals.format(lastUpdate, '最終更新日時 : yyyy/MM/dd HH:mm')}">最終更新日時</h6>
