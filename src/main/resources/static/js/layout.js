@@ -19,10 +19,14 @@ $(function(){
 $(function(){
   var bottommenu = $('#bottom_menu');
   $(window).scroll(function () {
-     if ($(this).scrollTop() > 1200) {
-          bottommenu.fadeOut();
-     } else {
-          bottommenu.fadeIn();
-     }
+    /* ページ最下部の位置を取得 */
+    var bottom = $(document).innerHeight() - $(window).innerHeight(); 
+    
+    /* ページ最下部より30px上部に到達でボトムメニューを非表示にする */
+    if (bottom - 30 <= $(window).scrollTop()) {
+      bottommenu.fadeOut();
+    } else {
+      bottommenu.fadeIn();
+    }
   });
 });
