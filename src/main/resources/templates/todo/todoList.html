@@ -56,7 +56,7 @@
 		    </div>
 		    
 		   <div class="mx-md-5 p-sm-4 px-2 py-3 bg-light rounded">
-		     <div class="btn-group d-flex" role="group" style="width:310px;" aria-label="一覧のタブボタングループ">
+		     <div class="btn-group d-flex" role="group" style="width:275px;" aria-label="一覧のタブボタングループ">
 			     <a class="btn text-body border flex-fill" th:href="@{/todoList?listType=normal&sort=deadline&order=ASC#todoList}" 
 			     style="background-color:#fffafa;" 
 			     th:classappend="${listType == 'normal'} ? 'active' : ' ' " 
@@ -94,38 +94,40 @@
 	         </div>
 	       </div>
 			   <div class="card mt-3">
-				  <table class="table table-bordered mb-0">
-				    <tr class="text-body" style="background-color: #e5e5e5">
-				      <th style="width: 65%">タイトル</th>
-				      <th style="width: 25%">期限</th>
-				      <th style="width: 5%">
-				        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-star mx-auto" style="width: 30px;" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-								  <path fill-rule="evenodd" d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-								</svg>
-				      </th>
-				      <th style="width: 5%"></th>
-				    </tr>
-				    <tr th:each="todo : ${displayList}">
-				      <td><a href="#" th:href="@{/todoDetails?todoId=__${todo.todoId}__}" th:text="${todo.title}">タイトル</a></td>
-				      <td th:text="${todo.deadline.getYear()}+'/'+${todo.deadline.getMonthValue()}+'/'+${todo.deadline.getDayOfMonth()}">期限</td>
-				      <td th:text="${todo.priority}" class="text-center">☆</td>
-				      <td>
-				        <a th:if="${listType != 'completed'}" href="#"
-				          th:href="@{/todoDetails/completed?todoId=__${todo.todoId}__&status=true&path=/todoList?listType=__${listType}__&sort=__${sort}__&order=__${order}__#todoList}">
-				          <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-check2-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-									  <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-									  <path fill-rule="evenodd" d="M1.5 13A1.5 1.5 0 0 0 3 14.5h10a1.5 1.5 0 0 0 1.5-1.5V8a.5.5 0 0 0-1 0v5a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5h8a.5.5 0 0 0 0-1H3A1.5 1.5 0 0 0 1.5 3v10z"/>
+			     <div class="table-responsive-sm">
+					  <table class="table table-bordered mb-0">
+					    <tr class="text-body" style="background-color: #e5e5e5">
+					      <th style="width: 65%">タイトル</th>
+					      <th style="width: 25%">期限</th>
+					      <th style="width: 5%; text-align: center;">
+					        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-star"  fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+									  <path fill-rule="evenodd" d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
 									</svg>
-				        </a>
-				        <a th:if="${listType == 'completed'}" href="#"
-		              th:href="@{/todoDetails/completed?todoId=__${todo.todoId}__&status=false&path=/todoList?listType=__${listType}__&sort=__${sort}__&order=__${order}__#todoList}">
-		              <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
-		                <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
-		              </svg>
-		            </a>
-				      </td>
-				    </tr>
-				  </table>
+					      </th>
+					      <th style="width: 5%"></th>
+					    </tr>
+					    <tr th:each="todo : ${displayList}">
+					      <td><a href="#" th:href="@{/todoDetails?todoId=__${todo.todoId}__}" th:text="${todo.title}">タイトル</a></td>
+					      <td th:text="${todo.deadline.getYear()}+'/'+${todo.deadline.getMonthValue()}+'/'+${todo.deadline.getDayOfMonth()}">期限</td>
+					      <td th:text="${todo.priority}" class="text-center">☆</td>
+					      <td>
+					        <a th:if="${listType != 'completed'}" href="#"
+					          th:href="@{/todoDetails/completed?todoId=__${todo.todoId}__&status=true&path=/todoList?listType=__${listType}__&sort=__${sort}__&order=__${order}__#todoList}">
+					          <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-check2-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+										  <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+										  <path fill-rule="evenodd" d="M1.5 13A1.5 1.5 0 0 0 3 14.5h10a1.5 1.5 0 0 0 1.5-1.5V8a.5.5 0 0 0-1 0v5a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5h8a.5.5 0 0 0 0-1H3A1.5 1.5 0 0 0 1.5 3v10z"/>
+										</svg>
+					        </a>
+					        <a th:if="${listType == 'completed'}" href="#"
+			              th:href="@{/todoDetails/completed?todoId=__${todo.todoId}__&status=false&path=/todoList?listType=__${listType}__&sort=__${sort}__&order=__${order}__#todoList}">
+			              <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+			                <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
+			              </svg>
+			            </a>
+					      </td>
+					    </tr>
+					  </table>
+				  </div>
 				  <div th:if="${displayList.isEmpty()}">
 				    <div class="card">
 						  <div class="card-body">
