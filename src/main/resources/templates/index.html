@@ -20,22 +20,26 @@
           テストユーザーによるお試しログインも可能です。ぜひお試しください！
           </p>
            <!--* 非ログイン状態の場合はテストログインボタンを表示 *-->
-          <div class="mx-auto mt-5 mb-3" style="width:300px;">
-	          <div sec:authorize="isAnonymous()">
-		          <form th:action="@{/login}" method="POST">
-		          <input type="hidden" id="userId" name="userId" th:value="testuser">
-		          <input type="hidden" id="password" name="password" th:value="todotest">
-		          <button type="submit" class="btn text-light" style="background-color :#006890;">
-		            <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-		             <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-		             <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-		            </svg>テストユーザーでお試しログイン
-		          </button>
-		          </form>
-	          </div>
-	          <div sec:authorize="hasRole('TEST')">
-	            <span class="text-light rounded p-2" style="background-color :#006890;">現在 テストユーザーでログイン中です</span>
-	          </div>
+          <div class="mt-5 mb-3">
+            <div class="mx-auto" style="width:180px;">
+		          <div sec:authorize="isAnonymous()">
+			          <form th:action="@{/login}" method="POST">
+			          <input type="hidden" id="userId" name="userId" th:value="testuser">
+			          <input type="hidden" id="password" name="password" th:value="todotest">
+			          <button type="submit" class="btn text-light" style="background-color :#006890;">
+			            <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+			             <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+			             <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+			            </svg>お試しログイン
+			          </button>
+			          </form>
+		          </div>
+		        </div>
+		        <div class="mx-auto" style="width:270px;">
+		          <div sec:authorize="hasRole('TEST')">
+		            <span class="text-light rounded p-2" style="background-color :#006890;">テストユーザーでログイン中です</span>
+		          </div>
+		        </div>
           </div>
         </div>
         <div class="col-lg-3">
@@ -63,22 +67,26 @@
          <p>初めての方は、まずテストユーザーでお試しをおすすめします。<br>
           <span class="text-danger">※テストユーザーは全ユーザーで同一のアカウントとなります。<br>
           個人情報を入力することは控え、あくまでお試しとしてのご利用をお願いいたします。</span></p>
-          <div class="mx-auto mt-5 mb-5" style="width:300px;">
-	         <div sec:authorize="isAnonymous()">
-		         <form th:action="@{/login}" method="POST">
-		            <input type="hidden" id="userId" name="userId" th:value="testuser">
-		            <input type="hidden" id="password" name="password" th:value="todotest">
-		            <button type="submit" class="btn text-light" style="background-color :#006890;">
-		              <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-		               <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-		               <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-		              </svg>テストユーザーでお試しログイン
-		            </button>
-		          </form>
-	          </div>
-	          <div sec:authorize="hasRole('TEST')">
-	            <span class="text-light rounded p-2" style="background-color :#006890;">現在 テストユーザーでログイン中です</span>
-	          </div>
+          <div class="mx-auto mt-5 mb-5">
+            <div class="mx-auto"  style="width:180px;">
+			         <div sec:authorize="isAnonymous()">
+				         <form th:action="@{/login}" method="POST">
+				            <input type="hidden" id="userId" name="userId" th:value="testuser">
+				            <input type="hidden" id="password" name="password" th:value="todotest">
+				            <button type="submit" class="btn text-light" style="background-color :#006890;">
+				              <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+				               <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+				               <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+				              </svg>お試しログイン
+				            </button>
+				          </form>
+			          </div>
+			      </div>
+			      <div class="mx-auto"  style="width:270px;">
+				      <div sec:authorize="hasRole('TEST')">
+	              <span class="text-light rounded p-2" style="background-color :#006890;">テストユーザーでログイン中です</span>
+	            </div>
+			      </div>
           </div>
           <p class="mt-3">個人のアカウントをご利用になる場合は、ユーザー登録からお進みください。</p>
           <div class="mx-auto mt-5 mb-5" style="width:150px;">

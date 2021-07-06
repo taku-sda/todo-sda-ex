@@ -41,20 +41,22 @@
 	        </form>
 	      </div>
 	      <div class="col-lg-6 mx-1 bg-light rounded p-4">
-	        <h4>テストユーザーログイン</h4>
+	        <h4>お試しログイン</h4>
 	        <hr class="my-3">
 	        <p>以下のボタンから、テストユーザーでお試しログインも可能です。<br>
 	        ぜひお試しください。</p>
-	        <form th:action="@{/login}" method="POST">
-		        <input type="hidden" id="userId" name="userId" th:value="testuser">
-		        <input type="hidden" id="password" name="password" th:value="todotest">
-		        <button type="submit" class="btn text-light" style="background-color: #006890;">
-		          <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-		           <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-		           <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-		          </svg>テストユーザーでお試しログイン
-		        </button>
-	        </form>
+	        <div class="mx-auto" style="width:180px;">
+		        <form th:action="@{/login}" method="POST">
+			        <input type="hidden" id="userId" name="userId" th:value="testuser">
+			        <input type="hidden" id="password" name="password" th:value="todotest">
+			        <button type="submit" class="btn text-light" style="background-color: #006890;">
+			          <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+			           <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+			           <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+			          </svg>お試しログイン
+			        </button>
+		        </form>
+		      </div>
 	      </div>
 	    </div>
     </div>
