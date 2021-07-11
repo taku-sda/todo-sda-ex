@@ -43,3 +43,19 @@ td {
   text-decoration: none;
   opacity: .5;
 }
+
+.bottom_menu_btn {
+	background-color: #b0c4de;;
+	border: 1px solid;
+	border-color: #808080;
+	border-top: transparent;
+	border-bottom: transparent;
+}
+
+#bottom_menu_btn_left {
+	border-left: transparent;
+}
+
+#bottom_menu_btn_right {
+  border-right: transparent;
+}
