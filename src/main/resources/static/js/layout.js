@@ -30,11 +30,28 @@ $(function(){
     /* ページ最下部の位置を取得 */
     var bottom = scrollHeight - window.innerHeight; 
     
+    /* スクロール量を取得 */
+    scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    
     /* ページ最下部より30px上部に到達でボトムメニューを非表示にする */
-    if (bottom - 30 <= $(window).scrollTop()) {
+    if (bottom - 30 <= scrollTop) {
       bottommenu.fadeOut();
     } else {
       bottommenu.fadeIn();
     }
+    
+    console.log("$(document).innerHeight() = " + $(document).innerHeight());
+    console.log("$(window).innerHeight() = " + $(window).innerHeight());
+    console.log("document.body.scrollHeight = " + document.body.scrollHeight);
+    console.log("document.documentElement.scrollHeight = " + document.documentElement.scrollHeight);
+    console.log("document.body.offsetHeight = " + document.body.offsetHeight);
+    console.log("document.documentElement.offsetHeight = " + document.documentElement.offsetHeight);
+    console.log("document.body.clientHeight = " + document.body.clientHeight);
+    console.log("window.innerHeight = " + window.innerHeight);
+    console.log("$(window).height() = " + $(window).height());
+    console.log("window.pageYOffset = " + window.pageYOffset);
+    console.log("document.documentElement.scrollTop = " + document.documentElement.scrollTop);
+    console.log("$(window).scrollTop = " + $(window).scrollTop());
+     console.log("======")
   });
 });
