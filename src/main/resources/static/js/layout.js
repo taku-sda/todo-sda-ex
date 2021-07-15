@@ -28,16 +28,16 @@ $(function(){
     );
     
     /* ページ最下部の位置を取得 */
-    var bottom = scrollHeight - window.innerHeight; 
+    var bottom = document.body.clientHeight - window.innerHeight; 
     
     /* スクロール量を取得 */
     scrollTop = window.pageYOffset || document.documentElement.scrollTop
     
-    /* ページ最下部より30px上部に到達でボトムメニューを非表示にする */
-    if (bottom - 30 <= scrollTop) {
-      bottommenu.fadeOut();
-    } else {
+    /* ページ最下部より30px上部に到達していない場合はボトムメニューを表示、到達していない場合は非表示にする */
+    if (bottom - 30 > scrollTop) {
       bottommenu.fadeIn();
+    } else {
+      bottommenu.fadeOut();
     }
     
     console.log("$(document).innerHeight() = " + $(document).innerHeight());
