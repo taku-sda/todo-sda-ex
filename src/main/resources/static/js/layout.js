@@ -24,30 +24,31 @@ $(function(){
     var scrollHeight = Math.max(
       document.body.scrollHeight, document.documentElement.scrollHeight,
       document.body.offsetHeight, document.documentElement.offsetHeight,
-      document.body.clientHeight
+      document.body.clientHeight, document.documentElement.clientHeight
     );
     
     /* ページ最下部の位置を取得 */
-    var bottom = document.body.clientHeight - window.innerHeight; 
+    var bottom = scrollHeight - window.innerHeight; 
     
     /* スクロール量を取得 */
     scrollTop = window.pageYOffset || document.documentElement.scrollTop
     
-    /* ページ最下部より30px上部に到達していない場合はボトムメニューを表示、到達していない場合は非表示にする */
-    if (bottom - 30 > scrollTop) {
+    /* ページ最下部より70px上部に到達していない場合はボトムメニューを表示、到達していない場合は非表示にする */
+    if (bottom - 70 > scrollTop) {
       bottommenu.fadeIn();
     } else {
       bottommenu.fadeOut();
     }
     
     console.log("$(document).innerHeight() = " + $(document).innerHeight());
-    console.log("$(window).innerHeight() = " + $(window).innerHeight());
     console.log("document.body.scrollHeight = " + document.body.scrollHeight);
     console.log("document.documentElement.scrollHeight = " + document.documentElement.scrollHeight);
     console.log("document.body.offsetHeight = " + document.body.offsetHeight);
     console.log("document.documentElement.offsetHeight = " + document.documentElement.offsetHeight);
     console.log("document.body.clientHeight = " + document.body.clientHeight);
+    console.log("document.documentElement.clientHeight = " + document.documentElement.clientHeight);
     console.log("window.innerHeight = " + window.innerHeight);
+    console.log("$(window).innerHeight() = " + $(window).innerHeight());
     console.log("$(window).height() = " + $(window).height());
     console.log("window.pageYOffset = " + window.pageYOffset);
     console.log("document.documentElement.scrollTop = " + document.documentElement.scrollTop);
